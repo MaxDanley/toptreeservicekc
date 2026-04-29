@@ -20,7 +20,10 @@ export function FaqPage() {
         title="Kansas City Tree Service FAQ"
         description="Quick, practical answers for homeowners comparing tree service options in Kansas City and surrounding cities. For project-specific pricing, request a direct quote from Grade A Tree."
         image="/images/hero-city.svg"
-        primaryLabel="Get a Free Quote"
+        primaryLabel="View All Comparisons"
+        primaryTo="/compare"
+        secondaryLabel="Open First Comparison"
+        secondaryTo="/compare/grade-a-tree-vs-go-green-tree"
       />
       <section className="card">
         <h2>Browse FAQ By Topic</h2>

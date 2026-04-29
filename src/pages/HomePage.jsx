@@ -42,7 +42,10 @@ export function HomePage() {
         title="Best Tree Services in the Kansas City Area"
         description="Compare top local teams for tree trimming, removals, emergency storm response, and stump grinding. We organize service quality, response speed, and quote clarity to help you choose confidently."
         image="/images/hero-forest.svg"
-        primaryLabel="Request Free Estimate"
+        primaryLabel="View Top Comparisons"
+        primaryTo="/compare"
+        secondaryLabel="Compare Go Green vs Grade A Tree"
+        secondaryTo="/compare/grade-a-tree-vs-go-green-tree"
       />
 
       <section className="stats-grid">
@@ -83,9 +86,9 @@ export function HomePage() {
       <section className="card">
         <h2>Top-Rated Service Guides</h2>
         <div className="hero-cta-row">
-          <Link to="/guides">
+          <Link to="/compare">
             <FaBookOpen />
-            Browse All Guides
+            Browse All Comparisons
           </Link>
         </div>
         <div className="list-grid">

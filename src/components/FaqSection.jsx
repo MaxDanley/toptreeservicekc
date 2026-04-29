@@ -1,6 +1,7 @@
-import { faqs, siteMeta } from '../data/siteData'
+import { Link } from 'react-router-dom'
+import { faqs } from '../data/siteData'
 import { StructuredData } from './StructuredData'
-import { FaCircleQuestion } from 'react-icons/fa6'
+import { FaCircleQuestion, FaArrowRight } from 'react-icons/fa6'
 
 export function FaqSection({ title = 'Frequently Asked Questions', items = faqs }) {
   const schema = {
@@ -31,9 +32,9 @@ export function FaqSection({ title = 'Frequently Asked Questions', items = faqs 
         ))}
       </div>
       <div className="hero-cta-row">
-        <a href={siteMeta.estimateUrl} target="_blank" rel="noreferrer">
-          Request Free Estimate
-        </a>
+        <Link to="/compare">
+          View All Comparison Pages <FaArrowRight />
+        </Link>
       </div>
     </section>
   )

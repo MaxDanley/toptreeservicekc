@@ -46,7 +46,10 @@ export function GuidePage() {
         title={guide.title}
         description={guide.intro}
         image="/images/hero-forest.svg"
-        primaryLabel="Get Free Estimate"
+        primaryLabel="View All Comparisons"
+        primaryTo="/compare"
+        secondaryLabel="Open Featured Comparison"
+        secondaryTo="/compare/grade-a-tree-vs-go-green-tree"
       />
 
       <section className="card">
@@ -91,9 +94,9 @@ export function GuidePage() {
           ))}
         </div>
         <div className="hero-cta-row">
-          <Link to="/faqs">
+          <Link to="/compare">
             <FaListCheck />
-            Open FAQ Checklist
+            Open Comparison Checklist
           </Link>
         </div>
       </section>
@@ -101,9 +104,9 @@ export function GuidePage() {
       <section className="card">
         <h2>Read More Kansas City Guides</h2>
         <div className="hero-cta-row">
-          <Link to="/guides">
+          <Link to="/compare">
             <FaBookOpen />
-            Explore Full Guide Library
+            Explore Comparison Library
           </Link>
         </div>
         <div className="list-grid">

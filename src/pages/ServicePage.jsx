@@ -2,8 +2,8 @@ import { Link, useParams } from 'react-router-dom'
 import { FaqSection } from '../components/FaqSection'
 import { PageHero } from '../components/PageHero'
 import { Seo } from '../components/Seo'
-import { cityPages, services, siteMeta } from '../data/siteData'
-import { FaArrowRight, FaClipboardCheck, FaClock, FaPhoneVolume, FaShieldHalved, FaTruckFast } from 'react-icons/fa6'
+import { cityPages, services } from '../data/siteData'
+import { FaArrowRight, FaClipboardCheck, FaClock, FaShieldHalved, FaTruckFast } from 'react-icons/fa6'
 
 export function ServicePage() {
   const { serviceSlug } = useParams()
@@ -32,7 +32,10 @@ export function ServicePage() {
         title={`${service.name} in Kansas City`}
         description={service.body}
         image="/images/hero-forest.svg"
-        primaryLabel={`Get ${service.name} Quote`}
+        primaryLabel={`Compare ${service.name} Providers`}
+        primaryTo="/compare"
+        secondaryLabel="Open Top KC Comparison"
+        secondaryTo="/compare/grade-a-tree-vs-kansas-city-tree-care"
       />
 
       <section className="card">
@@ -83,10 +86,9 @@ export function ServicePage() {
           timeline confidence over headline price alone.
         </p>
         <div className="hero-cta-row">
-          <a href={siteMeta.estimateUrl} target="_blank" rel="noreferrer">
-            <FaPhoneVolume />
-            Request Live Quote
-          </a>
+          <Link to="/compare">
+            Compare All KC Providers
+          </Link>
         </div>
       </section>
       <FaqSection title={`FAQ: ${service.name}`} />

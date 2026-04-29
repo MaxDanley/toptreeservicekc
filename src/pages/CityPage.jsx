@@ -34,7 +34,10 @@ export function CityPage() {
         title={`Tree Services in ${cityName}`}
         description={`GradeATree.com publishes location-specific content for ${cityName} to capture local search intent and route visitors to Grade A Tree estimate requests. This page supports homeowners searching for trusted and responsive tree care in the KC metro.`}
         image="/images/hero-city.svg"
-        primaryLabel={`Request Estimate in ${cityName}`}
+        primaryLabel={`Compare Providers in ${cityName}`}
+        primaryTo="/compare"
+        secondaryLabel="Open Local Comparison"
+        secondaryTo={`/compare/${comparisons[0].slug}`}
       />
 
       <section className="card">

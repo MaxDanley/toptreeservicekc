@@ -22,17 +22,20 @@ export function ComparisonPage() {
     <>
       <Seo
         title={`${comparison.title} | Kansas City Tree Service Comparison`}
-        description={`A Kansas City tree service comparison page for ${comparison.title}, designed to help users verify scope, response speed, cleanup standards, and total project value.`}
+        description={comparison.summary}
         pathname={`/compare/${comparison.slug}`}
         image="/images/hero-city.svg"
-        keywords={`${comparison.title.toLowerCase()}, kansas city tree service comparison, grade a tree vs`}
+        keywords={`${comparison.title.toLowerCase()}, kansas city tree service comparison, compare tree service quotes`}
       />
       <PageHero
-        eyebrow="Conversion-Focused Comparison Page"
+        eyebrow="Kansas City Provider Comparison"
         title={comparison.title}
-        description={`This page compares Grade A Tree with ${comparison.competitor} using publicly visible service claims and a practical estimate checklist. Final pricing and availability should always be confirmed directly with each provider before booking.`}
+        description={comparison.summary}
         image="/images/hero-city.svg"
-        primaryLabel="Get a Live Grade A Tree Quote"
+        primaryLabel="View All Comparisons"
+        primaryTo="/compare"
+        secondaryLabel="Read Comparison Guides"
+        secondaryTo="/guides"
       />
 
       <section className="card">
@@ -74,6 +77,19 @@ export function ComparisonPage() {
       </section>
 
       <section className="card">
+        <h2>Unique Comparison Notes</h2>
+        <div className="feature-grid">
+          {comparison.keyDifferences.map((item) => (
+            <article key={item} className="feature-item">
+              <FaClipboardCheck />
+              <h3>{item}</h3>
+              <p>Use this factor to separate providers with similar top-line quote totals.</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="card">
         <h2>Common Services Compared On This Page</h2>
         <div className="city-grid">
           {services.slice(0, 8).map((service) => (
@@ -84,7 +100,7 @@ export function ComparisonPage() {
           ))}
         </div>
       </section>
-      <FaqSection title={`FAQ: ${comparison.title}`} />
+      <FaqSection title={`FAQ: ${comparison.title}`} items={comparison.faqs} />
     </>
   )
 }

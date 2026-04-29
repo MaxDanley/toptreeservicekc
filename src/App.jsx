@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Layout } from './components/Layout'
 import { CityPage } from './pages/CityPage'
 import { CityServicePage } from './pages/CityServicePage'
+import { CompareIndexPage } from './pages/CompareIndexPage'
 import { ComparisonPage } from './pages/ComparisonPage'
 import { FaqPage } from './pages/FaqPage'
 import { GuidePage } from './pages/GuidePage'
@@ -21,6 +22,7 @@ function App() {
           <Route path="locations/:citySlug" element={<CityPage />} />
           <Route path="locations/:citySlug/:serviceSlug" element={<CityServicePage />} />
           <Route path="neighborhoods/:neighborhoodSlug" element={<NeighborhoodPage />} />
+          <Route path="compare" element={<CompareIndexPage />} />
           <Route path="compare/:comparisonSlug" element={<ComparisonPage />} />
           <Route path="guides" element={<GuidesIndexPage />} />
           <Route path="guides/:guideSlug" element={<GuidePage />} />

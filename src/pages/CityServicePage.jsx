@@ -33,7 +33,10 @@ export function CityServicePage() {
         title={`${service.name} in ${city.title}`}
         description={`This landing page is optimized for "${service.name.toLowerCase()} in ${city.title.toLowerCase()}" intent and routes visitors to Grade A Tree quote actions with clear next-step guidance.`}
         image="/images/hero-forest.svg"
-        primaryLabel={`Request ${service.name} Quote`}
+        primaryLabel={`Compare ${service.name} in ${city.title}`}
+        primaryTo="/compare"
+        secondaryLabel="Open Related Comparison"
+        secondaryTo={`/compare/${comparisons[0].slug}`}
       />
 
       <section className="card">

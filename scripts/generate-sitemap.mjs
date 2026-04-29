@@ -10,7 +10,7 @@ import {
   siteMeta,
 } from '../src/data/siteData.js'
 
-const staticPaths = ['/', '/guides', '/faqs']
+const staticPaths = ['/', '/compare', '/guides', '/faqs']
 const servicePaths = services.map((service) => `/services/${service.slug}`)
 const cityPaths = cityPages.map((city) => `/locations/${city.slug}`)
 const serviceCityPaths = serviceLocationPages.map((page) => `/locations/${page.slug}`)

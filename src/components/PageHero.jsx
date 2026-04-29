@@ -1,7 +1,16 @@
 import { FaArrowTrendUp, FaCircleCheck, FaPhoneVolume } from 'react-icons/fa6'
-import { siteMeta } from '../data/siteData'
+import { Link } from 'react-router-dom'
 
-export function PageHero({ eyebrow, title, description, image, primaryLabel = 'Request Free Estimate' }) {
+export function PageHero({
+  eyebrow,
+  title,
+  description,
+  image,
+  primaryLabel = 'View Top Comparisons',
+  primaryTo = '/compare',
+  secondaryLabel = 'Open Featured Comparison',
+  secondaryTo = '/compare/grade-a-tree-vs-go-green-tree',
+}) {
   return (
     <section className="hero modern-hero">
       <div className="hero-copy">
@@ -17,12 +26,12 @@ export function PageHero({ eyebrow, title, description, image, primaryLabel = 'R
           </span>
         </div>
         <div className="hero-cta-row">
-          <a href={siteMeta.estimateUrl} target="_blank" rel="noreferrer">
+          <Link to={primaryTo}>
             {primaryLabel}
-          </a>
-          <a href={siteMeta.phoneHref}>
-            <FaPhoneVolume /> Call {siteMeta.primaryPhone}
-          </a>
+          </Link>
+          <Link to={secondaryTo}>
+            <FaPhoneVolume /> {secondaryLabel}
+          </Link>
         </div>
       </div>
       <div className="hero-media">

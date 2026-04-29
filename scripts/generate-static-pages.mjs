@@ -1,6 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
-import { cityPages, services } from '../src/data/siteData.js'
+import { cityPages, comparisons, services } from '../src/data/siteData.js'
 import { guides } from '../src/data/guidesContent.js'
 
 const BASE_URL = 'https://www.toptreeservicekc.com'
@@ -111,8 +111,8 @@ function renderGuidePage(guide) {
       <h1>${escapeHtml(guide.title)}</h1>
       <p class="muted">${escapeHtml(guide.intro)}</p>
       <p>
-        <a class="cta" href="https://clienthub.getjobber.com/client_hubs/1a15eb84-a215-4aec-bdb2-ee1647b56b15/public/work_request/new?source=social_media">Request Free Estimate</a>
-        <a class="footer-link" href="/guides">Browse all guides</a>
+        <a class="cta" href="/compare">View All Comparisons</a>
+        <a class="footer-link" href="/compare/${comparisons[0].slug}">Open featured comparison</a>
       </p>
       <div>${guide.topics.map((topic) => `<span class="chip">${escapeHtml(topic)}</span>`).join('')}</div>
     </section>
@@ -184,7 +184,7 @@ function renderLocationPage(city) {
       <h1>Best Tree Services in ${escapeHtml(city.title)}</h1>
       <p class="muted">${escapeHtml(description)}</p>
       <p>
-        <a class="cta" href="https://clienthub.getjobber.com/client_hubs/1a15eb84-a215-4aec-bdb2-ee1647b56b15/public/work_request/new?source=social_media">Request Free Estimate</a>
+        <a class="cta" href="/compare">Compare KC Providers</a>
         <a class="footer-link" href="/compare/grade-a-tree-vs-go-green-tree">View comparison pages</a>
       </p>
     </section>
@@ -243,7 +243,7 @@ function renderLocationServicePage(city, service) {
       <h1>${escapeHtml(service.name)} in ${escapeHtml(city.title)}</h1>
       <p class="muted">${escapeHtml(description)}</p>
       <p>
-        <a class="cta" href="https://clienthub.getjobber.com/client_hubs/1a15eb84-a215-4aec-bdb2-ee1647b56b15/public/work_request/new?source=social_media">Request Free Estimate</a>
+        <a class="cta" href="/compare">Compare ${escapeHtml(service.name)} Providers</a>
         <a class="footer-link" href="/locations/${city.slug}">Back to ${escapeHtml(city.title)} hub</a>
       </p>
     </section>
@@ -314,13 +314,119 @@ function renderGuidesIndexPage() {
   })
 }
 
+function renderCompareIndexPage() {
+  const canonical = `${BASE_URL}/compare`
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Kansas City Tree Service Comparison Pages',
+    hasPart: comparisons.map((comparison) => ({
+      '@type': 'Article',
+      headline: comparison.title,
+      url: `${BASE_URL}/compare/${comparison.slug}`,
+    })),
+  }
+
+  const body = `
+    <section class="card">
+      <p class="eyebrow">Comparison Library</p>
+      <h1>Kansas City Tree Service Comparison Pages</h1>
+      <p class="muted">Browse all side-by-side provider comparisons with unique decision notes and scope checklists.</p>
+    </section>
+    <section class="card">
+      <h2>All Comparisons</h2>
+      <ul>
+        ${comparisons
+          .map(
+            (comparison) =>
+              `<li><a class="footer-link" href="/compare/${comparison.slug}">${escapeHtml(comparison.title)}</a> — ${escapeHtml(comparison.summary)}</li>`,
+          )
+          .join('')}
+      </ul>
+    </section>
+  `
+
+  return baseTemplate({
+    title: 'Kansas City Tree Service Comparisons | KC Tree Review',
+    description: 'Compare Kansas City tree service providers using unique side-by-side pages and quote checklists.',
+    canonical,
+    keywords: 'kansas city tree service comparisons, compare tree companies, compare tree service quotes',
+    body,
+    schema,
+  })
+}
+
+function renderComparisonPage(comparison) {
+  const canonical = `${BASE_URL}/compare/${comparison.slug}`
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: comparison.title,
+    description: comparison.summary,
+    author: { '@type': 'Organization', name: 'KC Tree Review Editorial Team' },
+    publisher: { '@type': 'Organization', name: SITE_TITLE },
+    mainEntityOfPage: canonical,
+  }
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: comparison.faqs.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  }
+
+  const body = `
+    <section class="card">
+      <p class="eyebrow">Provider Comparison</p>
+      <h1>${escapeHtml(comparison.title)}</h1>
+      <p class="muted">${escapeHtml(comparison.summary)}</p>
+      <p>
+        <a class="cta" href="/compare">View All Comparisons</a>
+        <a class="footer-link" href="/guides">Read related guides</a>
+      </p>
+    </section>
+    <section class="card">
+      <h2>Publicly Reported Capabilities</h2>
+      <ul>${comparison.publiclyClaimed.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+    </section>
+    <section class="card">
+      <h2>Unique Comparison Factors</h2>
+      <ul>${comparison.keyDifferences.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+    </section>
+    <section class="card">
+      <h2>Comparison FAQ</h2>
+      ${comparison.faqs
+        .map((item) => `<h3>${escapeHtml(item.question)}</h3><p class="muted">${escapeHtml(item.answer)}</p>`)
+        .join('')}
+    </section>
+    <script type="application/ld+json">${JSON.stringify(faqSchema)}</script>
+  `
+
+  return baseTemplate({
+    title: `${comparison.title} | KC Tree Review`,
+    description: comparison.summary,
+    canonical,
+    keywords: `${comparison.title.toLowerCase()}, kansas city tree service comparison`,
+    body,
+    schema,
+  })
+}
+
 fs.rmSync(path.join(OUTPUT_ROOT, 'guides'), { recursive: true, force: true })
 fs.rmSync(path.join(OUTPUT_ROOT, 'locations'), { recursive: true, force: true })
+fs.rmSync(path.join(OUTPUT_ROOT, 'compare'), { recursive: true, force: true })
 
 writePage('guides', renderGuidesIndexPage())
+writePage('compare', renderCompareIndexPage())
 
 for (const guide of guides) {
   writePage(path.join('guides', guide.slug), renderGuidePage(guide))
+}
+for (const comparison of comparisons) {
+  writePage(path.join('compare', comparison.slug), renderComparisonPage(comparison))
 }
 
 for (const city of cityPages) {
@@ -331,7 +437,7 @@ for (const city of cityPages) {
 }
 
 console.log(
-  `Generated ${guides.length} static guide pages, ${cityPages.length} static location pages, and ${
+  `Generated ${guides.length} static guide pages, ${comparisons.length} comparison pages, ${cityPages.length} static location pages, and ${
     cityPages.length * services.length
   } city-service pages.`,
 )

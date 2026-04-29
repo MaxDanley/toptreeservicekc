@@ -181,48 +181,136 @@ export const comparisons = [
     title: 'Grade A Tree vs Go Green Tree',
     competitor: 'Go Green Tree and Stump Removal',
     publiclyClaimed: ['Kansas City metro service area', 'Tree removal and stump services', 'Free estimate workflow'],
+    summary:
+      'A high-volume local comparison focused on homeowners choosing between broad residential scope and fast-turn quote workflows.',
+    keyDifferences: [
+      'Quote style and itemization detail',
+      'Cleanup expectations and final site standard',
+      'Scheduling communication and project updates',
+    ],
+    faqs: [
+      { question: 'What should I compare first?', answer: 'Start with line-item scope and cleanup language before comparing totals.' },
+      { question: 'Are both options local to KC?', answer: 'Both publicly position Kansas City metro coverage.' },
+    ],
   },
   {
     slug: 'grade-a-tree-vs-clark-tree-service',
     title: 'Grade A Tree vs Clark Tree Service',
     competitor: 'Clark Tree Service',
     publiclyClaimed: ['24/7 emergency availability', 'Tree trimming and removal', 'Family-owned positioning'],
+    summary:
+      'This comparison is most relevant for storm season customers prioritizing emergency response and owner-supervised quality signals.',
+    keyDifferences: [
+      'Emergency response framing and timelines',
+      'Crew supervision model details',
+      'Scope language for trimming vs removal',
+    ],
+    faqs: [
+      { question: 'Is this a storm-focused comparison?', answer: 'Yes, emergency readiness is one of the biggest evaluation categories on this page.' },
+      { question: 'Which quote should I trust?', answer: 'Use the one with complete scope, insurance clarity, and realistic timeline commitments.' },
+    ],
   },
   {
     slug: 'grade-a-tree-vs-kansas-city-tree-care',
     title: 'Grade A Tree vs Kansas City Tree Care',
     competitor: 'Kansas City Tree Care',
     publiclyClaimed: ['Trimming, removal, and stump grinding', 'Large-job equipment support', 'Free estimates'],
+    summary:
+      'A side-by-side review for property owners comparing equipment-backed crews and full-service trimming/removal packages.',
+    keyDifferences: [
+      'Large-project handling approach',
+      'Stump and debris scope inclusions',
+      'Safety process detail in estimates',
+    ],
+    faqs: [
+      { question: 'Is this good for larger trees?', answer: 'Yes, this page is designed around medium-to-large project decision factors.' },
+      { question: 'What hidden costs should I check?', answer: 'Look for separate line items on haul-away, stump depth, and emergency timing.' },
+    ],
   },
   {
     slug: 'grade-a-tree-vs-ryan-lawn-tree',
     title: 'Grade A Tree vs Ryan Lawn & Tree',
     competitor: 'Ryan Lawn & Tree',
     publiclyClaimed: ['Tree trimming and removal', 'Plant and tree care programs', 'Metro-area coverage'],
+    summary:
+      'Best for homeowners deciding between focused tree-service quoting and broader lawn-plus-tree program structures.',
+    keyDifferences: [
+      'Program-style service vs project-by-project quoting',
+      'Plant-health integration in recommendations',
+      'Trimming plan cadence and maintenance options',
+    ],
+    faqs: [
+      { question: 'Is this comparison maintenance-focused?', answer: 'It includes both one-time work and recurring care framework comparisons.' },
+      { question: 'How do I compare long-term value?', answer: 'Ask each provider to outline first-year scope and projected maintenance cadence.' },
+    ],
   },
   {
     slug: 'grade-a-tree-vs-marketplace-listings',
     title: 'Grade A Tree vs Aggregator Marketplace Listings',
     competitor: 'Directory and aggregator lead lists',
     publiclyClaimed: ['Multiple provider options', 'Broad quote collection', 'General pricing ranges'],
+    summary:
+      'Built for customers deciding between direct-provider quotes and marketplace quote aggregation workflows.',
+    keyDifferences: [
+      'Direct provider communication vs lead routing',
+      'Quote accountability and revision speed',
+      'Depth of scope detail in first estimate',
+    ],
+    faqs: [
+      { question: 'Are marketplaces useful?', answer: 'They can help with breadth, but direct scope validation is still required before booking.' },
+      { question: 'What is the main risk?', answer: 'Generic quote ranges without complete property-specific scope detail.' },
+    ],
   },
   {
     slug: 'grade-a-tree-vs-multiple-small-crews',
     title: 'Grade A Tree vs Multiple Small Independent Crews',
     competitor: 'Independent one-truck operators',
     publiclyClaimed: ['Lower ad-hoc pricing in some jobs', 'Flexible scheduling', 'Varied cleanup standards'],
+    summary:
+      'A practical comparison for budget-sensitive customers evaluating independent crews against structured full-service providers.',
+    keyDifferences: [
+      'Consistency of scope and cleanup standards',
+      'Insurance documentation and job oversight',
+      'Price flexibility versus process consistency',
+    ],
+    faqs: [
+      { question: 'Can independent crews be cheaper?', answer: 'In some cases yes, but scope and post-job standards vary widely.' },
+      { question: 'What should I verify before booking?', answer: 'Insurance status, cleanup terms, and written scope commitments.' },
+    ],
   },
   {
     slug: 'grade-a-tree-vs-national-franchises',
     title: 'Grade A Tree vs National Tree Franchises',
     competitor: 'National multi-market tree brands',
     publiclyClaimed: ['Large brand presence', 'Program-based maintenance', 'Multi-city operations'],
+    summary:
+      'Designed for customers choosing between national process frameworks and Kansas City-local responsiveness.',
+    keyDifferences: [
+      'Local crew familiarity and regional conditions',
+      'Standardized national process vs local adaptation',
+      'Response speed for urgent weather events',
+    ],
+    faqs: [
+      { question: 'Are national brands always better resourced?', answer: 'They can be, but local responsiveness and scope clarity still drive outcomes.' },
+      { question: 'Who is best for emergencies?', answer: 'Compare documented response timelines, not just brand size.' },
+    ],
   },
   {
     slug: 'grade-a-tree-vs-budget-first-quotes',
     title: 'Grade A Tree vs Budget-First Quotes',
     competitor: 'Lowest-bid providers',
     publiclyClaimed: ['Lower initial quote totals', 'Limited scope line-items', 'Variable cleanup inclusions'],
+    summary:
+      'A decision guide for homeowners balancing lowest upfront bids against full-scope project reliability.',
+    keyDifferences: [
+      'Lowest price vs total project value',
+      'Cleanup and disposal inclusion rates',
+      'Change-order risk from incomplete scope',
+    ],
+    faqs: [
+      { question: 'Should I ignore low quotes?', answer: 'No, but review exclusions carefully before comparing to full-scope providers.' },
+      { question: 'How do change orders happen?', answer: 'They often come from unclear initial scope around cleanup, access, and hazard handling.' },
+    ],
   },
 ]
 

@@ -7,7 +7,7 @@ const nav = [
   { to: '/', label: 'Home', icon: <FaBuilding /> },
   { to: '/services/tree-removal', label: 'Services', icon: <FaScissors /> },
   { to: '/locations/kansas-city-mo', label: 'Locations', icon: <FaLocationDot /> },
-  { to: '/compare/grade-a-tree-vs-go-green-tree', label: 'Compare', icon: <FaArrowRight /> },
+  { to: '/compare', label: 'Compare', icon: <FaArrowRight /> },
   { to: '/guides', label: 'Guides', icon: <FaBookOpen /> },
   { to: '/faqs', label: 'FAQ', icon: <FaQuestionCircle /> },
 ]
@@ -31,10 +31,10 @@ export function Layout() {
             </NavLink>
           ))}
         </nav>
-        <a className="cta-small" href={siteMeta.estimateUrl} target="_blank" rel="noreferrer">
+        <Link className="cta-small" to="/compare">
           <FaPhone />
-          Request Free Estimate
-        </a>
+          View Top Comparisons
+        </Link>
       </header>
 
       <main className="page-wrap">

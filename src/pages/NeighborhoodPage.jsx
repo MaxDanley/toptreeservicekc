@@ -2,7 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import { Seo } from '../components/Seo'
 import { FaqSection } from '../components/FaqSection'
 import { PageHero } from '../components/PageHero'
-import { neighborhoodPages, services, guides } from '../data/siteData'
+import { comparisons, neighborhoodPages, services, guides } from '../data/siteData'
 import { FaArrowRight, FaLeaf, FaMapLocationDot, FaRoad, FaTriangleExclamation } from 'react-icons/fa6'
 
 export function NeighborhoodPage() {
@@ -32,7 +32,10 @@ export function NeighborhoodPage() {
         title={`${neighborhood.title} Tree Service`}
         description={`This neighborhood page targets hyper-local search intent for ${neighborhood.title}. It links directly to Grade A Tree service pages and quote actions to maximize local conversion opportunities.`}
         image="/images/hero-city.svg"
-        primaryLabel={`Request Estimate in ${neighborhood.title}`}
+        primaryLabel={`Compare Providers in ${neighborhood.title}`}
+        primaryTo="/compare"
+        secondaryLabel="Open Featured Comparison"
+        secondaryTo={`/compare/${comparisons[0].slug}`}
       />
 
       <section className="card">
