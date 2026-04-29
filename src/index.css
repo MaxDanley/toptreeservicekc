@@ -132,6 +132,8 @@ a {
   border-radius: 0.5rem;
   border: 1px solid var(--line);
   font-weight: 700;
+  color: #1a2d66;
+  background: #ffffff;
   transition: 180ms ease;
 }
 
@@ -151,6 +153,7 @@ a {
 .hero-cta-row a:last-child {
   background: rgba(255, 255, 255, 0.8);
   border-color: #cad8ff;
+  color: #1c3575;
 }
 
 .page-wrap {

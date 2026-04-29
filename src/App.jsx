@@ -1,5 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Layout } from './components/Layout'
+import { ScrollToTop } from './components/ScrollToTop'
 import { CityPage } from './pages/CityPage'
 import { CityServicePage } from './pages/CityServicePage'
 import { CompareIndexPage } from './pages/CompareIndexPage'
@@ -15,6 +16,7 @@ import { ServicePage } from './pages/ServicePage'
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
