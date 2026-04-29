@@ -22,18 +22,17 @@ export function CityServicePage() {
   return (
     <>
       <Seo
-        title={`${service.name} in ${city.title} | GradeATree.com`}
-        description={`${service.name} in ${city.title}: local quote checklist, service scope overview, and direct Grade A Tree estimate request links.`}
+        title={`Best ${service.name} in ${city.title} | KC Tree Review`}
+        description={`Compare ${service.name.toLowerCase()} providers in ${city.title}. Side-by-side quote breakdowns, scope checklists, and local coverage across the KC metro area.`}
         pathname={`/locations/${city.slug}/${service.slug}`}
         image="/images/hero-forest.svg"
-        keywords={`${service.name.toLowerCase()} in ${city.title.toLowerCase()}, ${city.title.toLowerCase()} tree service, grade a tree ${city.title.toLowerCase()}`}
+        keywords={`${service.name.toLowerCase()} ${city.title.toLowerCase()}, compare ${service.name.toLowerCase()} ${city.title.toLowerCase()}, best tree service ${city.title.toLowerCase()}`}
       />
       <PageHero
-        eyebrow="Service + City Landing Page"
+        eyebrow={`${city.title} Tree Service`}
         title={`${service.name} in ${city.title}`}
-        description={`This landing page is optimized for "${service.name.toLowerCase()} in ${city.title.toLowerCase()}" intent and routes visitors to Grade A Tree quote actions with clear next-step guidance.`}
-        image="/images/hero-forest.svg"
-        primaryLabel={`Compare ${service.name} in ${city.title}`}
+        description={`Compare ${service.name.toLowerCase()} providers serving ${city.title}. Use our scope checklist and side-by-side comparisons to find the right provider for your home.`}
+        primaryLabel={`Compare ${service.name} Providers`}
         primaryTo="/compare"
         secondaryLabel="Open Related Comparison"
         secondaryTo={`/compare/${comparisons[0].slug}`}

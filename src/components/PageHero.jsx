@@ -1,42 +1,47 @@
-import { FaArrowTrendUp, FaCircleCheck, FaPhoneVolume } from 'react-icons/fa6'
+import { FaArrowRight, FaCircleCheck } from 'react-icons/fa6'
+import { FaArrowTrendUp } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
 
 export function PageHero({
   eyebrow,
   title,
   description,
-  image,
   primaryLabel = 'View Top Comparisons',
   primaryTo = '/compare',
   secondaryLabel = 'Open Featured Comparison',
   secondaryTo = '/compare/grade-a-tree-vs-go-green-tree',
+  badges,
 }) {
+  const defaultBadges = badges || [
+    { icon: <FaCircleCheck />, text: 'Licensed & insured providers' },
+    { icon: <FaArrowTrendUp />, text: 'Fast estimate response' },
+    { icon: <FaCircleCheck />, text: 'Side-by-side breakdowns' },
+  ]
+
   return (
-    <section className="hero modern-hero">
-      <div className="hero-copy">
-        <p className="eyebrow">{eyebrow}</p>
+    <div className="hero-band">
+      <div className="hero-band-inner">
+        {eyebrow && <p className="eyebrow">{eyebrow}</p>}
         <h1>{title}</h1>
-        <p>{description}</p>
+        <p className="hero-desc">{description}</p>
         <div className="hero-badges">
-          <span>
-            <FaCircleCheck /> Licensed and insured workflows
-          </span>
-          <span>
-            <FaArrowTrendUp /> Fast estimate response
-          </span>
+          {defaultBadges.map((badge, i) => (
+            <span key={i}>
+              {badge.icon}
+              {badge.text}
+            </span>
+          ))}
         </div>
         <div className="hero-cta-row">
           <Link to={primaryTo}>
+            <FaArrowRight />
             {primaryLabel}
           </Link>
           <Link to={secondaryTo}>
-            <FaPhoneVolume /> {secondaryLabel}
+            {secondaryLabel}
           </Link>
         </div>
       </div>
-      <div className="hero-media">
-        <img src={image} alt="Kansas City tree service comparison visual" loading="lazy" />
-      </div>
-    </section>
+    </div>
   )
 }

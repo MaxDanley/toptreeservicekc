@@ -84,12 +84,9 @@ export function HomePage() {
       </section>
 
       <section className="card">
-        <h2>Top-Rated Service Guides</h2>
-        <div className="hero-cta-row">
-          <Link to="/compare">
-            <FaBookOpen />
-            Browse All Comparisons
-          </Link>
+        <div className="section-header">
+          <h2>Top-Rated Service Guides</h2>
+          <Link to="/compare">Browse All Comparisons <FaArrowRight /></Link>
         </div>
         <div className="list-grid">
           {guides.map((guide) => (

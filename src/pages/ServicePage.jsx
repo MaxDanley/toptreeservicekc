@@ -2,7 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import { FaqSection } from '../components/FaqSection'
 import { PageHero } from '../components/PageHero'
 import { Seo } from '../components/Seo'
-import { cityPages, services } from '../data/siteData'
+import { cityPages, comparisons, services } from '../data/siteData'
 import { FaArrowRight, FaClipboardCheck, FaClock, FaShieldHalved, FaTruckFast } from 'react-icons/fa6'
 
 export function ServicePage() {
@@ -21,21 +21,20 @@ export function ServicePage() {
   return (
     <>
       <Seo
-        title={`${service.name} in Kansas City | GradeATree.com`}
-        description={`${service.name} service details, quote checklist, and conversion guidance for homeowners looking for Grade A Tree in Kansas City and surrounding cities.`}
+        title={`Best ${service.name} in Kansas City | KC Tree Review`}
+        description={`Compare the best ${service.name.toLowerCase()} providers in Kansas City. Side-by-side breakdowns, quote checklists, and local service coverage across the KC metro.`}
         pathname={`/services/${service.slug}`}
         image="/images/hero-forest.svg"
-        keywords={`${service.name.toLowerCase()}, kansas city tree service, grade a tree estimate`}
+        keywords={`best ${service.name.toLowerCase()} kansas city, compare ${service.name.toLowerCase()} kc, ${service.name.toLowerCase()} near me`}
       />
       <PageHero
-        eyebrow="Grade A Tree Service Guide"
-        title={`${service.name} in Kansas City`}
+        eyebrow={`Kansas City ${service.name} Guide`}
+        title={`Compare ${service.name} Providers in Kansas City`}
         description={service.body}
-        image="/images/hero-forest.svg"
         primaryLabel={`Compare ${service.name} Providers`}
         primaryTo="/compare"
-        secondaryLabel="Open Top KC Comparison"
-        secondaryTo="/compare/grade-a-tree-vs-kansas-city-tree-care"
+        secondaryLabel="View Top KC Comparison"
+        secondaryTo={`/compare/${comparisons[0].slug}`}
       />
 
       <section className="card">
@@ -67,7 +66,7 @@ export function ServicePage() {
       </section>
 
       <section className="card">
-        <h2>Popular Cities For This Service</h2>
+        <h2>Popular Cities For {service.name}</h2>
         <div className="city-grid">
           {cityPages.slice(0, 20).map((city) => (
             <Link key={city.slug} to={`/locations/${city.slug}/${service.slug}`}>
@@ -79,15 +78,17 @@ export function ServicePage() {
       </section>
 
       <section className="card">
-        <h2>Why This Service Often Gets Shortlisted</h2>
+        <h2>How We Evaluate Providers For This Service</h2>
         <p>
-          Grade A Tree emphasizes transparent quoting, local crew experience, and responsive scheduling throughout the
-          KC metro. When customers compare providers side-by-side, they often prioritize clarity, cleanup quality, and
-          timeline confidence over headline price alone.
+          We compare providers side-by-side on transparency, cleanup scope, scheduling response, and overall value.
+          When customers review multiple quotes, the best results come from comparing scope details — not just headline price.
         </p>
-        <div className="hero-cta-row">
-          <Link to="/compare">
+        <div className="cta-row">
+          <Link className="btn-primary" to="/compare">
             Compare All KC Providers
+          </Link>
+          <Link className="btn-outline" to="/guides">
+            Browse Service Guides
           </Link>
         </div>
       </section>

@@ -23,20 +23,19 @@ export function CityPage() {
   return (
     <>
       <Seo
-        title={`Tree Service in ${cityName} | GradeATree.com`}
-        description={`Grade A Tree service coverage page for ${cityName}. Explore removal, trimming, stump grinding, emergency response, and request a free estimate.`}
+        title={`Best Tree Services in ${cityName} | KC Tree Review`}
+        description={`Compare tree service providers in ${cityName}. Side-by-side breakdowns of removal, trimming, stump grinding, and emergency response. Find the right team for your ${cityName} home.`}
         pathname={`/locations/${citySlug}`}
         image="/images/hero-city.svg"
-        keywords={`tree service in ${cityName.toLowerCase()}, grade a tree ${cityName.toLowerCase()}, tree removal ${cityName.toLowerCase()}`}
+        keywords={`tree service ${cityName.toLowerCase()}, best tree company ${cityName.toLowerCase()}, tree removal ${cityName.toLowerCase()}`}
       />
       <PageHero
-        eyebrow="Grade A Tree Location Page"
-        title={`Tree Services in ${cityName}`}
-        description={`GradeATree.com publishes location-specific content for ${cityName} to capture local search intent and route visitors to Grade A Tree estimate requests. This page supports homeowners searching for trusted and responsive tree care in the KC metro.`}
-        image="/images/hero-city.svg"
+        eyebrow={`${cityName} Tree Service Guide`}
+        title={`Best Tree Services in ${cityName}`}
+        description={`Compare top-rated tree removal, trimming, stump grinding, and emergency storm response providers serving ${cityName}. Side-by-side breakdowns to help you choose with confidence.`}
         primaryLabel={`Compare Providers in ${cityName}`}
         primaryTo="/compare"
-        secondaryLabel="Open Local Comparison"
+        secondaryLabel="View All Comparisons"
         secondaryTo={`/compare/${comparisons[0].slug}`}
       />
 

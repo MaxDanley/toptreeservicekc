@@ -93,8 +93,8 @@ export function GuidePage() {
             </article>
           ))}
         </div>
-        <div className="hero-cta-row">
-          <Link to="/compare">
+        <div className="cta-row">
+          <Link className="btn-primary" to="/compare">
             <FaListCheck />
             Open Comparison Checklist
           </Link>
@@ -103,8 +103,8 @@ export function GuidePage() {
 
       <section className="card">
         <h2>Read More Kansas City Guides</h2>
-        <div className="hero-cta-row">
-          <Link to="/compare">
+        <div className="cta-row">
+          <Link className="btn-outline" to="/compare">
             <FaBookOpen />
             Explore Comparison Library
           </Link>

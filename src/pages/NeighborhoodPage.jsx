@@ -21,18 +21,17 @@ export function NeighborhoodPage() {
   return (
     <>
       <Seo
-        title={`Tree Service in ${neighborhood.title} | GradeATree.com`}
-        description={`Grade A Tree neighborhood landing page for ${neighborhood.title}, with local service links and FAQ-driven quote intent content.`}
+        title={`Best Tree Services in ${neighborhood.title} | KC Tree Review`}
+        description={`Compare tree service providers in ${neighborhood.title}. Find the best tree removal, trimming, and stump grinding options with local coverage and side-by-side breakdowns.`}
         pathname={`/neighborhoods/${neighborhood.slug}`}
         image="/images/hero-city.svg"
-        keywords={`tree service ${neighborhood.title.toLowerCase()}, grade a tree ${neighborhood.title.toLowerCase()}, tree removal near ${neighborhood.title.toLowerCase()}`}
+        keywords={`tree service ${neighborhood.title.toLowerCase()}, best tree company near ${neighborhood.title.toLowerCase()}, tree removal ${neighborhood.title.toLowerCase()}`}
       />
       <PageHero
-        eyebrow="Neighborhood Service Landing"
-        title={`${neighborhood.title} Tree Service`}
-        description={`This neighborhood page targets hyper-local search intent for ${neighborhood.title}. It links directly to Grade A Tree service pages and quote actions to maximize local conversion opportunities.`}
-        image="/images/hero-city.svg"
-        primaryLabel={`Compare Providers in ${neighborhood.title}`}
+        eyebrow={`${neighborhood.title} Tree Service Guide`}
+        title={`Tree Services in ${neighborhood.title}`}
+        description={`Find and compare top-rated tree removal, trimming, stump grinding, and emergency storm response providers serving the ${neighborhood.title} neighborhood and surrounding KC metro areas.`}
+        primaryLabel={`Compare Providers Near ${neighborhood.title}`}
         primaryTo="/compare"
         secondaryLabel="Open Featured Comparison"
         secondaryTo={`/compare/${comparisons[0].slug}`}
@@ -52,6 +51,7 @@ export function NeighborhoodPage() {
           ))}
         </div>
       </section>
+
       <section className="card">
         <h2>Neighborhood Tree Service Factors</h2>
         <div className="feature-grid">
@@ -72,6 +72,7 @@ export function NeighborhoodPage() {
           </article>
         </div>
       </section>
+
       <section className="card">
         <h2>Useful Local Guides</h2>
         <div className="city-grid">
@@ -82,7 +83,16 @@ export function NeighborhoodPage() {
             </Link>
           ))}
         </div>
+        <div className="cta-row">
+          <Link className="btn-primary" to="/compare">
+            View All Comparisons
+          </Link>
+          <Link className="btn-outline" to="/guides">
+            Browse Full Guide Library
+          </Link>
+        </div>
       </section>
+
       <FaqSection title={`FAQ for ${neighborhood.title} Homeowners`} />
     </>
   )

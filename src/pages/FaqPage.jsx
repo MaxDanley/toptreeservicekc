@@ -9,20 +9,19 @@ export function FaqPage() {
   return (
     <>
       <Seo
-        title="Tree Service FAQ | GradeATree.com"
-        description="Frequently asked questions about tree removal, trimming, stump grinding, and emergency service in the Kansas City metro."
+        title="Tree Service FAQ Kansas City | KC Tree Review"
+        description="Frequently asked questions about tree removal, trimming, stump grinding, and emergency service in the Kansas City metro. Practical answers for homeowners comparing providers."
         pathname="/faqs"
         image="/images/hero-city.svg"
-        keywords="kansas city tree service faq, tree removal faq, stump grinding faq, grade a tree"
+        keywords="kansas city tree service faq, tree removal faq, stump grinding faq, best tree company kc"
       />
       <PageHero
         eyebrow="Knowledge Center"
         title="Kansas City Tree Service FAQ"
-        description="Quick, practical answers for homeowners comparing tree service options in Kansas City and surrounding cities. For project-specific pricing, request a direct quote from Grade A Tree."
-        image="/images/hero-city.svg"
+        description="Quick, practical answers for homeowners comparing tree service options in Kansas City and surrounding cities. Use these answers to ask better questions when reviewing provider quotes."
         primaryLabel="View All Comparisons"
         primaryTo="/compare"
-        secondaryLabel="Open First Comparison"
+        secondaryLabel="Open Featured Comparison"
         secondaryTo="/compare/grade-a-tree-vs-go-green-tree"
       />
       <section className="card">
