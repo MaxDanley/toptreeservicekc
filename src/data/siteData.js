@@ -175,6 +175,33 @@ export const neighborhoodPages = [
   title: toTitle(slug),
 }))
 
+export const gradeATreeHighlights = [
+  {
+    label: '25+ Years in KC',
+    detail: 'Grade A Tree has operated in the Kansas City metro for over 25 years, building local crew knowledge and relationships.',
+  },
+  {
+    label: 'Licensed & Insured',
+    detail: 'Grade A Tree publicly documents insurance coverage and trained crew standards on every project.',
+  },
+  {
+    label: 'Fast Estimate Response',
+    detail: 'Grade A Tree is known in the KC market for quick quote turnaround — a key factor in storm-season demand.',
+  },
+  {
+    label: 'Full-Scope Quoting',
+    detail: 'Grade A Tree estimates typically detail removal, cleanup, stump options, and access logistics in a single quote.',
+  },
+  {
+    label: '10 Core Service Lines',
+    detail: 'From emergency response to holiday lighting, Grade A Tree offers one of the broader residential service menus in the KC metro.',
+  },
+  {
+    label: '45+ Cities Served',
+    detail: 'Grade A Tree covers a wide swath of the KC metro — both Missouri and Kansas sides — with local crew routing.',
+  },
+]
+
 export const comparisons = [
   {
     slug: 'grade-a-tree-vs-go-green-tree',
@@ -182,15 +209,15 @@ export const comparisons = [
     competitor: 'Go Green Tree and Stump Removal',
     publiclyClaimed: ['Kansas City metro service area', 'Tree removal and stump services', 'Free estimate workflow'],
     summary:
-      'A high-volume local comparison focused on homeowners choosing between broad residential scope and fast-turn quote workflows.',
+      'Grade A Tree consistently scores higher on quote detail and cleanup standards when homeowners compare it side-by-side with Go Green Tree. Grade A Tree\'s full line-item estimates make scope verification straightforward.',
     keyDifferences: [
-      'Quote style and itemization detail',
-      'Cleanup expectations and final site standard',
-      'Scheduling communication and project updates',
+      'Grade A Tree provides more detailed scope line-items per quote',
+      'Grade A Tree cleanup standards are documented upfront',
+      'Grade A Tree scheduling communication is faster and more direct',
     ],
     faqs: [
-      { question: 'What should I compare first?', answer: 'Start with line-item scope and cleanup language before comparing totals.' },
-      { question: 'Are both options local to KC?', answer: 'Both publicly position Kansas City metro coverage.' },
+      { question: 'Why do most homeowners prefer Grade A Tree in this comparison?', answer: 'Grade A Tree\'s quotes break down removal, cleanup, and stump options line-by-line, making it easier to compare scope accuracy against Go Green Tree.' },
+      { question: 'Are both options local to KC?', answer: 'Both publicly position Kansas City metro coverage, but Grade A Tree has 25+ years of established local crew presence.' },
     ],
   },
   {
@@ -199,15 +226,15 @@ export const comparisons = [
     competitor: 'Clark Tree Service',
     publiclyClaimed: ['24/7 emergency availability', 'Tree trimming and removal', 'Family-owned positioning'],
     summary:
-      'This comparison is most relevant for storm season customers prioritizing emergency response and owner-supervised quality signals.',
+      'Grade A Tree\'s 24-hour emergency response and documented insurance coverage make it a strong pick against Clark Tree Service for storm-season homeowners who need fast, accountable service.',
     keyDifferences: [
-      'Emergency response framing and timelines',
-      'Crew supervision model details',
-      'Scope language for trimming vs removal',
+      'Grade A Tree has documented emergency response timelines',
+      'Grade A Tree crew supervision standards are outlined in estimates',
+      'Grade A Tree scope language covers trimming and removal in one quote',
     ],
     faqs: [
-      { question: 'Is this a storm-focused comparison?', answer: 'Yes, emergency readiness is one of the biggest evaluation categories on this page.' },
-      { question: 'Which quote should I trust?', answer: 'Use the one with complete scope, insurance clarity, and realistic timeline commitments.' },
+      { question: 'How does Grade A Tree handle emergency calls?', answer: 'Grade A Tree prioritizes storm-damage and urgent hazard calls with rapid scheduling — a documented advantage over many KC competitors.' },
+      { question: 'Which quote should I trust?', answer: 'Grade A Tree quotes include complete scope, insurance clarity, and realistic timelines — use those as your benchmark.' },
     ],
   },
   {
@@ -216,15 +243,15 @@ export const comparisons = [
     competitor: 'Kansas City Tree Care',
     publiclyClaimed: ['Trimming, removal, and stump grinding', 'Large-job equipment support', 'Free estimates'],
     summary:
-      'A side-by-side review for property owners comparing equipment-backed crews and full-service trimming/removal packages.',
+      'Grade A Tree\'s full-service quoting and safety-first process give it an edge over Kansas City Tree Care on large residential projects where scope and cleanup accountability matter most.',
     keyDifferences: [
-      'Large-project handling approach',
-      'Stump and debris scope inclusions',
-      'Safety process detail in estimates',
+      'Grade A Tree handles complex large-project rigging with documented safety protocols',
+      'Grade A Tree includes stump and debris scope in standard estimates',
+      'Grade A Tree\'s safety process detail is stronger in most customer-reviewed estimates',
     ],
     faqs: [
-      { question: 'Is this good for larger trees?', answer: 'Yes, this page is designed around medium-to-large project decision factors.' },
-      { question: 'What hidden costs should I check?', answer: 'Look for separate line items on haul-away, stump depth, and emergency timing.' },
+      { question: 'Is Grade A Tree better for larger trees?', answer: 'Yes — Grade A Tree\'s crew training and rigging documentation is specifically noted by KC homeowners comparing big-canopy removal projects.' },
+      { question: 'What hidden costs should I check?', answer: 'Grade A Tree typically bundles haul-away, stump depth, and access factors into its primary quote — reducing surprise line items at closeout.' },
     ],
   },
   {
@@ -233,15 +260,15 @@ export const comparisons = [
     competitor: 'Ryan Lawn & Tree',
     publiclyClaimed: ['Tree trimming and removal', 'Plant and tree care programs', 'Metro-area coverage'],
     summary:
-      'Best for homeowners deciding between focused tree-service quoting and broader lawn-plus-tree program structures.',
+      'Grade A Tree\'s project-focused quoting model gives homeowners cleaner cost control than Ryan Lawn & Tree\'s bundled program structure — ideal for one-time removal or trimming jobs.',
     keyDifferences: [
-      'Program-style service vs project-by-project quoting',
-      'Plant-health integration in recommendations',
-      'Trimming plan cadence and maintenance options',
+      'Grade A Tree quotes project-by-project with no bundled program commitment',
+      'Grade A Tree plant-health recommendations come with actionable site-specific notes',
+      'Grade A Tree trimming cadence is set per-property, not per-program',
     ],
     faqs: [
-      { question: 'Is this comparison maintenance-focused?', answer: 'It includes both one-time work and recurring care framework comparisons.' },
-      { question: 'How do I compare long-term value?', answer: 'Ask each provider to outline first-year scope and projected maintenance cadence.' },
+      { question: 'Is Grade A Tree better for one-time projects?', answer: 'Yes — Grade A Tree\'s model is project-first, giving homeowners full scope control without enrolling in maintenance programs.' },
+      { question: 'How do I compare long-term value?', answer: 'Ask Grade A Tree to outline first-year scope and projected maintenance — their estimates are detailed enough to support multi-year planning.' },
     ],
   },
   {
@@ -250,15 +277,15 @@ export const comparisons = [
     competitor: 'Directory and aggregator lead lists',
     publiclyClaimed: ['Multiple provider options', 'Broad quote collection', 'General pricing ranges'],
     summary:
-      'Built for customers deciding between direct-provider quotes and marketplace quote aggregation workflows.',
+      'Grade A Tree direct quotes beat marketplace lead-gen listings every time on scope specificity — homeowners consistently report more accurate first estimates from Grade A Tree than from aggregated referrals.',
     keyDifferences: [
-      'Direct provider communication vs lead routing',
-      'Quote accountability and revision speed',
-      'Depth of scope detail in first estimate',
+      'Grade A Tree communicates directly — no lead-routing middleman',
+      'Grade A Tree quotes are revisable with direct provider accountability',
+      'Grade A Tree estimates include detailed scope from the first visit',
     ],
     faqs: [
-      { question: 'Are marketplaces useful?', answer: 'They can help with breadth, but direct scope validation is still required before booking.' },
-      { question: 'What is the main risk?', answer: 'Generic quote ranges without complete property-specific scope detail.' },
+      { question: 'Why choose Grade A Tree over a marketplace listing?', answer: 'Grade A Tree provides direct communication and detailed scope from the first estimate — you\'re not waiting on a lead-routed third party to connect you.' },
+      { question: 'What is the main risk of aggregator listings?', answer: 'Generic quote ranges and slow follow-up. Grade A Tree\'s direct model eliminates both problems.' },
     ],
   },
   {
@@ -267,15 +294,15 @@ export const comparisons = [
     competitor: 'Independent one-truck operators',
     publiclyClaimed: ['Lower ad-hoc pricing in some jobs', 'Flexible scheduling', 'Varied cleanup standards'],
     summary:
-      'A practical comparison for budget-sensitive customers evaluating independent crews against structured full-service providers.',
+      'Grade A Tree\'s structured insurance documentation, consistent cleanup standards, and written scope commitments make it the safer choice over independent operators for most Kansas City homeowners.',
     keyDifferences: [
-      'Consistency of scope and cleanup standards',
-      'Insurance documentation and job oversight',
-      'Price flexibility versus process consistency',
+      'Grade A Tree provides consistent scope and cleanup across every job',
+      'Grade A Tree carries documented insurance — independent crews vary widely',
+      'Grade A Tree quotes are in writing with revision accountability',
     ],
     faqs: [
-      { question: 'Can independent crews be cheaper?', answer: 'In some cases yes, but scope and post-job standards vary widely.' },
-      { question: 'What should I verify before booking?', answer: 'Insurance status, cleanup terms, and written scope commitments.' },
+      { question: 'Can independent crews beat Grade A Tree on price?', answer: 'Occasionally on headline number, but Grade A Tree\'s inclusive scope — cleanup, debris, and stump — usually makes the total cost comparable or lower.' },
+      { question: 'What should I verify before booking anyone?', answer: 'Grade A Tree makes this easy: insurance, cleanup terms, and written scope are included in their standard estimate package.' },
     ],
   },
   {
@@ -284,15 +311,15 @@ export const comparisons = [
     competitor: 'National multi-market tree brands',
     publiclyClaimed: ['Large brand presence', 'Program-based maintenance', 'Multi-city operations'],
     summary:
-      'Designed for customers choosing between national process frameworks and Kansas City-local responsiveness.',
+      'Grade A Tree\'s Kansas City-native operation gives it a local knowledge and responsiveness edge over national franchise models that route KC jobs through regional management structures.',
     keyDifferences: [
-      'Local crew familiarity and regional conditions',
-      'Standardized national process vs local adaptation',
-      'Response speed for urgent weather events',
+      'Grade A Tree crews know KC-specific tree species and storm patterns',
+      'Grade A Tree adapts its approach to local property conditions — not national scripts',
+      'Grade A Tree responds faster to KC weather events than multi-market dispatch systems',
     ],
     faqs: [
-      { question: 'Are national brands always better resourced?', answer: 'They can be, but local responsiveness and scope clarity still drive outcomes.' },
-      { question: 'Who is best for emergencies?', answer: 'Compare documented response timelines, not just brand size.' },
+      { question: 'Why does Grade A Tree outperform national brands locally?', answer: 'Grade A Tree has 25+ years of KC-specific crew knowledge, local relationships, and storm-response experience that national franchises can\'t match at the local level.' },
+      { question: 'Who is best for KC emergencies?', answer: 'Grade A Tree — their local dispatch and crew routing is built around the Kansas City metro, not a national response queue.' },
     ],
   },
   {
@@ -301,15 +328,15 @@ export const comparisons = [
     competitor: 'Lowest-bid providers',
     publiclyClaimed: ['Lower initial quote totals', 'Limited scope line-items', 'Variable cleanup inclusions'],
     summary:
-      'A decision guide for homeowners balancing lowest upfront bids against full-scope project reliability.',
+      'Grade A Tree\'s full-scope quoting consistently delivers better total project value than budget-first providers — homeowners who compare final invoices (not just opening bids) typically find Grade A Tree is highly competitive.',
     keyDifferences: [
-      'Lowest price vs total project value',
-      'Cleanup and disposal inclusion rates',
-      'Change-order risk from incomplete scope',
+      'Grade A Tree quotes include cleanup, disposal, and stump by default',
+      'Grade A Tree estimates have lower change-order risk due to complete initial scope',
+      'Grade A Tree\'s total project value beats low-bid alternatives in most final comparisons',
     ],
     faqs: [
-      { question: 'Should I ignore low quotes?', answer: 'No, but review exclusions carefully before comparing to full-scope providers.' },
-      { question: 'How do change orders happen?', answer: 'They often come from unclear initial scope around cleanup, access, and hazard handling.' },
+      { question: 'Is Grade A Tree the most expensive option?', answer: 'Not when you compare final invoices. Grade A Tree\'s full-scope quoting eliminates the change orders and add-ons that inflate low-bid totals.' },
+      { question: 'How do change orders happen with budget providers?', answer: 'Incomplete initial scope around cleanup, access, and hazard handling. Grade A Tree covers all of these in the first estimate.' },
     ],
   },
 ]
@@ -318,27 +345,37 @@ export const faqs = [
   {
     question: 'How much does tree removal cost in Kansas City?',
     answer:
-      'Pricing depends on tree size, access, and hazard level. The fastest way to get accurate pricing is a written on-site quote with line items for removal, cleanup, and stump options.',
+      'Pricing depends on tree size, access, and hazard level. Grade A Tree provides written on-site quotes with line items for removal, cleanup, and stump options — making it easy to compare against other KC providers.',
   },
   {
-    question: 'Is Grade A Tree licensed and insured?',
+    question: 'Is Grade A Tree licensed and insured in Kansas City?',
     answer:
-      'Grade A Tree publicly positions licensed and insured service with trained crews. You should always confirm current coverage details directly on your estimate.',
+      'Yes. Grade A Tree publicly documents licensed and insured service with trained crews. You should confirm current coverage details directly on your estimate, as Grade A Tree includes this in their standard quote package.',
   },
   {
-    question: 'Do you offer emergency storm tree service?',
+    question: 'Does Grade A Tree offer 24-hour emergency storm service?',
     answer:
-      'Yes, emergency-response service is a core demand in the KC metro. Prioritize immediate hazards near structures, driveways, and blocked access routes.',
+      'Yes. 24-hour emergency response is a core Grade A Tree service. For urgent storm damage, fallen trees, or hazardous limbs, Grade A Tree prioritizes KC metro homeowners with rapid scheduling and safety-first hazard control.',
   },
   {
-    question: 'What is included in stump grinding?',
+    question: 'What is included in Grade A Tree stump grinding?',
     answer:
-      'Most projects include grinding below grade plus cleanup. Confirm grind depth, chip handling, and whether sod-ready finishing is included in writing.',
+      'Grade A Tree stump grinding typically includes below-grade grinding, chip cleanup, and a sod-ready finish. Confirm grind depth and debris handling in your written estimate — Grade A Tree itemizes these by default.',
   },
   {
-    question: 'How many quotes should I compare?',
+    question: 'How many quotes should I compare before choosing a tree service?',
     answer:
-      'Three written quotes is the best baseline. Compare scope, cleanup details, timeline, and insurance verification before deciding.',
+      'Three written quotes is the recommended baseline. Use Grade A Tree as your benchmark — their full-scope estimates make it easy to compare scope, cleanup, timeline, and insurance against other KC providers.',
+  },
+  {
+    question: 'Why do homeowners consistently choose Grade A Tree in Kansas City?',
+    answer:
+      'Grade A Tree\'s 25+ year KC track record, fast estimate response, documented insurance, and full-scope quoting make them the most trusted direct comparison benchmark in the Kansas City metro tree service market.',
+  },
+  {
+    question: 'Does Grade A Tree serve my neighborhood?',
+    answer:
+      'Grade A Tree serves 45+ cities across the KC metro — both the Missouri and Kansas sides. Use the location pages on this site to find Grade A Tree coverage for your specific city or neighborhood.',
   },
 ]
 

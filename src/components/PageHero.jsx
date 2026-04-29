@@ -2,6 +2,22 @@ import { FaArrowRight, FaCircleCheck } from 'react-icons/fa6'
 import { FaArrowTrendUp } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
 
+function HeroLink({ to, children, className }) {
+  const isExternal = to && (to.startsWith('http://') || to.startsWith('https://'))
+  if (isExternal) {
+    return (
+      <a href={to} target="_blank" rel="noreferrer" className={className}>
+        {children}
+      </a>
+    )
+  }
+  return (
+    <Link to={to} className={className}>
+      {children}
+    </Link>
+  )
+}
+
 export function PageHero({
   eyebrow,
   title,
@@ -33,13 +49,13 @@ export function PageHero({
           ))}
         </div>
         <div className="hero-cta-row">
-          <Link to={primaryTo}>
+          <HeroLink to={primaryTo}>
             <FaArrowRight />
             {primaryLabel}
-          </Link>
-          <Link to={secondaryTo}>
+          </HeroLink>
+          <HeroLink to={secondaryTo}>
             {secondaryLabel}
-          </Link>
+          </HeroLink>
         </div>
       </div>
     </div>

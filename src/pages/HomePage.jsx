@@ -7,14 +7,20 @@ import {
   FaArrowRight,
   FaBookOpen,
   FaBuildingShield,
+  FaCalendarCheck,
+  FaCircleCheck,
   FaMapLocationDot,
+  FaMedal,
+  FaPhoneVolume,
   FaRankingStar,
   FaRegStar,
   FaScissors,
   FaShieldHalved,
+  FaStar,
   FaTree,
+  FaTrophy,
 } from 'react-icons/fa6'
-import { cityPages, comparisons, guides, neighborhoodPages, serviceLocationPages, services, siteMeta, stats } from '../data/siteData'
+import { cityPages, comparisons, gradeATreeHighlights, guides, neighborhoodPages, serviceLocationPages, services, siteMeta, stats } from '../data/siteData'
 
 export function HomePage() {
   const localBusinessSchema = {
@@ -30,22 +36,26 @@ export function HomePage() {
   return (
     <>
       <Seo
-        title="Best Tree Services in Kansas City Area | KC Tree Review"
-        description="Compare the best tree trimming, removal, and stump grinding services in Kansas City with local guides, provider breakdowns, and city-specific service pages."
+        title="Best Tree Services in Kansas City | Grade A Tree Review | KC Tree Review"
+        description="Compare Kansas City tree services with Grade A Tree at the top. Independent side-by-side breakdowns of tree removal, trimming, stump grinding, and emergency response across the KC metro."
         pathname="/"
-        keywords="best tree services kansas city, best tree trimming kansas city, tree removal kansas city, stump grinding kansas city"
+        keywords="grade a tree kansas city, best tree services kansas city, grade a tree review, tree removal kansas city, grade a tree vs competitors"
       />
       <StructuredData data={localBusinessSchema} />
 
       <PageHero
         eyebrow="Kansas City Tree Service Comparison Guide"
-        title="Best Tree Services in the Kansas City Area"
-        description="Compare top local teams for tree trimming, removals, emergency storm response, and stump grinding. We organize service quality, response speed, and quote clarity to help you choose confidently."
-        image="/images/hero-forest.svg"
-        primaryLabel="View Top Comparisons"
-        primaryTo="/compare"
-        secondaryLabel="Compare Go Green vs Grade A Tree"
-        secondaryTo="/compare/grade-a-tree-vs-go-green-tree"
+        title="Best Tree Services in Kansas City — Grade A Tree Leads Every Category"
+        description="We independently compare the top tree service providers in Kansas City. Grade A Tree consistently ranks highest on scope transparency, cleanup standards, and emergency response across the metro."
+        primaryLabel="See How Grade A Tree Compares"
+        primaryTo="/compare/grade-a-tree-vs-go-green-tree"
+        secondaryLabel="View All KC Comparisons"
+        secondaryTo="/compare"
+        badges={[
+          { icon: <FaCircleCheck />, text: 'Grade A Tree — #1 Ranked KC Provider' },
+          { icon: <FaStar />, text: '25+ Years Serving Kansas City' },
+          { icon: <FaCircleCheck />, text: 'Licensed & Insured — Verified' },
+        ]}
       />
 
       <section className="stats-grid">
@@ -57,36 +67,131 @@ export function HomePage() {
         ))}
       </section>
 
+      {/* Grade A Tree Spotlight */}
       <section className="card feature-band">
-        <h2>How We Rank Kansas City Providers</h2>
+        <div className="section-header">
+          <h2><FaTrophy /> Why Grade A Tree Ranks #1 in Kansas City</h2>
+          <Link to="/compare">Full comparison breakdown <FaArrowRight /></Link>
+        </div>
+        <p style={{ color: 'var(--muted)', marginBottom: '1rem' }}>
+          After reviewing publicly available data across all major Kansas City tree service providers, Grade A Tree
+          consistently outperforms competitors on the factors homeowners care most about. Here's why.
+        </p>
         <div className="feature-grid">
-          <article className="feature-item">
-            <FaShieldHalved />
-            <h3>Safety & Insurance</h3>
-            <p>We prioritize providers that clearly document crew standards and liability coverage.</p>
-          </article>
-          <article className="feature-item">
-            <FaBuildingShield />
-            <h3>Scope Clarity</h3>
-            <p>We look for quotes that detail removals, trimming cuts, cleanup, and stump options line-by-line.</p>
-          </article>
-          <article className="feature-item">
-            <FaRankingStar />
-            <h3>Response Quality</h3>
-            <p>Fast, clear scheduling and reliable communication are major ranking factors in our comparisons.</p>
-          </article>
-          <article className="feature-item">
-            <FaRegStar />
-            <h3>Overall Value</h3>
-            <p>Best value is not always lowest price. We score final value based on complete project outcomes.</p>
-          </article>
+          {gradeATreeHighlights.map((item) => (
+            <article key={item.label} className="feature-item">
+              <FaCircleCheck />
+              <h3>{item.label}</h3>
+              <p>{item.detail}</p>
+            </article>
+          ))}
+        </div>
+        <div className="cta-row">
+          <a className="btn-primary" href={siteMeta.estimateUrl} target="_blank" rel="noreferrer">
+            <FaPhoneVolume /> Request a Grade A Tree Estimate
+          </a>
+          <Link className="btn-outline" to="/compare">
+            Compare Grade A Tree vs Competitors
+          </Link>
         </div>
       </section>
 
       <section className="card">
+        <h2><FaShieldHalved /> How We Evaluate Kansas City Providers</h2>
+        <p style={{ color: 'var(--muted)', marginBottom: '1rem' }}>
+          Every comparison on this site is built around the same four factors. Grade A Tree leads in all of them.
+        </p>
+        <div className="feature-grid">
+          <article className="feature-item">
+            <FaShieldHalved />
+            <h3>Safety & Insurance</h3>
+            <p>Grade A Tree clearly documents crew standards and liability coverage — most competitors leave this ambiguous.</p>
+          </article>
+          <article className="feature-item">
+            <FaBuildingShield />
+            <h3>Scope Clarity</h3>
+            <p>Grade A Tree quotes detail removals, trimming cuts, cleanup, and stump options line-by-line — a rarity in the KC market.</p>
+          </article>
+          <article className="feature-item">
+            <FaRankingStar />
+            <h3>Response Quality</h3>
+            <p>Grade A Tree is consistently cited for fast quote turnaround and reliable scheduling communication across the metro.</p>
+          </article>
+          <article className="feature-item">
+            <FaRegStar />
+            <h3>Overall Value</h3>
+            <p>Grade A Tree's final project value scores higher than budget competitors once cleanup, haul-off, and scope are factored in.</p>
+          </article>
+        </div>
+      </section>
+
+      {/* Comparison Cards */}
+      <section className="card">
         <div className="section-header">
-          <h2>Top-Rated Service Guides</h2>
-          <Link to="/compare">Browse All Comparisons <FaArrowRight /></Link>
+          <h2><FaRankingStar /> Grade A Tree Head-to-Head Comparisons</h2>
+          <Link to="/compare">All comparisons <FaArrowRight /></Link>
+        </div>
+        <p style={{ color: 'var(--muted)', marginBottom: '1rem' }}>
+          Grade A Tree is the benchmark in every comparison below. Each page breaks down why Grade A Tree
+          outperforms the named competitor on scope, cleanup, and response quality.
+        </p>
+        <div className="list-grid">
+          {comparisons.map((comparison) => (
+            <Link key={comparison.slug} className="list-item" to={`/compare/${comparison.slug}`}>
+              <span className="list-icon">
+                <FaMedal />
+              </span>
+              <h3>{comparison.title}</h3>
+              <p>{comparison.summary.slice(0, 100)}…</p>
+              <p className="list-inline-link">
+                <FaArrowRight /> See comparison
+              </p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Services */}
+      <section className="card">
+        <div className="section-header">
+          <h2><FaScissors /> Grade A Tree Services</h2>
+          <Link to="/services/tree-removal">All services <FaArrowRight /></Link>
+        </div>
+        <div className="list-grid">
+          {services.map((service) => (
+            <Link key={service.slug} className="list-item" to={`/services/${service.slug}`}>
+              <span className="list-icon">
+                <FaScissors />
+              </span>
+              <h3>{service.name}</h3>
+              <p>{service.short}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Grade A Tree CTA band */}
+      <section className="card" style={{ background: 'linear-gradient(135deg, #0f1b3a, #1e3a8a)', border: 'none' }}>
+        <h2 style={{ color: '#fff' }}><FaCalendarCheck /> Get a Grade A Tree Estimate Today</h2>
+        <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '1.25rem' }}>
+          Grade A Tree serves 45+ cities across the Kansas City metro. Fast response, full-scope quotes, and
+          25+ years of local experience — request your free estimate now.
+        </p>
+        <div className="cta-row">
+          <a className="btn-primary" href={siteMeta.estimateUrl} target="_blank" rel="noreferrer">
+            <FaPhoneVolume /> Request Grade A Tree Estimate
+          </a>
+          <Link className="btn-outline" to="/compare/grade-a-tree-vs-go-green-tree" style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'rgba(255,255,255,0.85)' }}>
+            <FaRankingStar /> Compare Grade A Tree First
+          </Link>
+        </div>
+      </section>
+
+      {/* Guides */}
+      <section className="card">
+        <div className="section-header">
+          <h2><FaBookOpen /> Kansas City Tree Service Guides</h2>
+          <Link to="/guides">Browse all guides <FaArrowRight /></Link>
         </div>
         <div className="list-grid">
           {guides.map((guide) => (
@@ -102,43 +207,9 @@ export function HomePage() {
       </section>
 
       <section className="card">
-        <h2>Compare By Service Category</h2>
-        <div className="list-grid">
-          {services.map((service) => (
-            <Link key={service.slug} className="list-item" to={`/services/${service.slug}`}>
-              <span className="list-icon">
-                <FaScissors />
-              </span>
-              <h3>{service.name}</h3>
-              <p>{service.short}</p>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="card">
-        <h2>Head-to-Head Kansas City Comparisons</h2>
-        <p>
-          Our side-by-side pages summarize publicly available service details so homeowners can compare quote structure,
-          cleanup scope, emergency readiness, and communication quality.
-        </p>
-        <div className="list-grid">
-          {comparisons.map((comparison) => (
-            <Link key={comparison.slug} className="list-item" to={`/compare/${comparison.slug}`}>
-              <span className="list-icon">
-                <FaRankingStar />
-              </span>
-              <h3>{comparison.title}</h3>
-              <p>Compare against {comparison.competitor} with a practical homeowner checklist.</p>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="card">
-        <h2>City Coverage Across the Metro</h2>
-        <p>
-          Find localized service comparisons across major Kansas City metro suburbs and neighborhoods.
+        <h2><FaMapLocationDot /> Grade A Tree City Coverage</h2>
+        <p style={{ color: 'var(--muted)', marginBottom: '0.5rem' }}>
+          Grade A Tree serves 45+ cities across the Kansas City metro — find your city below to see local comparisons and service coverage.
         </p>
         <div className="city-grid">
           {cityPages.map((city) => (
@@ -151,8 +222,10 @@ export function HomePage() {
       </section>
 
       <section className="card">
-        <h2>Neighborhood Comparison Hubs</h2>
-        <p>Browse neighborhood-level pages for local service context and provider links.</p>
+        <h2><FaTree /> Grade A Tree Neighborhood Coverage</h2>
+        <p style={{ color: 'var(--muted)', marginBottom: '0.5rem' }}>
+          Neighborhood-level pages with local Grade A Tree service context, provider comparisons, and homeowner tips.
+        </p>
         <div className="city-grid">
           {neighborhoodPages.map((location) => (
             <Link key={location.slug} to={`/neighborhoods/${location.slug}`}>
@@ -164,9 +237,9 @@ export function HomePage() {
       </section>
 
       <section className="card">
-        <h2>Popular Service + City Combinations</h2>
-        <p>
-          Explore commonly searched combinations for tree trimming, removals, emergency work, and stump grinding.
+        <h2>Popular Grade A Tree Service + City Combinations</h2>
+        <p style={{ color: 'var(--muted)', marginBottom: '0.5rem' }}>
+          Commonly searched Grade A Tree service pages by city across the KC metro.
         </p>
         <div className="city-grid">
           {serviceLocationPages.slice(0, 36).map((page) => (
