@@ -1,4 +1,4 @@
-export const guides = [
+const baseGuides = [
   {
     slug: 'kansas-city-tree-removal-cost-guide',
     title: 'Kansas City Tree Removal Cost Guide',
@@ -365,3 +365,26 @@ export const guides = [
     ],
   },
 ]
+
+const topicsBySlug = {
+  'kansas-city-tree-removal-cost-guide': ['cost', 'removal', 'homeowner'],
+  'tree-trimming-schedule-by-season': ['trimming', 'seasonal', 'maintenance'],
+  'stump-grinding-vs-stump-removal': ['stump', 'cost', 'homeowner'],
+  'how-to-compare-tree-service-quotes': ['comparison', 'quotes', 'homeowner'],
+  'kansas-city-storm-damage-tree-checklist': ['storm', 'emergency', 'safety'],
+  'best-time-to-remove-a-tree-in-kansas-city': ['removal', 'seasonal', 'planning'],
+  'kansas-city-stump-grinding-cost-guide': ['stump', 'cost', 'planning'],
+  'tree-pruning-vs-tree-trimming-kansas-city': ['trimming', 'maintenance', 'health'],
+  'emergency-tree-removal-after-storms-kc': ['storm', 'emergency', 'removal'],
+  'how-to-choose-tree-service-company-kansas-city': ['comparison', 'quotes', 'planning'],
+  'tree-care-checklist-for-homebuyers-kc': ['homeowner', 'planning', 'safety'],
+  'kansas-city-tree-health-warning-signs': ['health', 'maintenance', 'safety'],
+  'commercial-tree-service-planning-kansas-city': ['commercial', 'planning', 'maintenance'],
+}
+
+export const guideTopics = [...new Set(Object.values(topicsBySlug).flat())]
+
+export const guides = baseGuides.map((guide) => ({
+  ...guide,
+  topics: topicsBySlug[guide.slug] ?? ['planning'],
+}))

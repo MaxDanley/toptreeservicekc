@@ -5,6 +5,7 @@ import { CityServicePage } from './pages/CityServicePage'
 import { ComparisonPage } from './pages/ComparisonPage'
 import { FaqPage } from './pages/FaqPage'
 import { GuidePage } from './pages/GuidePage'
+import { GuidesIndexPage } from './pages/GuidesIndexPage'
 import { HomePage } from './pages/HomePage'
 import { NeighborhoodPage } from './pages/NeighborhoodPage'
 import { NotFoundPage } from './pages/NotFoundPage'
@@ -21,6 +22,7 @@ function App() {
           <Route path="locations/:citySlug/:serviceSlug" element={<CityServicePage />} />
           <Route path="neighborhoods/:neighborhoodSlug" element={<NeighborhoodPage />} />
           <Route path="compare/:comparisonSlug" element={<ComparisonPage />} />
+          <Route path="guides" element={<GuidesIndexPage />} />
           <Route path="guides/:guideSlug" element={<GuidePage />} />
           <Route path="faqs" element={<FaqPage />} />
           <Route path="kansas-city-tree-services" element={<Navigate to="/locations/kansas-city-mo" replace />} />

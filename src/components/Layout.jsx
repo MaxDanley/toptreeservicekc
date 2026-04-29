@@ -8,7 +8,7 @@ const nav = [
   { to: '/services/tree-removal', label: 'Services', icon: <FaScissors /> },
   { to: '/locations/kansas-city-mo', label: 'Locations', icon: <FaLocationDot /> },
   { to: '/compare/grade-a-tree-vs-go-green-tree', label: 'Compare', icon: <FaArrowRight /> },
-  { to: '/guides/how-to-compare-tree-service-quotes', label: 'Guides', icon: <FaBookOpen /> },
+  { to: '/guides', label: 'Guides', icon: <FaBookOpen /> },
   { to: '/faqs', label: 'FAQ', icon: <FaQuestionCircle /> },
 ]
 

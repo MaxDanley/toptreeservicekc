@@ -348,6 +348,79 @@ h3 {
   color: var(--muted);
 }
 
+.chips-row {
+  margin-top: 0.65rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  border: 1px solid #cad8ff;
+  border-radius: 999px;
+  padding: 0.35rem 0.72rem;
+  background: #f8fbff;
+  color: #4a5a89;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.chip.active {
+  background: linear-gradient(135deg, #2f79ff, #8f4dff);
+  color: #fff;
+  border-color: transparent;
+}
+
+.guide-topics-inline {
+  margin-top: 0.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.guide-topics-inline span {
+  font-size: 0.72rem;
+  border: 1px solid #d8e4ff;
+  background: #f6f9ff;
+  border-radius: 999px;
+  padding: 0.2rem 0.46rem;
+  color: #5a6ca7;
+}
+
+.pagination-row {
+  margin-top: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.pagination-row button {
+  border: 1px solid #cad8ff;
+  border-radius: 0.55rem;
+  background: #fff;
+  color: #2f4679;
+  padding: 0.45rem 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+  cursor: pointer;
+}
+
+.pagination-row button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-row p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 ul {
   margin: 0.7rem 0 0;
   padding-left: 1.2rem;

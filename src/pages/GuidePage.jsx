@@ -100,6 +100,12 @@ export function GuidePage() {
 
       <section className="card">
         <h2>Read More Kansas City Guides</h2>
+        <div className="hero-cta-row">
+          <Link to="/guides">
+            <FaBookOpen />
+            Explore Full Guide Library
+          </Link>
+        </div>
         <div className="list-grid">
           {guides
             .filter((item) => item.slug !== guide.slug)

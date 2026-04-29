@@ -5,6 +5,7 @@ import { Seo } from '../components/Seo'
 import { StructuredData } from '../components/StructuredData'
 import {
   FaArrowRight,
+  FaBookOpen,
   FaBuildingShield,
   FaMapLocationDot,
   FaRankingStar,
@@ -81,6 +82,12 @@ export function HomePage() {
 
       <section className="card">
         <h2>Top-Rated Service Guides</h2>
+        <div className="hero-cta-row">
+          <Link to="/guides">
+            <FaBookOpen />
+            Browse All Guides
+          </Link>
+        </div>
         <div className="list-grid">
           {guides.map((guide) => (
             <Link key={guide.slug} className="list-item" to={`/guides/${guide.slug}`}>
