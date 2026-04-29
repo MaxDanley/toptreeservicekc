@@ -16,9 +16,13 @@ export function Layout() {
   return (
     <div className="site-shell">
       <header className="topbar">
-        <Link to="/" className="brand">
-          {siteMeta.brand}
-        </Link>
+        <div className="brand-wrap">
+          <Link to="/" className="brand">
+            <span className="brand-dot" aria-hidden="true"></span>
+            {siteMeta.brand}
+          </Link>
+          <p className="brand-subtitle">Independent Kansas City tree service comparisons</p>
+        </div>
         <nav className="main-nav">
           {nav.map((item) => (
             <NavLink key={item.to} to={item.to}>
@@ -39,7 +43,7 @@ export function Layout() {
 
       <footer className="footer">
         <section>
-          <h3>Grade A Tree Service Hubs</h3>
+          <h3>Top Service Hubs</h3>
           <div className="footer-grid">
             {services.map((service) => (
               <Link key={service.slug} to={`/services/${service.slug}`}>

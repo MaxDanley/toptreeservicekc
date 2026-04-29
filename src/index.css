@@ -68,10 +68,33 @@ a {
   box-shadow: 0 10px 35px rgba(41, 53, 97, 0.1);
 }
 
+.brand-wrap {
+  display: grid;
+  gap: 0.18rem;
+}
+
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 1.15rem;
   font-weight: 800;
   color: var(--accent-2);
+}
+
+.brand-dot {
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 0 0 6px rgba(47, 121, 255, 0.14);
+}
+
+.brand-subtitle {
+  margin: 0;
+  font-size: 0.72rem;
+  color: #7b8ab6;
+  letter-spacing: 0.03em;
 }
 
 .main-nav {
@@ -385,6 +408,14 @@ li {
 }
 
 @media (max-width: 900px) {
+  .topbar {
+    gap: 0.65rem;
+  }
+
+  .brand-subtitle {
+    display: none;
+  }
+
   .modern-hero {
     grid-template-columns: 1fr;
   }

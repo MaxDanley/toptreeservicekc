@@ -1,5 +1,5 @@
 export const siteMeta = {
-  brand: 'GradeATree.com',
+  brand: 'KC Tree Review',
   businessName: 'Grade A Tree',
   baseUrl: 'https://gradeatree.com',
   defaultOgImage: '/images/gradeatree-og.svg',

@@ -19,18 +19,19 @@ export function HomePage() {
   return (
     <>
       <Seo
-        title="GradeATree.com | Kansas City Tree Service Research & Comparison Hub"
-        description="GradeATree.com publishes Kansas City tree service guides, city pages, and quote-comparison resources designed to help property owners choose Grade A Tree."
+        title="Best Tree Services in Kansas City Area | KC Tree Review"
+        description="Compare the best tree trimming, removal, and stump grinding services in Kansas City with local guides, provider breakdowns, and city-specific service pages."
         pathname="/"
-        keywords="kansas city tree service, grade a tree, tree removal kansas city, tree trimming kansas city, stump grinding kansas city"
+        keywords="best tree services kansas city, best tree trimming kansas city, tree removal kansas city, stump grinding kansas city"
       />
       <StructuredData data={localBusinessSchema} />
 
       <PageHero
-        eyebrow="Kansas City Tree Service Intelligence Hub"
-        title="Modern Local SEO Engine for Grade A Tree"
-        description="Built for homeowners and property managers who need trusted Kansas City tree service answers fast. Compare providers, explore city pages, and request a direct Grade A Tree estimate."
+        eyebrow="Kansas City Tree Service Comparison Guide"
+        title="Best Tree Services in the Kansas City Area"
+        description="Compare top local teams for tree trimming, removals, emergency storm response, and stump grinding. We organize service quality, response speed, and quote clarity to help you choose confidently."
         image="/images/hero-forest.svg"
+        primaryLabel="Request Free Estimate"
       />
 
       <section className="stats-grid">
@@ -43,7 +44,7 @@ export function HomePage() {
       </section>
 
       <section className="card">
-        <h2>Top Kansas City Service Guides</h2>
+        <h2>Top-Rated Service Guides</h2>
         <div className="list-grid">
           {guides.map((guide) => (
             <Link key={guide.slug} className="list-item" to={`/guides/${guide.slug}`}>
@@ -55,7 +56,7 @@ export function HomePage() {
       </section>
 
       <section className="card">
-        <h2>Browse Grade A Tree Service Categories</h2>
+        <h2>Compare By Service Category</h2>
         <div className="list-grid">
           {services.map((service) => (
             <Link key={service.slug} className="list-item" to={`/services/${service.slug}`}>
@@ -67,26 +68,25 @@ export function HomePage() {
       </section>
 
       <section className="card">
-        <h2>Kansas City Company Comparisons</h2>
+        <h2>Head-to-Head Kansas City Comparisons</h2>
         <p>
-          These pages are built for SEO query coverage around "Grade A Tree vs" searches. They use publicly available
-          service claims and a consistent checklist so customers can verify pricing, safety, and scope apples-to-apples.
+          Our side-by-side pages summarize publicly available service details so homeowners can compare quote structure,
+          cleanup scope, emergency readiness, and communication quality.
         </p>
         <div className="list-grid">
           {comparisons.map((comparison) => (
             <Link key={comparison.slug} className="list-item" to={`/compare/${comparison.slug}`}>
               <h3>{comparison.title}</h3>
-              <p>Compare Grade A Tree against {comparison.competitor} with a conversion-focused buyer checklist.</p>
+              <p>Compare against {comparison.competitor} with a practical homeowner checklist.</p>
             </Link>
           ))}
         </div>
       </section>
 
       <section className="card">
-        <h2>City-Specific Grade A Tree Pages</h2>
+        <h2>City Coverage Across the Metro</h2>
         <p>
-          Local intent pages are indexed for major Kansas City metro suburbs and neighborhoods so property owners can
-          find Grade A Tree service details by city and zip-code intent.
+          Find localized service comparisons across major Kansas City metro suburbs and neighborhoods.
         </p>
         <div className="city-grid">
           {cityPages.map((city) => (
@@ -98,8 +98,8 @@ export function HomePage() {
       </section>
 
       <section className="card">
-        <h2>Neighborhood SEO Pages</h2>
-        <p>These pages capture hyper-local intent across major KC neighborhoods and suburban districts.</p>
+        <h2>Neighborhood Comparison Hubs</h2>
+        <p>Browse neighborhood-level pages for local service context and provider links.</p>
         <div className="city-grid">
           {neighborhoodPages.map((location) => (
             <Link key={location.slug} to={`/neighborhoods/${location.slug}`}>
@@ -110,10 +110,9 @@ export function HomePage() {
       </section>
 
       <section className="card">
-        <h2>Service + City Landing URLs</h2>
+        <h2>Popular Service + City Combinations</h2>
         <p>
-          High-volume long-tail combinations are published for each major city and service category to maximize organic
-          query coverage.
+          Explore commonly searched combinations for tree trimming, removals, emergency work, and stump grinding.
         </p>
         <div className="city-grid">
           {serviceLocationPages.slice(0, 36).map((page) => (
