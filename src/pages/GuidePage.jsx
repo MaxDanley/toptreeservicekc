@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
+import { FaqSection } from '../components/FaqSection'
 import { Seo } from '../components/Seo'
 import { guides, siteMeta } from '../data/siteData'
 
@@ -49,6 +50,7 @@ export function GuidePage() {
           <a href={siteMeta.phoneHref}>Call Grade A Tree</a>
         </div>
       </section>
+      <FaqSection title={`FAQ: ${guide.title}`} />
     </>
   )
 }

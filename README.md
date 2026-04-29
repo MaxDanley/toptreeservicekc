@@ -17,10 +17,14 @@ React + Vite website built as a Kansas City tree service guide and comparison hu
 - Homepage with authority-guide style content blocks
 - Service pages (`/services/:serviceSlug`)
 - Location pages (`/locations/:citySlug`)
+- Service + location long-tail pages (`/locations/:citySlug/:serviceSlug`)
+- Neighborhood landing pages (`/neighborhoods/:neighborhoodSlug`)
 - Comparison pages (`/compare/:comparisonSlug`)
 - Guide pages (`/guides/:guideSlug`)
+- FAQ hub (`/faqs`)
 
 ## SEO Files
 
 - `public/robots.txt`
 - `public/sitemap.xml`
+- `npm run sitemap` auto-generates all route URLs from source data

@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
+import { FaqSection } from '../components/FaqSection'
 import { Seo } from '../components/Seo'
 import { comparisons, siteMeta } from '../data/siteData'
 
@@ -55,6 +56,7 @@ export function ComparisonPage() {
           <a href={siteMeta.phoneHref}>Speak With Grade A Tree</a>
         </div>
       </section>
+      <FaqSection title={`FAQ: ${comparison.title}`} />
     </>
   )
 }

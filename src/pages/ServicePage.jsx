@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
+import { FaqSection } from '../components/FaqSection'
 import { Seo } from '../components/Seo'
 import { services, siteMeta } from '../data/siteData'
 
@@ -53,6 +54,7 @@ export function ServicePage() {
           timeline confidence over headline price alone.
         </p>
       </section>
+      <FaqSection title={`FAQ: ${service.name}`} />
     </>
   )
 }

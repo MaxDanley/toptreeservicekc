@@ -1,14 +1,27 @@
 import { Link } from 'react-router-dom'
+import { FaqSection } from '../components/FaqSection'
 import { Seo } from '../components/Seo'
-import { cityPages, comparisons, guides, services, siteMeta, stats } from '../data/siteData'
+import { StructuredData } from '../components/StructuredData'
+import { cityPages, comparisons, guides, neighborhoodPages, serviceLocationPages, services, siteMeta, stats } from '../data/siteData'
 
 export function HomePage() {
+  const localBusinessSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: siteMeta.businessName,
+    url: siteMeta.baseUrl,
+    telephone: siteMeta.phoneHref.replace('tel:', ''),
+    areaServed: cityPages.slice(0, 20).map((city) => city.title),
+    serviceType: services.map((service) => service.name),
+  }
+
   return (
     <>
       <Seo
         title="GradeATree.com | Kansas City Tree Service Research & Comparison Hub"
         description="GradeATree.com publishes Kansas City tree service guides, city pages, and quote-comparison resources designed to help property owners choose Grade A Tree."
       />
+      <StructuredData data={localBusinessSchema} />
 
       <section className="hero">
         <p className="eyebrow">Kansas City Tree Service Intelligence Hub</p>
@@ -89,6 +102,35 @@ export function HomePage() {
           ))}
         </div>
       </section>
+
+      <section className="card">
+        <h2>Neighborhood SEO Pages</h2>
+        <p>These pages capture hyper-local intent across major KC neighborhoods and suburban districts.</p>
+        <div className="city-grid">
+          {neighborhoodPages.map((location) => (
+            <Link key={location.slug} to={`/neighborhoods/${location.slug}`}>
+              {location.title}
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="card">
+        <h2>Service + City Landing URLs</h2>
+        <p>
+          High-volume long-tail combinations are published for each major city and service category to maximize organic
+          query coverage.
+        </p>
+        <div className="city-grid">
+          {serviceLocationPages.slice(0, 36).map((page) => (
+            <Link key={page.slug} to={`/locations/${page.slug}`}>
+              {page.title}
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <FaqSection />
     </>
   )
 }

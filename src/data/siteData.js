@@ -1,6 +1,7 @@
 export const siteMeta = {
   brand: 'GradeATree.com',
   businessName: 'Grade A Tree',
+  baseUrl: 'https://gradeatree.com',
   primaryPhone: '(816) 214-6255',
   phoneHref: 'tel:+18162146255',
   estimateUrl:
@@ -10,7 +11,8 @@ export const siteMeta = {
 export const stats = [
   { label: 'Years Serving KC', value: '25+' },
   { label: 'Core Service Lines', value: '10' },
-  { label: 'Cities Served', value: '24' },
+  { label: 'Cities Served', value: '45+' },
+  { label: 'Indexed Pages', value: '250+' },
   { label: 'Estimate Response', value: 'Fast' },
 ]
 
@@ -49,6 +51,27 @@ export const services = [
     short: 'Rapid response for storm, limb-fall, and urgent hazard issues.',
     body: 'When wind and ice hit the metro, immediate hazard control matters. Grade A Tree prioritizes emergency response to help restore safe access and protect structures.',
     bullets: ['Storm-damage prioritization', 'Danger limb removal', 'Emergency cleanup and stabilization'],
+  },
+  {
+    slug: 'debris-removal',
+    name: 'Debris Removal',
+    short: 'Fast limb and storm debris cleanup to restore property access.',
+    body: 'Large limb piles and storm clutter can block driveways and create hazards. Grade A Tree provides debris clearing with disciplined site cleanup standards.',
+    bullets: ['Storm branch and limb pickup', 'Haul-away and disposal support', 'Cleanup matched to project scope'],
+  },
+  {
+    slug: 'landscaping',
+    name: 'Landscaping',
+    short: 'Tree-adjacent landscape cleanup and property reset support.',
+    body: 'Grade A Tree supports cleanup-first landscape recovery after tree projects, helping homeowners reclaim curb appeal and usable lawn space.',
+    bullets: ['Post-removal restoration support', 'Landscape-ready cleanup finishes', 'Residential and light commercial projects'],
+  },
+  {
+    slug: 'christmas-light-installation',
+    name: 'Christmas Light Installation',
+    short: 'Seasonal holiday lighting services with safe ladder-free setup.',
+    body: 'Holiday lighting can be high-risk without the right equipment. Grade A Tree crews support safe and clean seasonal installs for Kansas City homes.',
+    bullets: ['Seasonal setup and takedown options', 'Safety-first exterior installation', 'Clean cable routing and organization'],
   },
 ]
 
@@ -93,7 +116,33 @@ export const guides = [
       'Get timeline commitments and weather delay policy in writing.',
     ],
   },
+  {
+    slug: 'kansas-city-storm-damage-tree-checklist',
+    title: 'Kansas City Storm Damage Tree Checklist',
+    intro: 'A quick response guide for wind, ice, and storm limb emergencies before cleanup begins.',
+    sections: [
+      'Document damage with photos before moving debris if safe to do so.',
+      'Prioritize hazards touching structures, roofs, and access paths.',
+      'Use insured crews for removals near power lines or unstable trees.',
+    ],
+  },
+  {
+    slug: 'best-time-to-remove-a-tree-in-kansas-city',
+    title: 'Best Time To Remove A Tree In Kansas City',
+    intro: 'A season-by-season planning guide for removals, project timing, and property disruption.',
+    sections: [
+      'Winter and late fall can improve access and reduce turf damage.',
+      'Emergency removals should be prioritized regardless of season.',
+      'Plan routine removals before peak storm months when possible.',
+    ],
+  },
 ]
+
+const toTitle = (slug) =>
+  slug
+    .split('-')
+    .map((word) => (word.length === 2 ? word.toUpperCase() : word[0].toUpperCase() + word.slice(1)))
+    .join(' ')
 
 export const cityPages = [
   'kansas-city-mo',
@@ -120,12 +169,69 @@ export const cityPages = [
   'raymore-mo',
   'liberty-mo',
   'north-kansas-city-mo',
+  'parkville-mo',
+  'rivermarket-kansas-city-mo',
+  'westwood-ks',
+  'westwood-hills-ks',
+  'fairway-ks',
+  'kearney-mo',
+  'smithville-mo',
+  'grain-valley-mo',
+  'pleasant-hill-mo',
+  'harrisonville-mo',
+  'platte-city-mo',
+  'weatherby-lake-mo',
+  'edwardsville-ks',
+  'basehor-ks',
+  'de-soto-ks',
+  'gardner-ks',
+  'spring-hill-ks',
+  'tonganoxie-ks',
+  'shawnee-mission-ks',
+  'mission-hills-ks',
+  'mission-woods-ks',
+  'river-bend-mo',
 ].map((slug) => ({
   slug,
-  title: slug
-    .split('-')
-    .map((word) => (word.length === 2 ? word.toUpperCase() : word[0].toUpperCase() + word.slice(1)))
-    .join(' '),
+  title: toTitle(slug),
+}))
+
+export const neighborhoodPages = [
+  'brookside-kansas-city-mo',
+  'waldo-kansas-city-mo',
+  'plaza-kansas-city-mo',
+  'crossroads-kansas-city-mo',
+  'westport-kansas-city-mo',
+  'river-market-kansas-city-mo',
+  'northland-kansas-city-mo',
+  'south-kansas-city-mo',
+  'red-bridge-kansas-city-mo',
+  'hyde-park-kansas-city-mo',
+  'armour-hills-kansas-city-mo',
+  'morningside-kansas-city-mo',
+  'swope-park-area-kansas-city-mo',
+  'ward-parkway-kansas-city-mo',
+  'sunset-hill-kansas-city-mo',
+  'downtown-overland-park-ks',
+  'corporate-woods-overland-park-ks',
+  'blue-valley-overland-park-ks',
+  'north-overland-park-ks',
+  'south-overland-park-ks',
+  'downtown-olathe-ks',
+  'cedar-creek-olathe-ks',
+  'north-olathe-ks',
+  'south-olathe-ks',
+  'downtown-lenexa-ks',
+  'old-town-lenexa-ks',
+  'north-lenexa-ks',
+  'south-lenexa-ks',
+  'downtown-lees-summit-mo',
+  'legacy-park-lees-summit-mo',
+  'blue-springs-south-mo',
+  'blue-springs-north-mo',
+].map((slug) => ({
+  slug,
+  title: toTitle(slug),
 }))
 
 export const comparisons = [
@@ -159,4 +265,59 @@ export const comparisons = [
     competitor: 'Directory and aggregator lead lists',
     publiclyClaimed: ['Multiple provider options', 'Broad quote collection', 'General pricing ranges'],
   },
+  {
+    slug: 'grade-a-tree-vs-multiple-small-crews',
+    title: 'Grade A Tree vs Multiple Small Independent Crews',
+    competitor: 'Independent one-truck operators',
+    publiclyClaimed: ['Lower ad-hoc pricing in some jobs', 'Flexible scheduling', 'Varied cleanup standards'],
+  },
+  {
+    slug: 'grade-a-tree-vs-national-franchises',
+    title: 'Grade A Tree vs National Tree Franchises',
+    competitor: 'National multi-market tree brands',
+    publiclyClaimed: ['Large brand presence', 'Program-based maintenance', 'Multi-city operations'],
+  },
+  {
+    slug: 'grade-a-tree-vs-budget-first-quotes',
+    title: 'Grade A Tree vs Budget-First Quotes',
+    competitor: 'Lowest-bid providers',
+    publiclyClaimed: ['Lower initial quote totals', 'Limited scope line-items', 'Variable cleanup inclusions'],
+  },
 ]
+
+export const faqs = [
+  {
+    question: 'How much does tree removal cost in Kansas City?',
+    answer:
+      'Pricing depends on tree size, access, and hazard level. The fastest way to get accurate pricing is a written on-site quote with line items for removal, cleanup, and stump options.',
+  },
+  {
+    question: 'Is Grade A Tree licensed and insured?',
+    answer:
+      'Grade A Tree publicly positions licensed and insured service with trained crews. You should always confirm current coverage details directly on your estimate.',
+  },
+  {
+    question: 'Do you offer emergency storm tree service?',
+    answer:
+      'Yes, emergency-response service is a core demand in the KC metro. Prioritize immediate hazards near structures, driveways, and blocked access routes.',
+  },
+  {
+    question: 'What is included in stump grinding?',
+    answer:
+      'Most projects include grinding below grade plus cleanup. Confirm grind depth, chip handling, and whether sod-ready finishing is included in writing.',
+  },
+  {
+    question: 'How many quotes should I compare?',
+    answer:
+      'Three written quotes is the best baseline. Compare scope, cleanup details, timeline, and insurance verification before deciding.',
+  },
+]
+
+export const serviceLocationPages = cityPages.flatMap((city) =>
+  services.map((service) => ({
+    slug: `${city.slug}/${service.slug}`,
+    citySlug: city.slug,
+    serviceSlug: service.slug,
+    title: `${service.name} in ${city.title}`,
+  })),
+)

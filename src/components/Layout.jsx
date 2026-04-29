@@ -1,5 +1,5 @@
 import { Link, NavLink, Outlet } from 'react-router-dom'
-import { cityPages, comparisons, guides, services, siteMeta } from '../data/siteData'
+import { cityPages, comparisons, guides, neighborhoodPages, services, siteMeta } from '../data/siteData'
 
 const nav = [
   { to: '/', label: 'Home' },
@@ -7,6 +7,7 @@ const nav = [
   { to: '/locations/kansas-city-mo', label: 'Locations' },
   { to: '/compare/grade-a-tree-vs-go-green-tree', label: 'Compare' },
   { to: '/guides/how-to-compare-tree-service-quotes', label: 'Guides' },
+  { to: '/faqs', label: 'FAQ' },
 ]
 
 export function Layout() {
@@ -46,9 +47,19 @@ export function Layout() {
         <section>
           <h3>Kansas City Metro Location Pages</h3>
           <div className="footer-grid">
-            {cityPages.slice(0, 12).map((city) => (
+            {cityPages.slice(0, 16).map((city) => (
               <Link key={city.slug} to={`/locations/${city.slug}`}>
                 {city.title}
+              </Link>
+            ))}
+          </div>
+        </section>
+        <section>
+          <h3>Neighborhood Pages</h3>
+          <div className="footer-grid">
+            {neighborhoodPages.slice(0, 16).map((location) => (
+              <Link key={location.slug} to={`/neighborhoods/${location.slug}`}>
+                {location.title}
               </Link>
             ))}
           </div>

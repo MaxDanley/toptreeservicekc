@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
+import { FaqSection } from '../components/FaqSection'
 import { Seo } from '../components/Seo'
 import { services, siteMeta } from '../data/siteData'
 
@@ -58,6 +59,7 @@ export function CityPage() {
           selected when customers want speed, clear communication, and no-surprise project scope in {cityName}.
         </p>
       </section>
+      <FaqSection title={`FAQ: Tree Service in ${cityName}`} />
     </>
   )
 }
