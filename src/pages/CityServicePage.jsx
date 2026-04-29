@@ -1,7 +1,8 @@
 import { Link, useParams } from 'react-router-dom'
 import { Seo } from '../components/Seo'
 import { FaqSection } from '../components/FaqSection'
-import { cityPages, services, siteMeta } from '../data/siteData'
+import { PageHero } from '../components/PageHero'
+import { cityPages, services } from '../data/siteData'
 
 export function CityServicePage() {
   const { citySlug, serviceSlug } = useParams()
@@ -22,21 +23,17 @@ export function CityServicePage() {
       <Seo
         title={`${service.name} in ${city.title} | GradeATree.com`}
         description={`${service.name} in ${city.title}: local quote checklist, service scope overview, and direct Grade A Tree estimate request links.`}
+        pathname={`/locations/${city.slug}/${service.slug}`}
+        image="/images/hero-forest.svg"
+        keywords={`${service.name.toLowerCase()} in ${city.title.toLowerCase()}, ${city.title.toLowerCase()} tree service, grade a tree ${city.title.toLowerCase()}`}
       />
-      <section className="hero compact">
-        <p className="eyebrow">Service + City Landing Page</p>
-        <h1>{service.name} in {city.title}</h1>
-        <p>
-          This landing page is optimized for "{service.name.toLowerCase()} in {city.title.toLowerCase()}" intent and
-          routes visitors to Grade A Tree quote actions with clear next-step guidance.
-        </p>
-        <div className="hero-cta-row">
-          <a href={siteMeta.estimateUrl} target="_blank" rel="noreferrer">
-            Request {service.name} Quote
-          </a>
-          <a href={siteMeta.phoneHref}>Call Grade A Tree</a>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Service + City Landing Page"
+        title={`${service.name} in ${city.title}`}
+        description={`This landing page is optimized for "${service.name.toLowerCase()} in ${city.title.toLowerCase()}" intent and routes visitors to Grade A Tree quote actions with clear next-step guidance.`}
+        image="/images/hero-forest.svg"
+        primaryLabel={`Request ${service.name} Quote`}
+      />
 
       <section className="card">
         <h2>Scope Checklist For {city.title}</h2>

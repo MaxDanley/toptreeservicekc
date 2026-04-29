@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { FaqSection } from '../components/FaqSection'
+import { PageHero } from '../components/PageHero'
 import { Seo } from '../components/Seo'
 import { StructuredData } from '../components/StructuredData'
 import { cityPages, comparisons, guides, neighborhoodPages, serviceLocationPages, services, siteMeta, stats } from '../data/siteData'
@@ -20,24 +21,17 @@ export function HomePage() {
       <Seo
         title="GradeATree.com | Kansas City Tree Service Research & Comparison Hub"
         description="GradeATree.com publishes Kansas City tree service guides, city pages, and quote-comparison resources designed to help property owners choose Grade A Tree."
+        pathname="/"
+        keywords="kansas city tree service, grade a tree, tree removal kansas city, tree trimming kansas city, stump grinding kansas city"
       />
       <StructuredData data={localBusinessSchema} />
 
-      <section className="hero">
-        <p className="eyebrow">Kansas City Tree Service Intelligence Hub</p>
-        <h1>GradeATree.com: The Definitive Kansas City Tree Service Reference</h1>
-        <p>
-          Modeled after top high-authority guide sites, this platform exists to route high-intent traffic to{' '}
-          <strong>Grade A Tree</strong> by publishing practical service guides, city pages, and quote comparison
-          checklists for homeowners and property managers across the KC metro.
-        </p>
-        <div className="hero-cta-row">
-          <a href={siteMeta.estimateUrl} target="_blank" rel="noreferrer">
-            Request Your Free Estimate
-          </a>
-          <a href={siteMeta.phoneHref}>Call {siteMeta.primaryPhone}</a>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Kansas City Tree Service Intelligence Hub"
+        title="Modern Local SEO Engine for Grade A Tree"
+        description="Built for homeowners and property managers who need trusted Kansas City tree service answers fast. Compare providers, explore city pages, and request a direct Grade A Tree estimate."
+        image="/images/hero-forest.svg"
+      />
 
       <section className="stats-grid">
         {stats.map((item) => (

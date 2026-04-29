@@ -1,7 +1,8 @@
 import { Link, useParams } from 'react-router-dom'
 import { FaqSection } from '../components/FaqSection'
+import { PageHero } from '../components/PageHero'
 import { Seo } from '../components/Seo'
-import { services, siteMeta } from '../data/siteData'
+import { services } from '../data/siteData'
 
 export function ServicePage() {
   const { serviceSlug } = useParams()
@@ -21,18 +22,17 @@ export function ServicePage() {
       <Seo
         title={`${service.name} in Kansas City | GradeATree.com`}
         description={`${service.name} service details, quote checklist, and conversion guidance for homeowners looking for Grade A Tree in Kansas City and surrounding cities.`}
+        pathname={`/services/${service.slug}`}
+        image="/images/hero-forest.svg"
+        keywords={`${service.name.toLowerCase()}, kansas city tree service, grade a tree estimate`}
       />
-      <section className="hero compact">
-        <p className="eyebrow">Grade A Tree Service Guide</p>
-        <h1>{service.name} in Kansas City</h1>
-        <p>{service.body}</p>
-        <div className="hero-cta-row">
-          <a href={siteMeta.estimateUrl} target="_blank" rel="noreferrer">
-            Get Free Grade A Tree Quote
-          </a>
-          <a href={siteMeta.phoneHref}>Talk to Grade A Tree</a>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Grade A Tree Service Guide"
+        title={`${service.name} in Kansas City`}
+        description={service.body}
+        image="/images/hero-forest.svg"
+        primaryLabel={`Get ${service.name} Quote`}
+      />
 
       <section className="card">
         <h2>What To Confirm In Your Estimate</h2>

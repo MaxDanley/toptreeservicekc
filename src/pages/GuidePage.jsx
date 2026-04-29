@@ -1,7 +1,8 @@
 import { Link, useParams } from 'react-router-dom'
 import { FaqSection } from '../components/FaqSection'
+import { PageHero } from '../components/PageHero'
 import { Seo } from '../components/Seo'
-import { guides, siteMeta } from '../data/siteData'
+import { guides } from '../data/siteData'
 
 export function GuidePage() {
   const { guideSlug } = useParams()
@@ -21,12 +22,17 @@ export function GuidePage() {
       <Seo
         title={`${guide.title} | GradeATree.com`}
         description={`${guide.title}: practical local guidance built to help Kansas City homeowners compare options and request service with Grade A Tree.`}
+        pathname={`/guides/${guide.slug}`}
+        image="/images/hero-forest.svg"
+        keywords={`${guide.title.toLowerCase()}, kansas city tree guide, grade a tree advice`}
       />
-      <section className="hero compact">
-        <p className="eyebrow">Kansas City Tree Care Guide</p>
-        <h1>{guide.title}</h1>
-        <p>{guide.intro}</p>
-      </section>
+      <PageHero
+        eyebrow="Kansas City Tree Care Guide"
+        title={guide.title}
+        description={guide.intro}
+        image="/images/hero-forest.svg"
+        primaryLabel="Request Free Grade A Tree Estimate"
+      />
 
       <section className="card">
         <h2>Quick Breakdown</h2>
@@ -43,12 +49,6 @@ export function GuidePage() {
           Use this guide as your quote checklist, then request a direct estimate from Grade A Tree for real project
           pricing, timing, and service recommendations.
         </p>
-        <div className="hero-cta-row">
-          <a href={siteMeta.estimateUrl} target="_blank" rel="noreferrer">
-            Request Free Grade A Tree Estimate
-          </a>
-          <a href={siteMeta.phoneHref}>Call Grade A Tree</a>
-        </div>
       </section>
       <FaqSection title={`FAQ: ${guide.title}`} />
     </>

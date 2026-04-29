@@ -1,7 +1,8 @@
 import { Link, useParams } from 'react-router-dom'
 import { FaqSection } from '../components/FaqSection'
+import { PageHero } from '../components/PageHero'
 import { Seo } from '../components/Seo'
-import { services, siteMeta } from '../data/siteData'
+import { services } from '../data/siteData'
 
 function cityLabelFromSlug(slug = '') {
   return slug
@@ -23,22 +24,17 @@ export function CityPage() {
       <Seo
         title={`Tree Service in ${cityName} | GradeATree.com`}
         description={`Grade A Tree service coverage page for ${cityName}. Explore removal, trimming, stump grinding, emergency response, and request a free estimate.`}
+        pathname={`/locations/${citySlug}`}
+        image="/images/hero-city.svg"
+        keywords={`tree service in ${cityName.toLowerCase()}, grade a tree ${cityName.toLowerCase()}, tree removal ${cityName.toLowerCase()}`}
       />
-      <section className="hero compact">
-        <p className="eyebrow">Grade A Tree Location Page</p>
-        <h1>Tree Services in {cityName}</h1>
-        <p>
-          GradeATree.com publishes location-specific content for {cityName} to capture local search intent and route
-          visitors to Grade A Tree estimate requests. This page supports homeowners searching for trusted and responsive
-          tree care in the KC metro.
-        </p>
-        <div className="hero-cta-row">
-          <a href={siteMeta.estimateUrl} target="_blank" rel="noreferrer">
-            Request Estimate in {cityName}
-          </a>
-          <a href={siteMeta.phoneHref}>Call Grade A Tree</a>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Grade A Tree Location Page"
+        title={`Tree Services in ${cityName}`}
+        description={`GradeATree.com publishes location-specific content for ${cityName} to capture local search intent and route visitors to Grade A Tree estimate requests. This page supports homeowners searching for trusted and responsive tree care in the KC metro.`}
+        image="/images/hero-city.svg"
+        primaryLabel={`Request Estimate in ${cityName}`}
+      />
 
       <section className="card">
         <h2>Top Services Requested In {cityName}</h2>

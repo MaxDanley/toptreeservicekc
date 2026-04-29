@@ -1,13 +1,15 @@
 import { Link, NavLink, Outlet } from 'react-router-dom'
+import { FaArrowRight, FaBookOpen, FaBuilding, FaQuestionCircle } from 'react-icons/fa'
+import { FaLocationDot, FaPhone, FaScissors } from 'react-icons/fa6'
 import { cityPages, comparisons, guides, neighborhoodPages, services, siteMeta } from '../data/siteData'
 
 const nav = [
-  { to: '/', label: 'Home' },
-  { to: '/services/tree-removal', label: 'Services' },
-  { to: '/locations/kansas-city-mo', label: 'Locations' },
-  { to: '/compare/grade-a-tree-vs-go-green-tree', label: 'Compare' },
-  { to: '/guides/how-to-compare-tree-service-quotes', label: 'Guides' },
-  { to: '/faqs', label: 'FAQ' },
+  { to: '/', label: 'Home', icon: <FaBuilding /> },
+  { to: '/services/tree-removal', label: 'Services', icon: <FaScissors /> },
+  { to: '/locations/kansas-city-mo', label: 'Locations', icon: <FaLocationDot /> },
+  { to: '/compare/grade-a-tree-vs-go-green-tree', label: 'Compare', icon: <FaArrowRight /> },
+  { to: '/guides/how-to-compare-tree-service-quotes', label: 'Guides', icon: <FaBookOpen /> },
+  { to: '/faqs', label: 'FAQ', icon: <FaQuestionCircle /> },
 ]
 
 export function Layout() {
@@ -20,11 +22,13 @@ export function Layout() {
         <nav className="main-nav">
           {nav.map((item) => (
             <NavLink key={item.to} to={item.to}>
+              <span>{item.icon}</span>
               {item.label}
             </NavLink>
           ))}
         </nav>
         <a className="cta-small" href={siteMeta.estimateUrl} target="_blank" rel="noreferrer">
+          <FaPhone />
           Request Free Estimate
         </a>
       </header>

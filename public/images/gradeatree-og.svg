@@ -1,0 +1,24 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#14273E"/>
+      <stop offset="1" stop-color="#1B7A5C"/>
+    </linearGradient>
+    <linearGradient id="leaf" x1="858" y1="119" x2="1030" y2="293" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B4F8C8"/>
+      <stop offset="1" stop-color="#67D88A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="945" cy="206" r="124" fill="url(#leaf)" fill-opacity="0.35"/>
+  <circle cx="997" cy="306" r="166" fill="#8CF5AE" fill-opacity="0.12"/>
+  <path d="M853 382C896 332 938 278 978 227C1014 280 1053 332 1093 382H1027V481H930V382H853Z" fill="#9DEDBA"/>
+  <path d="M950 504C964 523 977 543 991 562H907C921 543 935 523 950 504Z" fill="#6DC592"/>
+  <text x="96" y="244" fill="white" font-size="74" font-family="Inter, Arial, sans-serif" font-weight="800">GradeATree.com</text>
+  <text x="96" y="316" fill="#D5FCE0" font-size="38" font-family="Inter, Arial, sans-serif" font-weight="600">
+    Kansas City Tree Service Guides
+  </text>
+  <text x="96" y="375" fill="#CAE9D6" font-size="30" font-family="Inter, Arial, sans-serif">
+    Local pages, comparisons, and quote checklists
+  </text>
+</svg>

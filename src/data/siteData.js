@@ -2,6 +2,7 @@ export const siteMeta = {
   brand: 'GradeATree.com',
   businessName: 'Grade A Tree',
   baseUrl: 'https://gradeatree.com',
+  defaultOgImage: '/images/gradeatree-og.svg',
   primaryPhone: '(816) 214-6255',
   phoneHref: 'tel:+18162146255',
   estimateUrl:
@@ -12,7 +13,6 @@ export const stats = [
   { label: 'Years Serving KC', value: '25+' },
   { label: 'Core Service Lines', value: '10' },
   { label: 'Cities Served', value: '45+' },
-  { label: 'Indexed Pages', value: '250+' },
   { label: 'Estimate Response', value: 'Fast' },
 ]
 

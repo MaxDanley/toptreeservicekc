@@ -1,7 +1,8 @@
 import { Link, useParams } from 'react-router-dom'
 import { Seo } from '../components/Seo'
 import { FaqSection } from '../components/FaqSection'
-import { neighborhoodPages, services, siteMeta } from '../data/siteData'
+import { PageHero } from '../components/PageHero'
+import { neighborhoodPages, services } from '../data/siteData'
 
 export function NeighborhoodPage() {
   const { neighborhoodSlug } = useParams()
@@ -21,21 +22,17 @@ export function NeighborhoodPage() {
       <Seo
         title={`Tree Service in ${neighborhood.title} | GradeATree.com`}
         description={`Grade A Tree neighborhood landing page for ${neighborhood.title}, with local service links and FAQ-driven quote intent content.`}
+        pathname={`/neighborhoods/${neighborhood.slug}`}
+        image="/images/hero-city.svg"
+        keywords={`tree service ${neighborhood.title.toLowerCase()}, grade a tree ${neighborhood.title.toLowerCase()}, tree removal near ${neighborhood.title.toLowerCase()}`}
       />
-      <section className="hero compact">
-        <p className="eyebrow">Neighborhood Service Landing</p>
-        <h1>{neighborhood.title} Tree Service</h1>
-        <p>
-          This neighborhood page targets hyper-local search intent for {neighborhood.title}. It links directly to Grade
-          A Tree service pages and quote actions to maximize local conversion opportunities.
-        </p>
-        <div className="hero-cta-row">
-          <a href={siteMeta.estimateUrl} target="_blank" rel="noreferrer">
-            Request Estimate in {neighborhood.title}
-          </a>
-          <a href={siteMeta.phoneHref}>Call Grade A Tree</a>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Neighborhood Service Landing"
+        title={`${neighborhood.title} Tree Service`}
+        description={`This neighborhood page targets hyper-local search intent for ${neighborhood.title}. It links directly to Grade A Tree service pages and quote actions to maximize local conversion opportunities.`}
+        image="/images/hero-city.svg"
+        primaryLabel={`Request Estimate in ${neighborhood.title}`}
+      />
 
       <section className="card">
         <h2>Popular Services In {neighborhood.title}</h2>

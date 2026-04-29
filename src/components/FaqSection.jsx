@@ -1,5 +1,6 @@
 import { faqs, siteMeta } from '../data/siteData'
 import { StructuredData } from './StructuredData'
+import { FaCircleQuestion } from 'react-icons/fa6'
 
 export function FaqSection({ title = 'Frequently Asked Questions' }) {
   const schema = {
@@ -18,7 +19,9 @@ export function FaqSection({ title = 'Frequently Asked Questions' }) {
   return (
     <section className="card">
       <StructuredData data={schema} />
-      <h2>{title}</h2>
+      <h2>
+        <FaCircleQuestion /> {title}
+      </h2>
       <div className="faq-list">
         {faqs.map((item) => (
           <details key={item.question} className="faq-item">
