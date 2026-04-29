@@ -2,11 +2,11 @@ import { faqs, siteMeta } from '../data/siteData'
 import { StructuredData } from './StructuredData'
 import { FaCircleQuestion } from 'react-icons/fa6'
 
-export function FaqSection({ title = 'Frequently Asked Questions' }) {
+export function FaqSection({ title = 'Frequently Asked Questions', items = faqs }) {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqs.map((item) => ({
+    mainEntity: items.map((item) => ({
       '@type': 'Question',
       name: item.question,
       acceptedAnswer: {
@@ -23,7 +23,7 @@ export function FaqSection({ title = 'Frequently Asked Questions' }) {
         <FaCircleQuestion /> {title}
       </h2>
       <div className="faq-list">
-        {faqs.map((item) => (
+        {items.map((item) => (
           <details key={item.question} className="faq-item">
             <summary>{item.question}</summary>
             <p>{item.answer}</p>

@@ -2,8 +2,9 @@ import { Link, useParams } from 'react-router-dom'
 import { FaqSection } from '../components/FaqSection'
 import { PageHero } from '../components/PageHero'
 import { Seo } from '../components/Seo'
+import { StructuredData } from '../components/StructuredData'
 import { guides } from '../data/siteData'
-import { FaArrowRight, FaBookOpen, FaCircleCheck, FaListCheck } from 'react-icons/fa6'
+import { FaArrowRight, FaBookOpen, FaCircleCheck, FaClipboardCheck, FaListCheck } from 'react-icons/fa6'
 
 export function GuidePage() {
   const { guideSlug } = useParams()
@@ -21,18 +22,31 @@ export function GuidePage() {
   return (
     <>
       <Seo
-        title={`${guide.title} | GradeATree.com`}
-        description={`${guide.title}: practical local guidance built to help Kansas City homeowners compare options and request service with Grade A Tree.`}
+        title={`${guide.title} | KC Tree Review`}
+        description={guide.intro}
         pathname={`/guides/${guide.slug}`}
         image="/images/hero-forest.svg"
-        keywords={`${guide.title.toLowerCase()}, kansas city tree guide, grade a tree advice`}
+        keywords={`${guide.title.toLowerCase()}, kansas city tree guide, best tree services kansas city`}
+      />
+      <StructuredData
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: guide.title,
+          description: guide.intro,
+          author: { '@type': 'Organization', name: 'KC Tree Review Editorial Team' },
+          publisher: { '@type': 'Organization', name: 'KC Tree Review' },
+          datePublished: '2026-04-28',
+          dateModified: '2026-04-28',
+          mainEntityOfPage: `https://gradeatree.com/guides/${guide.slug}`,
+        }}
       />
       <PageHero
-        eyebrow="Kansas City Tree Care Guide"
+        eyebrow="Kansas City Tree Service Guide"
         title={guide.title}
         description={guide.intro}
         image="/images/hero-forest.svg"
-        primaryLabel="Request Free Grade A Tree Estimate"
+        primaryLabel="Get Free Estimate"
       />
 
       <section className="card">
@@ -49,11 +63,33 @@ export function GuidePage() {
       </section>
 
       <section className="card">
-        <h2>Next Step: Request A Grade A Tree Quote</h2>
-        <p>
-          Use this guide as your quote checklist, then request a direct estimate from Grade A Tree for real project
-          pricing, timing, and service recommendations.
-        </p>
+        <h2>Full Guide</h2>
+        <div className="guide-article-grid">
+          {guide.deepDive.map((section) => (
+            <article key={section.heading} className="guide-panel">
+              <h3>{section.heading}</h3>
+              <p>{section.body}</p>
+              <ul>
+                {section.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="card">
+        <h2>Action Checklist</h2>
+        <div className="feature-grid">
+          {guide.checklist.map((item) => (
+            <article key={item} className="feature-item">
+              <FaClipboardCheck />
+              <h3>{item}</h3>
+              <p>Complete this step before scheduling final tree service work.</p>
+            </article>
+          ))}
+        </div>
         <div className="hero-cta-row">
           <Link to="/faqs">
             <FaListCheck />
@@ -82,7 +118,7 @@ export function GuidePage() {
             ))}
         </div>
       </section>
-      <FaqSection title={`FAQ: ${guide.title}`} />
+      <FaqSection title={`FAQ: ${guide.title}`} items={guide.faqs} />
     </>
   )
 }

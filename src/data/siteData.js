@@ -1,3 +1,5 @@
+import { guides as guidesContent } from './guidesContent.js'
+
 export const siteMeta = {
   brand: 'KC Tree Review',
   businessName: 'Grade A Tree',
@@ -75,68 +77,7 @@ export const services = [
   },
 ]
 
-export const guides = [
-  {
-    slug: 'kansas-city-tree-removal-cost-guide',
-    title: 'Kansas City Tree Removal Cost Guide',
-    intro: 'Understand the main pricing drivers for tree removal in the Kansas City metro before you request your next estimate.',
-    sections: [
-      'Most removal pricing is based on height, spread, access, and hazard level.',
-      'Trees near houses, fences, and lines usually require more rigging and labor.',
-      'Stump grinding, haul-away, and emergency timing can change final totals.',
-    ],
-  },
-  {
-    slug: 'tree-trimming-schedule-by-season',
-    title: 'Tree Trimming Schedule By Season',
-    intro: 'A practical local schedule to plan trimming around growth cycles, storm prep, and safety risk reduction.',
-    sections: [
-      'Winter is often ideal for structural pruning and visibility.',
-      'Spring and summer focus on selective clearance and storm risk control.',
-      'Fall planning helps reduce winter branch failure in weak trees.',
-    ],
-  },
-  {
-    slug: 'stump-grinding-vs-stump-removal',
-    title: 'Stump Grinding vs Full Stump Removal',
-    intro: 'Pick the right approach based on budget, future landscaping plans, and timeline.',
-    sections: [
-      'Grinding is usually faster and lower-impact for most homes.',
-      'Full extraction may be preferred when replanting in the same spot.',
-      'Ask how root flare depth and cleanup are handled in your quote.',
-    ],
-  },
-  {
-    slug: 'how-to-compare-tree-service-quotes',
-    title: 'How To Compare Tree Service Quotes',
-    intro: 'Use this checklist to compare Kansas City providers on more than just top-line price.',
-    sections: [
-      'Confirm insurance, cleanup scope, and who is supervising the crew.',
-      'Ask about line-item pricing for removals, trimming, and stumps.',
-      'Get timeline commitments and weather delay policy in writing.',
-    ],
-  },
-  {
-    slug: 'kansas-city-storm-damage-tree-checklist',
-    title: 'Kansas City Storm Damage Tree Checklist',
-    intro: 'A quick response guide for wind, ice, and storm limb emergencies before cleanup begins.',
-    sections: [
-      'Document damage with photos before moving debris if safe to do so.',
-      'Prioritize hazards touching structures, roofs, and access paths.',
-      'Use insured crews for removals near power lines or unstable trees.',
-    ],
-  },
-  {
-    slug: 'best-time-to-remove-a-tree-in-kansas-city',
-    title: 'Best Time To Remove A Tree In Kansas City',
-    intro: 'A season-by-season planning guide for removals, project timing, and property disruption.',
-    sections: [
-      'Winter and late fall can improve access and reduce turf damage.',
-      'Emergency removals should be prioritized regardless of season.',
-      'Plan routine removals before peak storm months when possible.',
-    ],
-  },
-]
+export const guides = guidesContent
 
 const toTitle = (slug) =>
   slug

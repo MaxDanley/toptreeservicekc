@@ -325,6 +325,29 @@ h3 {
   font-size: 0.9rem;
 }
 
+.guide-article-grid {
+  margin-top: 0.8rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.75rem;
+}
+
+.guide-panel {
+  border: 1px solid #d6e1ff;
+  border-radius: 0.75rem;
+  padding: 0.85rem;
+  background: #fbfdff;
+}
+
+.guide-panel h3 {
+  margin: 0 0 0.4rem;
+}
+
+.guide-panel p {
+  margin: 0;
+  color: var(--muted);
+}
+
 ul {
   margin: 0.7rem 0 0;
   padding-left: 1.2rem;
