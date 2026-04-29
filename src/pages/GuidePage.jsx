@@ -3,6 +3,7 @@ import { FaqSection } from '../components/FaqSection'
 import { PageHero } from '../components/PageHero'
 import { Seo } from '../components/Seo'
 import { guides } from '../data/siteData'
+import { FaArrowRight, FaBookOpen, FaCircleCheck, FaListCheck } from 'react-icons/fa6'
 
 export function GuidePage() {
   const { guideSlug } = useParams()
@@ -36,11 +37,15 @@ export function GuidePage() {
 
       <section className="card">
         <h2>Quick Breakdown</h2>
-        <ul>
+        <div className="feature-grid">
           {guide.sections.map((section) => (
-            <li key={section}>{section}</li>
+            <article key={section} className="feature-item">
+              <FaCircleCheck />
+              <h3>{section}</h3>
+              <p>Use this checkpoint while reviewing local quote options.</p>
+            </article>
           ))}
-        </ul>
+        </div>
       </section>
 
       <section className="card">
@@ -49,6 +54,33 @@ export function GuidePage() {
           Use this guide as your quote checklist, then request a direct estimate from Grade A Tree for real project
           pricing, timing, and service recommendations.
         </p>
+        <div className="hero-cta-row">
+          <Link to="/faqs">
+            <FaListCheck />
+            Open FAQ Checklist
+          </Link>
+        </div>
+      </section>
+
+      <section className="card">
+        <h2>Read More Kansas City Guides</h2>
+        <div className="list-grid">
+          {guides
+            .filter((item) => item.slug !== guide.slug)
+            .slice(0, 4)
+            .map((item) => (
+              <Link key={item.slug} className="list-item" to={`/guides/${item.slug}`}>
+                <span className="list-icon">
+                  <FaBookOpen />
+                </span>
+                <h3>{item.title}</h3>
+                <p>{item.intro}</p>
+                <p className="list-inline-link">
+                  Read guide <FaArrowRight />
+                </p>
+              </Link>
+            ))}
+        </div>
       </section>
       <FaqSection title={`FAQ: ${guide.title}`} />
     </>

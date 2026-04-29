@@ -2,7 +2,8 @@ import { Link, useParams } from 'react-router-dom'
 import { Seo } from '../components/Seo'
 import { FaqSection } from '../components/FaqSection'
 import { PageHero } from '../components/PageHero'
-import { cityPages, services } from '../data/siteData'
+import { cityPages, comparisons, services } from '../data/siteData'
+import { FaArrowRight, FaClock, FaHouse, FaRulerCombined, FaTruckFront } from 'react-icons/fa6'
 
 export function CityServicePage() {
   const { citySlug, serviceSlug } = useParams()
@@ -37,14 +38,51 @@ export function CityServicePage() {
 
       <section className="card">
         <h2>Scope Checklist For {city.title}</h2>
-        <ul>
+        <div className="feature-grid">
           {service.bullets.map((bullet) => (
-            <li key={bullet}>{bullet}</li>
+            <article key={bullet} className="feature-item">
+              <FaArrowRight />
+              <h3>{bullet}</h3>
+              <p>Include this scope point in your final estimate review.</p>
+            </article>
           ))}
-          <li>Confirm complete cleanup and disposal</li>
-          <li>Confirm team credentials and insurance details</li>
-          <li>Confirm timeline and emergency scheduling options</li>
-        </ul>
+        </div>
+      </section>
+      <section className="card">
+        <h2>What Affects Pricing in {city.title}</h2>
+        <div className="feature-grid">
+          <article className="feature-item">
+            <FaRulerCombined />
+            <h3>Tree size and spread</h3>
+            <p>Large canopies and complex rigging increase labor and equipment requirements.</p>
+          </article>
+          <article className="feature-item">
+            <FaHouse />
+            <h3>Property proximity</h3>
+            <p>Trees near homes, roofs, or fences usually require slower precision cutting.</p>
+          </article>
+          <article className="feature-item">
+            <FaTruckFront />
+            <h3>Access and haul-away</h3>
+            <p>Limited access can affect removal speed and debris logistics.</p>
+          </article>
+          <article className="feature-item">
+            <FaClock />
+            <h3>Emergency timeline</h3>
+            <p>Storm-priority scheduling can shift pricing based on urgency and risk.</p>
+          </article>
+        </div>
+      </section>
+      <section className="card">
+        <h2>Related Comparison Pages</h2>
+        <div className="city-grid">
+          {comparisons.slice(0, 8).map((comparison) => (
+            <Link key={comparison.slug} to={`/compare/${comparison.slug}`}>
+              <FaArrowRight />
+              {comparison.title}
+            </Link>
+          ))}
+        </div>
       </section>
       <FaqSection title={`FAQ: ${service.name} in ${city.title}`} />
     </>

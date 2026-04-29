@@ -26,7 +26,7 @@ export function PageHero({ eyebrow, title, description, image, primaryLabel = 'R
         </div>
       </div>
       <div className="hero-media">
-        <img src={image} alt="Grade A Tree services in Kansas City" loading="lazy" />
+        <img src={image} alt="Kansas City tree service comparison visual" loading="lazy" />
       </div>
     </section>
   )

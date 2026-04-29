@@ -2,7 +2,8 @@ import { Link, useParams } from 'react-router-dom'
 import { Seo } from '../components/Seo'
 import { FaqSection } from '../components/FaqSection'
 import { PageHero } from '../components/PageHero'
-import { neighborhoodPages, services } from '../data/siteData'
+import { neighborhoodPages, services, guides } from '../data/siteData'
+import { FaArrowRight, FaLeaf, FaMapLocationDot, FaRoad, FaTriangleExclamation } from 'react-icons/fa6'
 
 export function NeighborhoodPage() {
   const { neighborhoodSlug } = useParams()
@@ -39,8 +40,42 @@ export function NeighborhoodPage() {
         <div className="list-grid">
           {services.map((service) => (
             <Link key={service.slug} className="list-item" to={`/services/${service.slug}`}>
+              <span className="list-icon">
+                <FaMapLocationDot />
+              </span>
               <h3>{service.name}</h3>
               <p>{service.short}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+      <section className="card">
+        <h2>Neighborhood Tree Service Factors</h2>
+        <div className="feature-grid">
+          <article className="feature-item">
+            <FaRoad />
+            <h3>Equipment access</h3>
+            <p>Narrow driveways and fence access can affect crew setup and job timing.</p>
+          </article>
+          <article className="feature-item">
+            <FaLeaf />
+            <h3>Canopy density</h3>
+            <p>Older neighborhoods often have larger mature canopy requiring structured trimming plans.</p>
+          </article>
+          <article className="feature-item">
+            <FaTriangleExclamation />
+            <h3>Storm exposure</h3>
+            <p>After severe weather, prioritize overhangs and unstable limbs near homes and sidewalks.</p>
+          </article>
+        </div>
+      </section>
+      <section className="card">
+        <h2>Useful Local Guides</h2>
+        <div className="city-grid">
+          {guides.slice(0, 6).map((guide) => (
+            <Link key={guide.slug} to={`/guides/${guide.slug}`}>
+              <FaArrowRight />
+              {guide.title}
             </Link>
           ))}
         </div>

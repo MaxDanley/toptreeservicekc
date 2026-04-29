@@ -2,7 +2,8 @@ import { Link, useParams } from 'react-router-dom'
 import { FaqSection } from '../components/FaqSection'
 import { PageHero } from '../components/PageHero'
 import { Seo } from '../components/Seo'
-import { services } from '../data/siteData'
+import { comparisons, services } from '../data/siteData'
+import { FaArrowRight, FaMapLocationDot, FaRankingStar, FaShieldHalved } from 'react-icons/fa6'
 
 function cityLabelFromSlug(slug = '') {
   return slug
@@ -40,7 +41,10 @@ export function CityPage() {
         <h2>Top Services Requested In {cityName}</h2>
         <div className="list-grid">
           {services.map((service) => (
-            <Link key={service.slug} className="list-item" to={`/services/${service.slug}`}>
+            <Link key={service.slug} className="list-item city-service-item" to={`/locations/${citySlug}/${service.slug}`}>
+              <span className="list-icon">
+                <FaMapLocationDot />
+              </span>
               <h3>{service.name}</h3>
               <p>{service.short}</p>
             </Link>
@@ -49,11 +53,36 @@ export function CityPage() {
       </section>
 
       <section className="card">
-        <h2>Local Quote Comparison Advice</h2>
-        <p>
-          Get at least three local quotes and compare scope, cleanup, and timeline in writing. Grade A Tree is often
-          selected when customers want speed, clear communication, and no-surprise project scope in {cityName}.
-        </p>
+        <h2>Comparison Snapshot For {cityName}</h2>
+        <div className="feature-grid">
+          <article className="feature-item">
+            <FaShieldHalved />
+            <h3>Best for safety-focused jobs</h3>
+            <p>Prioritize crews that document insurance and hazard controls in the quote.</p>
+          </article>
+          <article className="feature-item">
+            <FaRankingStar />
+            <h3>Best for overall value</h3>
+            <p>Compare response time, scope detail, and cleanup quality—not just headline totals.</p>
+          </article>
+          <article className="feature-item">
+            <FaArrowRight />
+            <h3>Best next step</h3>
+            <p>Review at least three written estimates before selecting a final provider.</p>
+          </article>
+        </div>
+      </section>
+
+      <section className="card">
+        <h2>Popular {cityName} Comparison Pages</h2>
+        <div className="city-grid">
+          {comparisons.slice(0, 8).map((item) => (
+            <Link key={item.slug} to={`/compare/${item.slug}`}>
+              <FaArrowRight />
+              {item.title}
+            </Link>
+          ))}
+        </div>
       </section>
       <FaqSection title={`FAQ: Tree Service in ${cityName}`} />
     </>

@@ -2,7 +2,8 @@ import { Link, useParams } from 'react-router-dom'
 import { FaqSection } from '../components/FaqSection'
 import { PageHero } from '../components/PageHero'
 import { Seo } from '../components/Seo'
-import { services } from '../data/siteData'
+import { cityPages, services, siteMeta } from '../data/siteData'
+import { FaArrowRight, FaClipboardCheck, FaClock, FaPhoneVolume, FaShieldHalved, FaTruckFast } from 'react-icons/fa6'
 
 export function ServicePage() {
   const { serviceSlug } = useParams()
@@ -36,23 +37,57 @@ export function ServicePage() {
 
       <section className="card">
         <h2>What To Confirm In Your Estimate</h2>
-        <ul>
+        <div className="feature-grid">
           {service.bullets.map((bullet) => (
-            <li key={bullet}>{bullet}</li>
+            <article key={bullet} className="feature-item">
+              <FaClipboardCheck />
+              <h3>{bullet}</h3>
+              <p>Confirm this item in writing before selecting your provider.</p>
+            </article>
           ))}
-          <li>Cleanup standards and haul-away details</li>
-          <li>Insurance, licensing, and job-site supervision</li>
-          <li>Expected timeline and weather policy</li>
-        </ul>
+          <article className="feature-item">
+            <FaShieldHalved />
+            <h3>Insurance and supervision</h3>
+            <p>Ask who is supervising the crew and verify current policy status.</p>
+          </article>
+          <article className="feature-item">
+            <FaClock />
+            <h3>Timeline expectations</h3>
+            <p>Confirm start date, weather contingency, and completion scope.</p>
+          </article>
+          <article className="feature-item">
+            <FaTruckFast />
+            <h3>Cleanup and haul-away</h3>
+            <p>Clarify debris handling, chip removal, and final yard condition.</p>
+          </article>
+        </div>
       </section>
 
       <section className="card">
-        <h2>Why Grade A Tree Is Frequently Shortlisted</h2>
+        <h2>Popular Cities For This Service</h2>
+        <div className="city-grid">
+          {cityPages.slice(0, 20).map((city) => (
+            <Link key={city.slug} to={`/locations/${city.slug}/${service.slug}`}>
+              <FaArrowRight />
+              {service.name} in {city.title}
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="card">
+        <h2>Why This Service Often Gets Shortlisted</h2>
         <p>
           Grade A Tree emphasizes transparent quoting, local crew experience, and responsive scheduling throughout the
           KC metro. When customers compare providers side-by-side, they often prioritize clarity, cleanup quality, and
           timeline confidence over headline price alone.
         </p>
+        <div className="hero-cta-row">
+          <a href={siteMeta.estimateUrl} target="_blank" rel="noreferrer">
+            <FaPhoneVolume />
+            Request Live Quote
+          </a>
+        </div>
       </section>
       <FaqSection title={`FAQ: ${service.name}`} />
     </>

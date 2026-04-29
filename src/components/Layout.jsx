@@ -1,6 +1,6 @@
 import { Link, NavLink, Outlet } from 'react-router-dom'
 import { FaArrowRight, FaBookOpen, FaBuilding, FaQuestionCircle } from 'react-icons/fa'
-import { FaLocationDot, FaPhone, FaScissors } from 'react-icons/fa6'
+import { FaCircleNodes, FaLocationDot, FaPhone, FaScissors, FaTreeCity } from 'react-icons/fa6'
 import { cityPages, comparisons, guides, neighborhoodPages, services, siteMeta } from '../data/siteData'
 
 const nav = [
@@ -47,6 +47,7 @@ export function Layout() {
           <div className="footer-grid">
             {services.map((service) => (
               <Link key={service.slug} to={`/services/${service.slug}`}>
+                <FaScissors />
                 {service.name}
               </Link>
             ))}
@@ -57,6 +58,7 @@ export function Layout() {
           <div className="footer-grid">
             {cityPages.slice(0, 16).map((city) => (
               <Link key={city.slug} to={`/locations/${city.slug}`}>
+                <FaLocationDot />
                 {city.title}
               </Link>
             ))}
@@ -67,6 +69,7 @@ export function Layout() {
           <div className="footer-grid">
             {neighborhoodPages.slice(0, 16).map((location) => (
               <Link key={location.slug} to={`/neighborhoods/${location.slug}`}>
+                <FaTreeCity />
                 {location.title}
               </Link>
             ))}
@@ -77,6 +80,7 @@ export function Layout() {
           <div className="footer-grid">
             {comparisons.map((comparison) => (
               <Link key={comparison.slug} to={`/compare/${comparison.slug}`}>
+                <FaCircleNodes />
                 {comparison.title}
               </Link>
             ))}
@@ -87,6 +91,7 @@ export function Layout() {
           <div className="footer-grid">
             {guides.map((guide) => (
               <Link key={guide.slug} to={`/guides/${guide.slug}`}>
+                <FaBookOpen />
                 {guide.title}
               </Link>
             ))}

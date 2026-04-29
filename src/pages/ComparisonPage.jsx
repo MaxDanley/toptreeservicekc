@@ -2,7 +2,8 @@ import { Link, useParams } from 'react-router-dom'
 import { FaqSection } from '../components/FaqSection'
 import { PageHero } from '../components/PageHero'
 import { Seo } from '../components/Seo'
-import { comparisons } from '../data/siteData'
+import { comparisons, services } from '../data/siteData'
+import { FaArrowRight, FaClipboardCheck, FaGaugeHigh, FaMedal, FaScaleBalanced, FaShieldHalved } from 'react-icons/fa6'
 
 export function ComparisonPage() {
   const { comparisonSlug } = useParams()
@@ -35,22 +36,53 @@ export function ComparisonPage() {
       />
 
       <section className="card">
-        <h2>Publicly Reported Capabilities To Verify</h2>
-        <ul>
-          {comparison.publiclyClaimed.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
+        <h2>Side-by-Side Scorecard Framework</h2>
+        <div className="feature-grid">
+          <article className="feature-item">
+            <FaShieldHalved />
+            <h3>Safety & Credentials</h3>
+            <p>Verify licenses, insurance, and supervision details before selecting a provider.</p>
+          </article>
+          <article className="feature-item">
+            <FaGaugeHigh />
+            <h3>Response Speed</h3>
+            <p>Measure quote turnaround and scheduling clarity, especially for urgent tree hazards.</p>
+          </article>
+          <article className="feature-item">
+            <FaScaleBalanced />
+            <h3>Scope Accuracy</h3>
+            <p>Compare exact line items for trimming cuts, removals, stump depth, and cleanup.</p>
+          </article>
+          <article className="feature-item">
+            <FaMedal />
+            <h3>Total Value</h3>
+            <p>Rank providers by outcomes, not just lowest number at the top of the quote.</p>
+          </article>
+        </div>
       </section>
 
       <section className="card">
-        <h2>Why Many KC Homeowners Choose Grade A Tree</h2>
-        <ul>
-          <li>Long-standing local service history and family-owned operations</li>
-          <li>High-frequency service calls for removal, trimming, and stump projects</li>
-          <li>Clear estimate process built around fast callbacks and practical scope</li>
-          <li>Cleanup-first approach to keep projects stress-free for homeowners</li>
-        </ul>
+        <h2>Publicly Reported Capabilities To Verify</h2>
+        <div className="city-grid">
+          {comparison.publiclyClaimed.map((item) => (
+            <Link key={item} to="/faqs">
+              <FaClipboardCheck />
+              {item}
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="card">
+        <h2>Common Services Compared On This Page</h2>
+        <div className="city-grid">
+          {services.slice(0, 8).map((service) => (
+            <Link key={service.slug} to={`/services/${service.slug}`}>
+              <FaArrowRight />
+              {service.name}
+            </Link>
+          ))}
+        </div>
       </section>
       <FaqSection title={`FAQ: ${comparison.title}`} />
     </>

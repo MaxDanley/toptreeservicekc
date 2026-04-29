@@ -3,6 +3,16 @@ import { FaqSection } from '../components/FaqSection'
 import { PageHero } from '../components/PageHero'
 import { Seo } from '../components/Seo'
 import { StructuredData } from '../components/StructuredData'
+import {
+  FaArrowRight,
+  FaBuildingShield,
+  FaMapLocationDot,
+  FaRankingStar,
+  FaRegStar,
+  FaScissors,
+  FaShieldHalved,
+  FaTree,
+} from 'react-icons/fa6'
 import { cityPages, comparisons, guides, neighborhoodPages, serviceLocationPages, services, siteMeta, stats } from '../data/siteData'
 
 export function HomePage() {
@@ -43,11 +53,40 @@ export function HomePage() {
         ))}
       </section>
 
+      <section className="card feature-band">
+        <h2>How We Rank Kansas City Providers</h2>
+        <div className="feature-grid">
+          <article className="feature-item">
+            <FaShieldHalved />
+            <h3>Safety & Insurance</h3>
+            <p>We prioritize providers that clearly document crew standards and liability coverage.</p>
+          </article>
+          <article className="feature-item">
+            <FaBuildingShield />
+            <h3>Scope Clarity</h3>
+            <p>We look for quotes that detail removals, trimming cuts, cleanup, and stump options line-by-line.</p>
+          </article>
+          <article className="feature-item">
+            <FaRankingStar />
+            <h3>Response Quality</h3>
+            <p>Fast, clear scheduling and reliable communication are major ranking factors in our comparisons.</p>
+          </article>
+          <article className="feature-item">
+            <FaRegStar />
+            <h3>Overall Value</h3>
+            <p>Best value is not always lowest price. We score final value based on complete project outcomes.</p>
+          </article>
+        </div>
+      </section>
+
       <section className="card">
         <h2>Top-Rated Service Guides</h2>
         <div className="list-grid">
           {guides.map((guide) => (
             <Link key={guide.slug} className="list-item" to={`/guides/${guide.slug}`}>
+              <span className="list-icon">
+                <FaArrowRight />
+              </span>
               <h3>{guide.title}</h3>
               <p>{guide.intro}</p>
             </Link>
@@ -60,6 +99,9 @@ export function HomePage() {
         <div className="list-grid">
           {services.map((service) => (
             <Link key={service.slug} className="list-item" to={`/services/${service.slug}`}>
+              <span className="list-icon">
+                <FaScissors />
+              </span>
               <h3>{service.name}</h3>
               <p>{service.short}</p>
             </Link>
@@ -76,6 +118,9 @@ export function HomePage() {
         <div className="list-grid">
           {comparisons.map((comparison) => (
             <Link key={comparison.slug} className="list-item" to={`/compare/${comparison.slug}`}>
+              <span className="list-icon">
+                <FaRankingStar />
+              </span>
               <h3>{comparison.title}</h3>
               <p>Compare against {comparison.competitor} with a practical homeowner checklist.</p>
             </Link>
@@ -91,6 +136,7 @@ export function HomePage() {
         <div className="city-grid">
           {cityPages.map((city) => (
             <Link key={city.slug} to={`/locations/${city.slug}`}>
+              <FaMapLocationDot />
               {city.title}
             </Link>
           ))}
@@ -103,6 +149,7 @@ export function HomePage() {
         <div className="city-grid">
           {neighborhoodPages.map((location) => (
             <Link key={location.slug} to={`/neighborhoods/${location.slug}`}>
+              <FaTree />
               {location.title}
             </Link>
           ))}
@@ -117,6 +164,7 @@ export function HomePage() {
         <div className="city-grid">
           {serviceLocationPages.slice(0, 36).map((page) => (
             <Link key={page.slug} to={`/locations/${page.slug}`}>
+              <FaArrowRight />
               {page.title}
             </Link>
           ))}
