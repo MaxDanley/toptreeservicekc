@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import { FaqSection } from '../components/FaqSection'
 import { PageHero } from '../components/PageHero'
 import { Seo } from '../components/Seo'
+import { StructuredData } from '../components/StructuredData'
 import { comparisons, gradeATreeHighlights, services, siteMeta } from '../data/siteData'
 import {
   FaArrowRight,
@@ -30,6 +31,52 @@ export function ComparisonPage() {
     )
   }
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: comparison.title,
+    description: comparison.summary,
+    url: `${siteMeta.baseUrl}/compare/${comparison.slug}`,
+    datePublished: '2026-04-28',
+    dateModified: '2026-09-05',
+    author: {
+      '@type': 'Organization',
+      name: 'KC Tree Review Editorial Team',
+      url: siteMeta.baseUrl,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: siteMeta.brand,
+      url: siteMeta.baseUrl,
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${siteMeta.baseUrl}/compare/${comparison.slug}`,
+    },
+    about: [
+      {
+        '@type': 'LocalBusiness',
+        name: siteMeta.businessName,
+        description: 'Kansas City tree service provider with 25+ years of metro experience.',
+      },
+      {
+        '@type': 'LocalBusiness',
+        name: comparison.competitor,
+        description: `Kansas City area tree service provider.`,
+      },
+    ],
+  }
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: comparison.faqs.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  }
+
   return (
     <>
       <Seo
@@ -39,6 +86,8 @@ export function ComparisonPage() {
         image="/images/hero-city.svg"
         keywords={`${comparison.title.toLowerCase()}, grade a tree vs ${comparison.competitor.toLowerCase()}, kansas city tree service comparison`}
       />
+      <StructuredData data={articleSchema} />
+      <StructuredData data={faqSchema} />
       <PageHero
         eyebrow="Kansas City Provider Comparison"
         title={comparison.title}

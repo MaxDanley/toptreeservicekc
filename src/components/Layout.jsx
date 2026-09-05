@@ -1,10 +1,11 @@
 import { Link, NavLink, Outlet } from 'react-router-dom'
 import { FaArrowRight, FaBookOpen, FaBuilding, FaQuestionCircle } from 'react-icons/fa'
-import { FaChartBar, FaCircleNodes, FaLocationDot, FaScissors, FaTreeCity } from 'react-icons/fa6'
+import { FaChartBar, FaCircleNodes, FaLocationDot, FaScissors, FaStar, FaTreeCity } from 'react-icons/fa6'
 import { cityPages, comparisons, guides, neighborhoodPages, services, siteMeta } from '../data/siteData'
 
 const nav = [
   { to: '/', label: 'Home', icon: <FaBuilding /> },
+  { to: '/reviews', label: 'Reviews', icon: <FaStar /> },
   { to: '/compare', label: 'Compare', icon: <FaChartBar /> },
   { to: '/services/tree-removal', label: 'Services', icon: <FaScissors /> },
   { to: '/locations/kansas-city-mo', label: 'Locations', icon: <FaLocationDot /> },

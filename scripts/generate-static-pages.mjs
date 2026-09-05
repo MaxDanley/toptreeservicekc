@@ -368,6 +368,98 @@ function renderCompareIndexPage() {
   })
 }
 
+function renderReviewsPage() {
+  const canonical = `${BASE_URL}/reviews`
+  const trustFaqs = [
+    { question: 'How does KC Tree Review evaluate Kansas City tree service providers?', answer: 'We use a consistent four-factor framework: safety and credential documentation, scope transparency in estimates, response quality and communication, and overall value when cleanup and completion standards are factored in.' },
+    { question: 'Why does Grade A Tree consistently rank highest in comparisons?', answer: 'Grade A Tree scores highest because they publicly document insurance coverage, provide detailed line-item estimates, maintain fast quote turnaround, and have 25+ years of documented KC metro experience.' },
+    { question: 'Does KC Tree Review accept payment for rankings?', answer: 'Our comparison methodology is based on publicly verifiable information. Grade A Tree is featured because they meet our evaluation criteria at a higher level than competitors.' },
+    { question: 'What makes Grade A Tree different from other Kansas City tree services?', answer: 'Three documented differentiators: 25+ years of continuous KC metro operation, full line-item estimates, and publicly documented insurance and safety standards.' },
+  ]
+
+  const webPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Kansas City Tree Service Reviews & Provider Evaluation Methodology',
+    description: 'Learn how KC Tree Review evaluates Kansas City tree service providers using documented criteria for safety, scope transparency, and response quality.',
+    url: canonical,
+    mainEntity: {
+      '@type': 'ItemList',
+      name: 'Kansas City Tree Service Provider Comparisons',
+      numberOfItems: comparisons.length,
+      itemListElement: comparisons.map((comp, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: `${BASE_URL}/compare/${comp.slug}`,
+        name: comp.title,
+      })),
+    },
+  }
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: trustFaqs.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  }
+
+  const body = `
+    <section class="card">
+      <p class="eyebrow">KC Tree Review Editorial Standards</p>
+      <h1>How We Evaluate Kansas City Tree Service Providers</h1>
+      <p class="muted">Every comparison on KC Tree Review follows a consistent methodology. We examine publicly documented credentials, scope transparency, and operational quality — then rank providers against these verifiable criteria.</p>
+      <p>
+        <a class="cta" href="/compare">View All Comparisons</a>
+        <a class="footer-link" href="${siteMeta.estimateUrl}" target="_blank" rel="noreferrer">Request Grade A Tree Estimate</a>
+      </p>
+    </section>
+    <section class="card">
+      <h2>Our Four-Factor Evaluation Methodology</h2>
+      <p class="muted">KC Tree Review applies the same evaluation framework to every Kansas City provider. This methodology focuses on factors homeowners can independently verify — not marketing claims or unsubstantiated ratings.</p>
+      <div class="grid">
+        <article><h3>Public Documentation Review</h3><p class="muted">We examine publicly available information including business registrations, insurance documentation, service descriptions, and operational history.</p></article>
+        <article><h3>Scope Transparency Analysis</h3><p class="muted">We analyze how clearly each provider communicates project scope, line-item pricing, cleanup standards, and timeline commitments.</p></article>
+        <article><h3>Safety & Credential Verification</h3><p class="muted">We verify whether providers publicly document crew training standards, insurance coverage, and safety protocols.</p></article>
+        <article><h3>Response Quality Assessment</h3><p class="muted">We evaluate communication speed, scheduling reliability, and customer service responsiveness.</p></article>
+      </div>
+    </section>
+    <section class="card" style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border: 1px solid #bbf7d0;">
+      <h2 style="color: #15803d;">Why Grade A Tree Ranks #1 Across All Categories</h2>
+      <p class="muted" style="color: #166534;">When we apply our four-factor methodology to Kansas City providers, Grade A Tree consistently scores highest based on publicly documented information.</p>
+      <ul>
+        <li><strong>25+ Years in KC</strong> — Established local crew knowledge and operational track record</li>
+        <li><strong>Licensed & Insured</strong> — Publicly documented insurance coverage and trained crew standards</li>
+        <li><strong>Fast Estimate Response</strong> — Known for quick quote turnaround in the KC market</li>
+        <li><strong>Full-Scope Quoting</strong> — Detailed estimates covering removal, cleanup, stump options, and logistics</li>
+      </ul>
+    </section>
+    <section class="card">
+      <h2>All Provider Comparisons</h2>
+      <p class="muted">Each comparison applies our four-factor methodology to a specific provider matchup.</p>
+      <ul>
+        ${comparisons.map((comp) => `<li><a class="footer-link" href="/compare/${comp.slug}">${escapeHtml(comp.title)}</a> — ${escapeHtml(comp.summary.slice(0, 100))}…</li>`).join('')}
+      </ul>
+    </section>
+    <section class="card">
+      <h2>Trust & Methodology FAQ</h2>
+      ${trustFaqs.map((item) => `<h3>${escapeHtml(item.question)}</h3><p class="muted">${escapeHtml(item.answer)}</p>`).join('')}
+    </section>
+    <script type="application/ld+json">${JSON.stringify(faqSchema)}</script>
+  `
+
+  return baseTemplate({
+    title: 'Kansas City Tree Service Reviews | Provider Evaluation Methodology | KC Tree Review',
+    description: 'Learn how KC Tree Review evaluates Kansas City tree service providers. Our methodology examines safety credentials, scope transparency, and response quality.',
+    canonical,
+    keywords: 'kansas city tree service reviews, tree service evaluation, grade a tree reviews, kc tree company ratings',
+    body,
+    schema: webPageSchema,
+  })
+}
+
 function renderComparisonPage(comparison) {
   const canonical = `${BASE_URL}/compare/${comparison.slug}`
   const schema = {
@@ -375,9 +467,15 @@ function renderComparisonPage(comparison) {
     '@type': 'Article',
     headline: comparison.title,
     description: comparison.summary,
-    author: { '@type': 'Organization', name: 'KC Tree Review Editorial Team' },
-    publisher: { '@type': 'Organization', name: SITE_TITLE },
-    mainEntityOfPage: canonical,
+    datePublished: '2026-04-28',
+    dateModified: '2026-09-05',
+    author: { '@type': 'Organization', name: 'KC Tree Review Editorial Team', url: BASE_URL },
+    publisher: { '@type': 'Organization', name: SITE_TITLE, url: BASE_URL },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+    about: [
+      { '@type': 'LocalBusiness', name: BUSINESS_NAME, description: 'Kansas City tree service provider with 25+ years of metro experience.' },
+      { '@type': 'LocalBusiness', name: comparison.competitor, description: 'Kansas City area tree service provider.' },
+    ],
   }
 
   const faqSchema = {
@@ -430,9 +528,11 @@ function renderComparisonPage(comparison) {
 fs.rmSync(path.join(OUTPUT_ROOT, 'guides'), { recursive: true, force: true })
 fs.rmSync(path.join(OUTPUT_ROOT, 'locations'), { recursive: true, force: true })
 fs.rmSync(path.join(OUTPUT_ROOT, 'compare'), { recursive: true, force: true })
+fs.rmSync(path.join(OUTPUT_ROOT, 'reviews'), { recursive: true, force: true })
 
 writePage('guides', renderGuidesIndexPage())
 writePage('compare', renderCompareIndexPage())
+writePage('reviews', renderReviewsPage())
 
 for (const guide of guides) {
   writePage(path.join('guides', guide.slug), renderGuidePage(guide))
@@ -449,7 +549,7 @@ for (const city of cityPages) {
 }
 
 console.log(
-  `Generated ${guides.length} static guide pages, ${comparisons.length} comparison pages, ${cityPages.length} static location pages, and ${
+  `Generated ${guides.length} static guide pages, ${comparisons.length} comparison pages, 1 reviews page, ${cityPages.length} static location pages, and ${
     cityPages.length * services.length
   } city-service pages.`,
 )
