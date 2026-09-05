@@ -1,10 +1,11 @@
 import fs from 'node:fs'
 import path from 'node:path'
-import { cityPages, comparisons, services } from '../src/data/siteData.js'
+import { cityPages, comparisons, services, siteMeta } from '../src/data/siteData.js'
 import { guides } from '../src/data/guidesContent.js'
 
-const BASE_URL = 'https://www.toptreeservicekc.com'
-const SITE_TITLE = 'KC Tree Review'
+const BASE_URL = siteMeta.baseUrl
+const SITE_TITLE = siteMeta.brand
+const BUSINESS_NAME = siteMeta.businessName
 const OUTPUT_ROOT = path.resolve('public')
 
 function escapeHtml(value) {
@@ -151,65 +152,72 @@ function renderGuidePage(guide) {
 
 function renderLocationPage(city) {
   const canonical = `${BASE_URL}/locations/${city.slug}`
-  const hash = getHash(city.slug)
-  const patternA = [
-    'older tree canopy neighborhoods',
-    'mixed residential lot sizes',
-    'tight driveway and fence access',
-    'storm-prone overhang corridors',
-  ]
-  const patternB = [
-    'seasonal trimming demand',
-    'hazard limb prioritization',
-    'stump cleanup and yard restoration',
-    'quote clarity and scheduling speed',
-  ]
+  const isKansas = city.slug.endsWith('-ks')
+  const isMissouri = city.slug.endsWith('-mo')
 
-  const uniqueA = patternA[hash % patternA.length]
-  const uniqueB = patternB[hash % patternB.length]
-  const description = `Compare tree trimming, removal, stump grinding, and emergency tree service options in ${city.title} with local decision checklists.`
+  const ksContext = {
+    soilNote: 'Kansas-side clay soils (common in Johnson and Wyandotte counties) create root stress during summer drought cycles.',
+    stormNote: 'Johnson County averages 45+ thunderstorm days annually with peak damage in April-June.',
+    commonTrees: 'Silver Maples, Bradford Pears, and Pin Oaks dominate older neighborhoods.',
+  }
+
+  const moContext = {
+    soilNote: 'Missouri-side Morley-Wabash clay soils retain water and stress root systems in older neighborhoods.',
+    stormNote: 'Jackson County and the Northland see frequent derecho damage in late summer.',
+    commonTrees: 'Mature Silver Maples, Siberian Elms, and ornamental Pears are common in established areas.',
+  }
+
+  const context = isKansas ? ksContext : moContext
+
+  const description = `Compare tree trimming, removal, stump grinding, and emergency tree service in ${city.title}. Grade A Tree serves this area with 25+ years of KC metro experience.`
 
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    name: `${SITE_TITLE} - ${city.title} Tree Service Comparison`,
-    url: canonical,
-    areaServed: city.title,
+    name: BUSINESS_NAME,
+    url: BASE_URL,
+    areaServed: {
+      '@type': 'City',
+      name: city.title,
+    },
+    telephone: siteMeta.primaryPhone,
     serviceType: ['Tree Trimming', 'Tree Removal', 'Stump Grinding', 'Emergency Tree Service'],
   }
 
   const body = `
     <section class="card">
-      <p class="eyebrow">Location Comparison Hub</p>
-      <h1>Best Tree Services in ${escapeHtml(city.title)}</h1>
+      <p class="eyebrow">${isKansas ? 'Kansas' : 'Missouri'} Tree Service Coverage</p>
+      <h1>Tree Services in ${escapeHtml(city.title)}</h1>
       <p class="muted">${escapeHtml(description)}</p>
       <p>
-        <a class="cta" href="/compare">Compare KC Providers</a>
-        <a class="footer-link" href="/compare/grade-a-tree-vs-go-green-tree">View comparison pages</a>
+        <a class="cta" href="${siteMeta.estimateUrl}" target="_blank" rel="noreferrer">Request ${BUSINESS_NAME} Estimate</a>
+        <a class="footer-link" href="/compare/grade-a-tree-vs-go-green-tree">Compare providers</a>
       </p>
     </section>
     <section class="card">
-      <h2>What Makes ${escapeHtml(city.title)} Quotes Different</h2>
+      <h2>Tree Care Factors in ${escapeHtml(city.title)}</h2>
       <div class="grid">
-        <article><h3>${escapeHtml(uniqueA)}</h3><p class="muted">Service complexity in this area often depends on property layout and tree maturity patterns.</p></article>
-        <article><h3>${escapeHtml(uniqueB)}</h3><p class="muted">Providers are typically differentiated by scope detail, cleanup standard, and response timing.</p></article>
+        <article><h3>Local Soil Conditions</h3><p class="muted">${escapeHtml(context.soilNote)}</p></article>
+        <article><h3>Storm Season Impact</h3><p class="muted">${escapeHtml(context.stormNote)}</p></article>
+        <article><h3>Common Species</h3><p class="muted">${escapeHtml(context.commonTrees)}</p></article>
       </div>
     </section>
     <section class="card">
-      <h2>Top Services for ${escapeHtml(city.title)}</h2>
+      <h2>${BUSINESS_NAME} Services in ${escapeHtml(city.title)}</h2>
       <ul>
         ${services
           .slice(0, 8)
-          .map((service) => `<li><a class="footer-link" href="/locations/${city.slug}/${service.slug}">${escapeHtml(service.name)} in ${escapeHtml(city.title)}</a></li>`)
+          .map((service) => `<li><a class="footer-link" href="/locations/${city.slug}/${service.slug}">${escapeHtml(service.name)}</a> — ${escapeHtml(service.short)}</li>`)
           .join('')}
       </ul>
     </section>
     <section class="card">
-      <h2>Quick Decision Checklist</h2>
+      <h2>Choosing a Tree Service in ${escapeHtml(city.title)}</h2>
       <ul>
-        <li>Compare at least three written quotes for ${escapeHtml(city.title)} projects.</li>
-        <li>Verify insurance, cleanup terms, and final site condition language.</li>
-        <li>Confirm timeline and weather-delay policy before scheduling.</li>
+        <li>Get three written quotes that include cleanup, stump handling, and haul-away scope.</li>
+        <li>Verify the provider is insured for work in ${isKansas ? 'Kansas' : 'Missouri'} — ${BUSINESS_NAME} maintains coverage in both states.</li>
+        <li>Confirm emergency response availability during KC storm season (April-September).</li>
+        <li>Ask about scheduling flexibility for weather delays.</li>
       </ul>
     </section>
   `
@@ -226,42 +234,46 @@ function renderLocationPage(city) {
 
 function renderLocationServicePage(city, service) {
   const canonical = `${BASE_URL}/locations/${city.slug}/${service.slug}`
-  const description = `${service.name} in ${city.title}: compare local providers, review scope checklists, and request a clear estimate.`
+  const isKansas = city.slug.endsWith('-ks')
+  const description = `${service.name} in ${city.title} from ${BUSINESS_NAME}. ${service.short} Serving ${isKansas ? 'Kansas' : 'Missouri'}-side KC metro with 25+ years experience.`
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: `${service.name} in ${city.title}`,
-    areaServed: city.title,
+    areaServed: {
+      '@type': 'City',
+      name: city.title,
+    },
     serviceType: service.name,
-    provider: { '@type': 'Organization', name: SITE_TITLE },
+    provider: { '@type': 'LocalBusiness', name: BUSINESS_NAME, telephone: siteMeta.primaryPhone },
     url: canonical,
   }
 
   const body = `
     <section class="card">
-      <p class="eyebrow">City + Service Landing</p>
+      <p class="eyebrow">${BUSINESS_NAME} — ${isKansas ? 'Kansas' : 'Missouri'} Service Area</p>
       <h1>${escapeHtml(service.name)} in ${escapeHtml(city.title)}</h1>
-      <p class="muted">${escapeHtml(description)}</p>
+      <p class="muted">${escapeHtml(service.body)}</p>
       <p>
-        <a class="cta" href="/compare">Compare ${escapeHtml(service.name)} Providers</a>
-        <a class="footer-link" href="/locations/${city.slug}">Back to ${escapeHtml(city.title)} hub</a>
+        <a class="cta" href="${siteMeta.estimateUrl}" target="_blank" rel="noreferrer">Request ${BUSINESS_NAME} Estimate</a>
+        <a class="footer-link" href="/locations/${city.slug}">All services in ${escapeHtml(city.title)}</a>
       </p>
     </section>
     <section class="card">
-      <h2>Scope Checklist</h2>
+      <h2>What ${BUSINESS_NAME} Includes</h2>
       <ul>
         ${service.bullets.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
-        <li>Confirm full cleanup and debris handling details.</li>
-        <li>Verify timeline and scheduling commitments in writing.</li>
+        <li>Full cleanup and debris haul-away included in most quotes.</li>
+        <li>Written scope with line-item pricing before work begins.</li>
       </ul>
     </section>
     <section class="card">
-      <h2>Related Services in ${escapeHtml(city.title)}</h2>
+      <h2>Other ${BUSINESS_NAME} Services in ${escapeHtml(city.title)}</h2>
       <ul>
         ${services
           .filter((item) => item.slug !== service.slug)
           .slice(0, 6)
-          .map((item) => `<li><a class="footer-link" href="/locations/${city.slug}/${item.slug}">${escapeHtml(item.name)} in ${escapeHtml(city.title)}</a></li>`)
+          .map((item) => `<li><a class="footer-link" href="/locations/${city.slug}/${item.slug}">${escapeHtml(item.name)}</a> — ${escapeHtml(item.short)}</li>`)
           .join('')}
       </ul>
     </section>
