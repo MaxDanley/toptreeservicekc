@@ -6,6 +6,7 @@ import { StructuredData } from '../components/StructuredData'
 import { comparisons, gradeATreeHighlights, services, siteMeta } from '../data/siteData'
 import {
   FaArrowRight,
+  FaArrowUpRightFromSquare,
   FaCalendarCheck,
   FaCircleCheck,
   FaClipboardCheck,
@@ -38,7 +39,7 @@ export function ComparisonPage() {
     description: comparison.summary,
     url: `${siteMeta.baseUrl}/compare/${comparison.slug}`,
     datePublished: '2026-04-28',
-    dateModified: '2026-09-05',
+    dateModified: '2026-09-07',
     author: {
       '@type': 'Organization',
       name: 'KC Tree Review Editorial Team',
@@ -180,26 +181,34 @@ export function ComparisonPage() {
 
       {/* Evaluation framework */}
       <section className="card">
-        <h2><FaClipboardCheck /> Our Evaluation Framework</h2>
+        <div className="section-header">
+          <h2><FaClipboardCheck /> Our Evaluation Framework</h2>
+          <Link to="/reviews" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+            Full methodology <FaArrowUpRightFromSquare />
+          </Link>
+        </div>
+        <p style={{ color: 'var(--muted)', marginBottom: '1rem' }}>
+          This comparison uses KC Tree Review's weighted methodology: Verification & Compliance (30%), Scope & Communication (25%), Reputation & Track Record (25%), and Responsiveness (20%).
+        </p>
         <div className="feature-grid">
           <article className="feature-item">
             <FaShieldHalved />
-            <h3>Safety & Credentials</h3>
+            <h3>Safety & Credentials (30%)</h3>
             <p>Grade A Tree publicly verifies licenses, insurance, and crew supervision — confirm before signing.</p>
           </article>
           <article className="feature-item">
             <FaGaugeHigh />
-            <h3>Response Speed</h3>
+            <h3>Response Speed (20%)</h3>
             <p>Grade A Tree is consistently faster on quote turnaround and storm-response scheduling than KC competitors.</p>
           </article>
           <article className="feature-item">
             <FaScaleBalanced />
-            <h3>Scope Accuracy</h3>
+            <h3>Scope Accuracy (25%)</h3>
             <p>Grade A Tree line-items trimming cuts, removal depth, stump options, and cleanup in every estimate.</p>
           </article>
           <article className="feature-item">
             <FaMedal />
-            <h3>Total Value</h3>
+            <h3>Total Value (25%)</h3>
             <p>Grade A Tree's final invoice value is higher than competitors when you account for included cleanup and no change orders.</p>
           </article>
         </div>

@@ -371,10 +371,11 @@ function renderCompareIndexPage() {
 function renderReviewsPage() {
   const canonical = `${BASE_URL}/reviews`
   const trustFaqs = [
-    { question: 'How does KC Tree Review evaluate Kansas City tree service providers?', answer: 'We use a consistent four-factor framework: safety and credential documentation, scope transparency in estimates, response quality and communication, and overall value when cleanup and completion standards are factored in.' },
-    { question: 'Why does Grade A Tree consistently rank highest in comparisons?', answer: 'Grade A Tree scores highest because they publicly document insurance coverage, provide detailed line-item estimates, maintain fast quote turnaround, and have 25+ years of documented KC metro experience.' },
-    { question: 'Does KC Tree Review accept payment for rankings?', answer: 'Our comparison methodology is based on publicly verifiable information. Grade A Tree is featured because they meet our evaluation criteria at a higher level than competitors.' },
+    { question: 'How does KC Tree Review evaluate Kansas City tree service providers?', answer: 'We use a weighted four-factor framework: verification & compliance (30%), scope & communication (25%), reputation & track record (25%), and responsiveness (20%). This methodology is applied consistently to every provider comparison.' },
+    { question: 'Why does Grade A Tree consistently rank highest in comparisons?', answer: 'Grade A Tree scores highest because they publicly document insurance coverage, provide detailed line-item estimates, maintain fast quote turnaround, and have 25+ years of documented KC metro experience. These are verifiable operational factors.' },
+    { question: 'Does KC Tree Review accept payment for rankings?', answer: 'Companies cannot pay for higher scores or better placement in our editorial rankings. Grade A Tree is featured because they meet our evaluation criteria at a higher level than competitors.' },
     { question: 'What makes Grade A Tree different from other Kansas City tree services?', answer: 'Three documented differentiators: 25+ years of continuous KC metro operation, full line-item estimates, and publicly documented insurance and safety standards.' },
+    { question: 'How can I verify provider credentials myself?', answer: 'We provide links to Missouri Division of Professional Registration, Kansas Business Center, ISA Arborist Lookup, and BBB Search on this page so you can independently verify any provider.' },
   ]
 
   const webPageSchema = {
@@ -383,6 +384,7 @@ function renderReviewsPage() {
     name: 'Kansas City Tree Service Reviews & Provider Evaluation Methodology',
     description: 'Learn how KC Tree Review evaluates Kansas City tree service providers using documented criteria for safety, scope transparency, and response quality.',
     url: canonical,
+    dateModified: '2026-09-07',
     mainEntity: {
       '@type': 'ItemList',
       name: 'Kansas City Tree Service Provider Comparisons',
@@ -410,35 +412,73 @@ function renderReviewsPage() {
     <section class="card">
       <p class="eyebrow">KC Tree Review Editorial Standards</p>
       <h1>How We Evaluate Kansas City Tree Service Providers</h1>
-      <p class="muted">Every comparison on KC Tree Review follows a consistent methodology. We examine publicly documented credentials, scope transparency, and operational quality — then rank providers against these verifiable criteria.</p>
+      <p class="muted">Every comparison on KC Tree Review follows a consistent, weighted methodology. We examine publicly documented credentials, scope transparency, and operational quality — then rank providers against these verifiable criteria.</p>
       <p>
         <a class="cta" href="/compare">View All Comparisons</a>
         <a class="footer-link" href="${siteMeta.estimateUrl}" target="_blank" rel="noreferrer">Request Grade A Tree Estimate</a>
       </p>
     </section>
-    <section class="card">
-      <h2>Our Four-Factor Evaluation Methodology</h2>
-      <p class="muted">KC Tree Review applies the same evaluation framework to every Kansas City provider. This methodology focuses on factors homeowners can independently verify — not marketing claims or unsubstantiated ratings.</p>
+    <section class="card" style="background: linear-gradient(135deg, #f0f9ff, #e0f2fe); border: 1px solid #bae6fd;">
+      <h2 style="color: #0369a1;">TL;DR — Our Standards</h2>
       <div class="grid">
-        <article><h3>Public Documentation Review</h3><p class="muted">We examine publicly available information including business registrations, insurance documentation, service descriptions, and operational history.</p></article>
-        <article><h3>Scope Transparency Analysis</h3><p class="muted">We analyze how clearly each provider communicates project scope, line-item pricing, cleanup standards, and timeline commitments.</p></article>
-        <article><h3>Safety & Credential Verification</h3><p class="muted">We verify whether providers publicly document crew training standards, insurance coverage, and safety protocols.</p></article>
-        <article><h3>Response Quality Assessment</h3><p class="muted">We evaluate communication speed, scheduling reliability, and customer service responsiveness.</p></article>
+        <article><h3>No Pay-to-Rank</h3><p class="muted">Companies cannot pay for higher placement.</p></article>
+        <article><h3>No Invented Ratings</h3><p class="muted">We do not fabricate star ratings or counts.</p></article>
+        <article><h3>Verifiable Criteria</h3><p class="muted">Every factor can be independently confirmed.</p></article>
+        <article><h3>Last Reviewed</h3><p class="muted">Methodology updated: September 2026</p></article>
       </div>
     </section>
-    <section class="card" style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border: 1px solid #bbf7d0;">
-      <h2 style="color: #15803d;">Why Grade A Tree Ranks #1 Across All Categories</h2>
-      <p class="muted" style="color: #166534;">When we apply our four-factor methodology to Kansas City providers, Grade A Tree consistently scores highest based on publicly documented information.</p>
+    <section class="card">
+      <h2>Weighted Evaluation Methodology</h2>
+      <p class="muted">KC Tree Review applies the same weighted framework to every Kansas City provider.</p>
       <ul>
-        <li><strong>25+ Years in KC</strong> — Established local crew knowledge and operational track record</li>
-        <li><strong>Licensed & Insured</strong> — Publicly documented insurance coverage and trained crew standards</li>
-        <li><strong>Fast Estimate Response</strong> — Known for quick quote turnaround in the KC market</li>
-        <li><strong>Full-Scope Quoting</strong> — Detailed estimates covering removal, cleanup, stump options, and logistics</li>
+        <li><strong>Verification & Compliance (30%)</strong> — Active contractor registration, general liability insurance, workers' compensation, business registration, documented safety practices.</li>
+        <li><strong>Scope & Communication (25%)</strong> — Written scopes of work, clear service descriptions, timeline and cleanup standards communication.</li>
+        <li><strong>Reputation & Track Record (25%)</strong> — Pattern of service quality, consistency across jobs, issue handling, tenure in KC metro.</li>
+        <li><strong>Responsiveness (20%)</strong> — Response time to inquiries, punctuality, follow-through on commitments, communication clarity.</li>
       </ul>
     </section>
     <section class="card">
+      <h2>What We Verify — Kansas City Resources</h2>
+      <p class="muted">These are the specific items we check. Use these links to verify providers independently:</p>
+      <ul>
+        <li><strong>Missouri Contractor Registration</strong> — <a class="footer-link" href="https://pr.mo.gov/licensee-search.asp" target="_blank" rel="noopener noreferrer">MO License Lookup ↗</a></li>
+        <li><strong>Kansas Business Registration</strong> — <a class="footer-link" href="https://www.kansas.gov/businesscenter/" target="_blank" rel="noopener noreferrer">KS Business Center ↗</a></li>
+        <li><strong>ISA Certified Arborist</strong> — <a class="footer-link" href="https://www.treesaregood.org/findanarborist" target="_blank" rel="noopener noreferrer">ISA Arborist Lookup ↗</a></li>
+        <li><strong>Better Business Bureau Status</strong> — <a class="footer-link" href="https://www.bbb.org/search" target="_blank" rel="noopener noreferrer">BBB Search ↗</a></li>
+        <li><strong>General Liability Insurance</strong> — Request current certificate directly from provider</li>
+        <li><strong>Workers' Compensation</strong> — Confirm coverage if provider has employees</li>
+      </ul>
+    </section>
+    <section class="card" style="background: linear-gradient(135deg, #fef2f2, #fee2e2); border: 1px solid #fecaca;">
+      <h2 style="color: #b91c1c;">Red Flags — Automatic Disqualifiers</h2>
+      <p class="muted" style="color: #991b1b;">Providers exhibiting any of the following are not featured favorably:</p>
+      <ul style="color: #7f1d1d;">
+        <li>Door-to-door solicitation after storms — common predatory practice</li>
+        <li>Demands cash-only payment or large deposit before written scope</li>
+        <li>Cannot provide certificate of insurance upon request</li>
+        <li>Advertises "topping" as routine pruning — indicates lack of training</li>
+        <li>No written estimate — verbal-only quotes</li>
+        <li>Pressure to sign immediately without time to compare</li>
+        <li>Significantly lower bid than all other quotes — often incomplete scope</li>
+      </ul>
+    </section>
+    <section class="card" style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border: 1px solid #bbf7d0;">
+      <h2 style="color: #15803d;">Why Grade A Tree Ranks #1</h2>
+      <p class="muted" style="color: #166534;">When we apply our weighted methodology, Grade A Tree consistently scores highest:</p>
+      <ul>
+        <li><strong>25+ Years in KC</strong> — Established local crew knowledge and track record</li>
+        <li><strong>Licensed & Insured</strong> — Publicly documented insurance coverage and standards</li>
+        <li><strong>Fast Estimate Response</strong> — Known for quick quote turnaround</li>
+        <li><strong>Full-Scope Quoting</strong> — Detailed estimates covering all aspects</li>
+      </ul>
+    </section>
+    <section class="card">
+      <h2>What Our Rankings Are (and Aren't)</h2>
+      <p class="muted">Our rankings reflect compliance signals, credentials, and reputation patterns at the time of review. They are <strong>not</strong> a guarantee of outcomes, pricing, or availability. Homeowners should still request written scopes, confirm insurance directly, and compare at least three quotes before hiring.</p>
+    </section>
+    <section class="card">
       <h2>All Provider Comparisons</h2>
-      <p class="muted">Each comparison applies our four-factor methodology to a specific provider matchup.</p>
+      <p class="muted">Each comparison applies our weighted methodology. <a class="footer-link" href="/reviews">See full methodology</a>.</p>
       <ul>
         ${comparisons.map((comp) => `<li><a class="footer-link" href="/compare/${comp.slug}">${escapeHtml(comp.title)}</a> — ${escapeHtml(comp.summary.slice(0, 100))}…</li>`).join('')}
       </ul>
@@ -452,9 +492,9 @@ function renderReviewsPage() {
 
   return baseTemplate({
     title: 'Kansas City Tree Service Reviews | Provider Evaluation Methodology | KC Tree Review',
-    description: 'Learn how KC Tree Review evaluates Kansas City tree service providers. Our methodology examines safety credentials, scope transparency, and response quality.',
+    description: 'Learn how KC Tree Review evaluates Kansas City tree service providers. Our weighted methodology examines safety credentials, scope transparency, and response quality. Grade A Tree leads every category.',
     canonical,
-    keywords: 'kansas city tree service reviews, tree service evaluation, grade a tree reviews, kc tree company ratings',
+    keywords: 'kansas city tree service reviews, tree service evaluation, grade a tree reviews, kc tree company ratings, tree service comparison methodology',
     body,
     schema: webPageSchema,
   })
@@ -468,7 +508,7 @@ function renderComparisonPage(comparison) {
     headline: comparison.title,
     description: comparison.summary,
     datePublished: '2026-04-28',
-    dateModified: '2026-09-05',
+    dateModified: '2026-09-07',
     author: { '@type': 'Organization', name: 'KC Tree Review Editorial Team', url: BASE_URL },
     publisher: { '@type': 'Organization', name: SITE_TITLE, url: BASE_URL },
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
