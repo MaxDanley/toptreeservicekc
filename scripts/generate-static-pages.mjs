@@ -1,9 +1,9 @@
 import fs from 'node:fs'
 import path from 'node:path'
-import { cityPages, comparisons, services } from '../src/data/siteData.js'
+import { cityPages, comparisons, customCityServicePages, services } from '../src/data/siteData.js'
 import { guides } from '../src/data/guidesContent.js'
 
-const BASE_URL = 'https://www.toptreeservicekc.com'
+const BASE_URL = 'https://gradeatree.com'
 const SITE_TITLE = 'KC Tree Review'
 const OUTPUT_ROOT = path.resolve('public')
 
@@ -436,8 +436,85 @@ for (const city of cityPages) {
   }
 }
 
+function renderCustomCityServicePage(page) {
+  const canonical = `${BASE_URL}/${page.slug}`
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: page.h1,
+    areaServed: page.cityName,
+    serviceType: page.serviceName,
+    provider: { '@type': 'Organization', name: 'Grade A Tree' },
+    url: canonical,
+    description: page.metaDescription,
+  }
+
+  const service = services.find((s) => s.slug === page.serviceSlug)
+  const bullets = service?.bullets || []
+
+  const body = `
+    <section class="card">
+      <p class="eyebrow">${escapeHtml(page.cityName)} Tree Service</p>
+      <h1>${escapeHtml(page.h1)}</h1>
+      <p class="muted">${escapeHtml(page.metaDescription)}</p>
+      <p>
+        <a class="cta" href="https://clienthub.getjobber.com/client_hubs/1a15eb84-a215-4aec-bdb2-ee1647b56b15/public/work_request/new?source=social_media">Get a Free Estimate</a>
+        <a class="footer-link" href="/locations/${page.citySlug}">All Services in ${escapeHtml(page.cityName.split(',')[0])}</a>
+      </p>
+    </section>
+    <section class="card">
+      <h2>About ${escapeHtml(page.serviceName)} in ${escapeHtml(page.cityName.split(',')[0])}</h2>
+      ${page.body.map((paragraph) => `<p class="muted">${escapeHtml(paragraph)}</p>`).join('')}
+    </section>
+    ${
+      bullets.length > 0
+        ? `<section class="card">
+      <h2>Service Scope Checklist</h2>
+      <ul>
+        ${bullets.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+        <li>Confirm full cleanup and debris handling details.</li>
+        <li>Verify timeline and scheduling commitments in writing.</li>
+      </ul>
+    </section>`
+        : ''
+    }
+    <section class="card">
+      <h2>What Affects Pricing in ${escapeHtml(page.cityName.split(',')[0])}</h2>
+      <div class="grid">
+        <article><h3>Tree size and spread</h3><p class="muted">Large canopies and complex rigging increase labor and equipment requirements.</p></article>
+        <article><h3>Property proximity</h3><p class="muted">Trees near homes, roofs, or fences usually require slower precision work.</p></article>
+        <article><h3>Access and haul-away</h3><p class="muted">Limited access can affect removal speed and debris logistics.</p></article>
+        <article><h3>Emergency timeline</h3><p class="muted">Storm-priority scheduling can shift pricing based on urgency and risk.</p></article>
+      </div>
+    </section>
+    <section class="card">
+      <h2>Related Services in ${escapeHtml(page.cityName.split(',')[0])}</h2>
+      <ul>
+        ${services
+          .filter((item) => item.slug !== page.serviceSlug)
+          .slice(0, 6)
+          .map((item) => `<li><a class="footer-link" href="/locations/${page.citySlug}/${item.slug}">${escapeHtml(item.name)} in ${escapeHtml(page.cityName.split(',')[0])}</a></li>`)
+          .join('')}
+      </ul>
+    </section>
+  `
+
+  return baseTemplate({
+    title: `${page.h1} | KC Tree Review`,
+    description: page.metaDescription,
+    canonical,
+    keywords: `${page.serviceName.toLowerCase()} ${page.cityName.toLowerCase()}, ${page.serviceSlug} ${page.citySlug}, tree service ${page.cityName.toLowerCase()}`,
+    body,
+    schema,
+  })
+}
+
+for (const page of customCityServicePages) {
+  writePage(page.slug, renderCustomCityServicePage(page))
+}
+
 console.log(
-  `Generated ${guides.length} static guide pages, ${comparisons.length} comparison pages, ${cityPages.length} static location pages, and ${
+  `Generated ${guides.length} static guide pages, ${comparisons.length} comparison pages, ${cityPages.length} static location pages, ${
     cityPages.length * services.length
-  } city-service pages.`,
+  } city-service pages, and ${customCityServicePages.length} custom city-service pages.`,
 )
