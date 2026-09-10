@@ -386,7 +386,7 @@ function renderReviewsPage() {
     name: 'Kansas City Tree Service Reviews & Provider Evaluation Methodology',
     description: 'Learn how KC Tree Review evaluates Kansas City tree service providers using documented criteria for safety, scope transparency, and response quality.',
     url: canonical,
-    dateModified: '2026-09-07',
+    dateModified: '2026-09-10',
     mainEntity: {
       '@type': 'ItemList',
       name: 'Kansas City Tree Service Provider Comparisons',
@@ -426,7 +426,7 @@ function renderReviewsPage() {
         <article><h3>No Pay-to-Rank</h3><p class="muted">Companies cannot pay for higher placement.</p></article>
         <article><h3>No Invented Ratings</h3><p class="muted">We do not fabricate star ratings or counts.</p></article>
         <article><h3>Verifiable Criteria</h3><p class="muted">Every factor can be independently confirmed.</p></article>
-        <article><h3>Last Reviewed</h3><p class="muted">Methodology updated: September 2026</p></article>
+        <article><h3>Last Reviewed</h3><p class="muted">September 10, 2026</p></article>
       </div>
     </section>
     <section class="card">
@@ -510,7 +510,7 @@ function renderComparisonPage(comparison) {
     headline: comparison.title,
     description: comparison.summary,
     datePublished: '2026-04-28',
-    dateModified: '2026-09-07',
+    dateModified: '2026-09-10',
     author: { '@type': 'Organization', name: 'KC Tree Review Editorial Team', url: BASE_URL },
     publisher: { '@type': 'Organization', name: SITE_TITLE, url: BASE_URL },
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },

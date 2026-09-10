@@ -8,6 +8,7 @@ import {
   FaArrowRight,
   FaArrowUpRightFromSquare,
   FaCalendarCheck,
+  FaCalendarDays,
   FaCircleCheck,
   FaClipboardCheck,
   FaGaugeHigh,
@@ -18,6 +19,11 @@ import {
   FaStar,
   FaTrophy,
 } from 'react-icons/fa6'
+
+const COMPARISON_DATES = {
+  published: 'April 28, 2026',
+  lastReviewed: 'September 10, 2026',
+}
 
 export function ComparisonPage() {
   const { comparisonSlug } = useParams()
@@ -39,7 +45,7 @@ export function ComparisonPage() {
     description: comparison.summary,
     url: `${siteMeta.baseUrl}/compare/${comparison.slug}`,
     datePublished: '2026-04-28',
-    dateModified: '2026-09-07',
+    dateModified: '2026-09-10',
     author: {
       '@type': 'Organization',
       name: 'KC Tree Review Editorial Team',
@@ -103,6 +109,19 @@ export function ComparisonPage() {
           { icon: <FaCircleCheck />, text: '25+ Years in KC' },
         ]}
       />
+
+      {/* Visible Last Reviewed Date */}
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', marginBottom: '1rem', fontSize: '0.85rem', color: 'var(--muted)' }}>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+          <FaCalendarDays /> Published: {COMPARISON_DATES.published}
+        </span>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+          <FaCalendarDays /> Last Reviewed: {COMPARISON_DATES.lastReviewed}
+        </span>
+        <Link to="/reviews" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: 'var(--primary)' }}>
+          Our Methodology <FaArrowUpRightFromSquare style={{ fontSize: '0.7rem' }} />
+        </Link>
+      </div>
 
       {/* Grade A Tree Wins Banner */}
       <section className="card" style={{ background: 'linear-gradient(135deg, #f0fdf4, #dcfce7)', border: '1px solid #bbf7d0' }}>

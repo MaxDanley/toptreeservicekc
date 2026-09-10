@@ -9,6 +9,7 @@ import {
   FaArrowUpRightFromSquare,
   FaBan,
   FaCalendarCheck,
+  FaCalendarDays,
   FaCircleCheck,
   FaCircleExclamation,
   FaCircleInfo,
@@ -27,7 +28,7 @@ import {
   FaUserCheck,
 } from 'react-icons/fa6'
 
-const LAST_METHODOLOGY_REVIEW = 'September 2026'
+const LAST_METHODOLOGY_REVIEW = 'September 10, 2026'
 
 const scoringCategories = [
   {
@@ -146,7 +147,7 @@ export function ReviewsPage() {
     name: 'Kansas City Tree Service Reviews & Provider Evaluation Methodology',
     description: 'Learn how KC Tree Review evaluates Kansas City tree service providers using documented criteria for safety, scope transparency, and response quality.',
     url: `${siteMeta.baseUrl}/reviews`,
-    dateModified: '2026-09-07',
+    dateModified: '2026-09-10',
     mainEntity: {
       '@type': 'ItemList',
       name: 'Kansas City Tree Service Provider Comparisons',
@@ -206,9 +207,9 @@ export function ReviewsPage() {
             <p style={{ fontSize: '0.85rem' }}>Every factor we evaluate can be independently confirmed.</p>
           </article>
           <article className="feature-item" style={{ padding: '0.75rem' }}>
-            <FaCircleCheck style={{ color: '#0ea5e9' }} />
+            <FaCalendarDays style={{ color: '#0ea5e9' }} />
             <h3 style={{ fontSize: '0.9rem' }}>Last Reviewed</h3>
-            <p style={{ fontSize: '0.85rem' }}>Methodology updated: {LAST_METHODOLOGY_REVIEW}</p>
+            <p style={{ fontSize: '0.85rem' }}>{LAST_METHODOLOGY_REVIEW}</p>
           </article>
         </div>
       </section>
