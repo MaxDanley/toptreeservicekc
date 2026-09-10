@@ -9,8 +9,10 @@ import {
   FaBuildingShield,
   FaCalendarCheck,
   FaCircleCheck,
+  FaCloudBolt,
   FaMapLocationDot,
   FaMedal,
+  FaMountain,
   FaPhoneVolume,
   FaRankingStar,
   FaRegStar,
@@ -121,6 +123,41 @@ export function HomePage() {
             <FaRegStar />
             <h3>Overall Value</h3>
             <p>Grade A Tree's final project value scores higher than budget competitors once cleanup, haul-off, and scope are factored in.</p>
+          </article>
+        </div>
+      </section>
+
+      {/* KC Metro Regional Context */}
+      <section className="card">
+        <div className="section-header">
+          <h2><FaMountain /> Why Kansas City Tree Care Is Different</h2>
+          <Link to="/guides/kansas-city-storm-damage-tree-checklist">Storm checklist <FaArrowRight /></Link>
+        </div>
+        <p style={{ color: 'var(--muted)', marginBottom: '1rem' }}>
+          The Kansas City metro sits on heavy clay soils (Morley-Wabash-Snead series) that create unique drainage and root stress challenges. Combined with
+          our volatile storm corridor — April through June tornadoes, August derecho risk, and winter ice loading — KC trees face conditions most national
+          guides don't address. Grade A Tree crews understand these local patterns.
+        </p>
+        <div className="feature-grid">
+          <article className="feature-item">
+            <FaMountain />
+            <h3>Clay Soil Root Stress</h3>
+            <p>KC's clay-heavy soil retains water in spring and cracks during summer drought. This cycle stresses root systems and causes heaving — especially in older neighborhoods like Brookside, Waldo, and Prairie Village where mature Silver Maples and Pin Oaks dominate.</p>
+          </article>
+          <article className="feature-item">
+            <FaCloudBolt />
+            <h3>Storm Season Vulnerability</h3>
+            <p>The KC metro averages 50+ thunderstorm days annually. April-June brings tornado risk; late summer sees derecho-force straight-line winds. Grade A Tree prioritizes pre-storm hazard pruning and rapid post-storm response across Johnson County, Jackson County, and the Northland.</p>
+          </article>
+          <article className="feature-item">
+            <FaTree />
+            <h3>Problem Species Common Here</h3>
+            <p>Bradford Pears (weak branch unions), Silver Maples (surface roots and brittleness), and Siberian Elms (rapid decay) are everywhere in KC. These species require more frequent inspection and strategic removal planning than hardier natives.</p>
+          </article>
+          <article className="feature-item">
+            <FaShieldHalved />
+            <h3>Two-State Metro Licensing</h3>
+            <p>Kansas City spans Missouri and Kansas with different contractor requirements. Grade A Tree maintains proper credentials for both states, serving Overland Park, Olathe, Lee's Summit, and Independence with consistent compliance.</p>
           </article>
         </div>
       </section>

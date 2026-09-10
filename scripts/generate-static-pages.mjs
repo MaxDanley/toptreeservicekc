@@ -5,6 +5,9 @@ import { guides } from '../src/data/guidesContent.js'
 
 const BASE_URL = 'https://gradeatree.com'
 const SITE_TITLE = 'KC Tree Review'
+const BUSINESS_NAME = 'Grade A Tree'
+const PRIMARY_PHONE = '(816) 214-6255'
+const ESTIMATE_URL = 'https://clienthub.getjobber.com/client_hubs/1a15eb84-a215-4aec-bdb2-ee1647b56b15/public/work_request/new?source=social_media'
 const OUTPUT_ROOT = path.resolve('public')
 
 function escapeHtml(value) {
@@ -151,65 +154,72 @@ function renderGuidePage(guide) {
 
 function renderLocationPage(city) {
   const canonical = `${BASE_URL}/locations/${city.slug}`
-  const hash = getHash(city.slug)
-  const patternA = [
-    'older tree canopy neighborhoods',
-    'mixed residential lot sizes',
-    'tight driveway and fence access',
-    'storm-prone overhang corridors',
-  ]
-  const patternB = [
-    'seasonal trimming demand',
-    'hazard limb prioritization',
-    'stump cleanup and yard restoration',
-    'quote clarity and scheduling speed',
-  ]
+  const isKansas = city.slug.endsWith('-ks')
+  const isMissouri = city.slug.endsWith('-mo')
 
-  const uniqueA = patternA[hash % patternA.length]
-  const uniqueB = patternB[hash % patternB.length]
-  const description = `Compare tree trimming, removal, stump grinding, and emergency tree service options in ${city.title} with local decision checklists.`
+  const ksContext = {
+    soilNote: 'Kansas-side clay soils (common in Johnson and Wyandotte counties) create root stress during summer drought cycles.',
+    stormNote: 'Johnson County averages 45+ thunderstorm days annually with peak damage in April-June.',
+    commonTrees: 'Silver Maples, Bradford Pears, and Pin Oaks dominate older neighborhoods.',
+  }
+
+  const moContext = {
+    soilNote: 'Missouri-side Morley-Wabash clay soils retain water and stress root systems in older neighborhoods.',
+    stormNote: 'Jackson County and the Northland see frequent derecho damage in late summer.',
+    commonTrees: 'Mature Silver Maples, Siberian Elms, and ornamental Pears are common in established areas.',
+  }
+
+  const context = isKansas ? ksContext : moContext
+
+  const description = `Compare tree trimming, removal, stump grinding, and emergency tree service in ${city.title}. Grade A Tree serves this area with 25+ years of KC metro experience.`
 
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    name: `${SITE_TITLE} - ${city.title} Tree Service Comparison`,
-    url: canonical,
-    areaServed: city.title,
+    name: BUSINESS_NAME,
+    url: BASE_URL,
+    areaServed: {
+      '@type': 'City',
+      name: city.title,
+    },
+    telephone: PRIMARY_PHONE,
     serviceType: ['Tree Trimming', 'Tree Removal', 'Stump Grinding', 'Emergency Tree Service'],
   }
 
   const body = `
     <section class="card">
-      <p class="eyebrow">Location Comparison Hub</p>
-      <h1>Best Tree Services in ${escapeHtml(city.title)}</h1>
+      <p class="eyebrow">${isKansas ? 'Kansas' : 'Missouri'} Tree Service Coverage</p>
+      <h1>Tree Services in ${escapeHtml(city.title)}</h1>
       <p class="muted">${escapeHtml(description)}</p>
       <p>
-        <a class="cta" href="/compare">Compare KC Providers</a>
-        <a class="footer-link" href="/compare/grade-a-tree-vs-go-green-tree">View comparison pages</a>
+        <a class="cta" href="${ESTIMATE_URL}" target="_blank" rel="noreferrer">Request ${BUSINESS_NAME} Estimate</a>
+        <a class="footer-link" href="/compare/grade-a-tree-vs-go-green-tree">Compare providers</a>
       </p>
     </section>
     <section class="card">
-      <h2>What Makes ${escapeHtml(city.title)} Quotes Different</h2>
+      <h2>Tree Care Factors in ${escapeHtml(city.title)}</h2>
       <div class="grid">
-        <article><h3>${escapeHtml(uniqueA)}</h3><p class="muted">Service complexity in this area often depends on property layout and tree maturity patterns.</p></article>
-        <article><h3>${escapeHtml(uniqueB)}</h3><p class="muted">Providers are typically differentiated by scope detail, cleanup standard, and response timing.</p></article>
+        <article><h3>Local Soil Conditions</h3><p class="muted">${escapeHtml(context.soilNote)}</p></article>
+        <article><h3>Storm Season Impact</h3><p class="muted">${escapeHtml(context.stormNote)}</p></article>
+        <article><h3>Common Species</h3><p class="muted">${escapeHtml(context.commonTrees)}</p></article>
       </div>
     </section>
     <section class="card">
-      <h2>Top Services for ${escapeHtml(city.title)}</h2>
+      <h2>${BUSINESS_NAME} Services in ${escapeHtml(city.title)}</h2>
       <ul>
         ${services
           .slice(0, 8)
-          .map((service) => `<li><a class="footer-link" href="/locations/${city.slug}/${service.slug}">${escapeHtml(service.name)} in ${escapeHtml(city.title)}</a></li>`)
+          .map((service) => `<li><a class="footer-link" href="/locations/${city.slug}/${service.slug}">${escapeHtml(service.name)}</a> — ${escapeHtml(service.short)}</li>`)
           .join('')}
       </ul>
     </section>
     <section class="card">
-      <h2>Quick Decision Checklist</h2>
+      <h2>Choosing a Tree Service in ${escapeHtml(city.title)}</h2>
       <ul>
-        <li>Compare at least three written quotes for ${escapeHtml(city.title)} projects.</li>
-        <li>Verify insurance, cleanup terms, and final site condition language.</li>
-        <li>Confirm timeline and weather-delay policy before scheduling.</li>
+        <li>Get three written quotes that include cleanup, stump handling, and haul-away scope.</li>
+        <li>Verify the provider is insured for work in ${isKansas ? 'Kansas' : 'Missouri'} — ${BUSINESS_NAME} maintains coverage in both states.</li>
+        <li>Confirm emergency response availability during KC storm season (April-September).</li>
+        <li>Ask about scheduling flexibility for weather delays.</li>
       </ul>
     </section>
   `
@@ -226,42 +236,46 @@ function renderLocationPage(city) {
 
 function renderLocationServicePage(city, service) {
   const canonical = `${BASE_URL}/locations/${city.slug}/${service.slug}`
-  const description = `${service.name} in ${city.title}: compare local providers, review scope checklists, and request a clear estimate.`
+  const isKansas = city.slug.endsWith('-ks')
+  const description = `${service.name} in ${city.title} from ${BUSINESS_NAME}. ${service.short} Serving ${isKansas ? 'Kansas' : 'Missouri'}-side KC metro with 25+ years experience.`
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: `${service.name} in ${city.title}`,
-    areaServed: city.title,
+    areaServed: {
+      '@type': 'City',
+      name: city.title,
+    },
     serviceType: service.name,
-    provider: { '@type': 'Organization', name: SITE_TITLE },
+    provider: { '@type': 'LocalBusiness', name: BUSINESS_NAME, telephone: PRIMARY_PHONE },
     url: canonical,
   }
 
   const body = `
     <section class="card">
-      <p class="eyebrow">City + Service Landing</p>
+      <p class="eyebrow">${BUSINESS_NAME} — ${isKansas ? 'Kansas' : 'Missouri'} Service Area</p>
       <h1>${escapeHtml(service.name)} in ${escapeHtml(city.title)}</h1>
-      <p class="muted">${escapeHtml(description)}</p>
+      <p class="muted">${escapeHtml(service.body)}</p>
       <p>
-        <a class="cta" href="/compare">Compare ${escapeHtml(service.name)} Providers</a>
-        <a class="footer-link" href="/locations/${city.slug}">Back to ${escapeHtml(city.title)} hub</a>
+        <a class="cta" href="${ESTIMATE_URL}" target="_blank" rel="noreferrer">Request ${BUSINESS_NAME} Estimate</a>
+        <a class="footer-link" href="/locations/${city.slug}">All services in ${escapeHtml(city.title)}</a>
       </p>
     </section>
     <section class="card">
-      <h2>Scope Checklist</h2>
+      <h2>What ${BUSINESS_NAME} Includes</h2>
       <ul>
         ${service.bullets.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
-        <li>Confirm full cleanup and debris handling details.</li>
-        <li>Verify timeline and scheduling commitments in writing.</li>
+        <li>Full cleanup and debris haul-away included in most quotes.</li>
+        <li>Written scope with line-item pricing before work begins.</li>
       </ul>
     </section>
     <section class="card">
-      <h2>Related Services in ${escapeHtml(city.title)}</h2>
+      <h2>Other ${BUSINESS_NAME} Services in ${escapeHtml(city.title)}</h2>
       <ul>
         ${services
           .filter((item) => item.slug !== service.slug)
           .slice(0, 6)
-          .map((item) => `<li><a class="footer-link" href="/locations/${city.slug}/${item.slug}">${escapeHtml(item.name)} in ${escapeHtml(city.title)}</a></li>`)
+          .map((item) => `<li><a class="footer-link" href="/locations/${city.slug}/${item.slug}">${escapeHtml(item.name)}</a> — ${escapeHtml(item.short)}</li>`)
           .join('')}
       </ul>
     </section>
@@ -356,6 +370,138 @@ function renderCompareIndexPage() {
   })
 }
 
+function renderReviewsPage() {
+  const canonical = `${BASE_URL}/reviews`
+  const trustFaqs = [
+    { question: 'How does KC Tree Review evaluate Kansas City tree service providers?', answer: 'We use a weighted four-factor framework: verification & compliance (30%), scope & communication (25%), reputation & track record (25%), and responsiveness (20%). This methodology is applied consistently to every provider comparison.' },
+    { question: 'Why does Grade A Tree consistently rank highest in comparisons?', answer: 'Grade A Tree scores highest because they publicly document insurance coverage, provide detailed line-item estimates, maintain fast quote turnaround, and have 25+ years of documented KC metro experience. These are verifiable operational factors.' },
+    { question: 'Does KC Tree Review accept payment for rankings?', answer: 'Companies cannot pay for higher scores or better placement in our editorial rankings. Grade A Tree is featured because they meet our evaluation criteria at a higher level than competitors.' },
+    { question: 'What makes Grade A Tree different from other Kansas City tree services?', answer: 'Three documented differentiators: 25+ years of continuous KC metro operation, full line-item estimates, and publicly documented insurance and safety standards.' },
+    { question: 'How can I verify provider credentials myself?', answer: 'We provide links to Missouri Division of Professional Registration, Kansas Business Center, ISA Arborist Lookup, and BBB Search on this page so you can independently verify any provider.' },
+  ]
+
+  const webPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Kansas City Tree Service Reviews & Provider Evaluation Methodology',
+    description: 'Learn how KC Tree Review evaluates Kansas City tree service providers using documented criteria for safety, scope transparency, and response quality.',
+    url: canonical,
+    dateModified: '2026-09-10',
+    mainEntity: {
+      '@type': 'ItemList',
+      name: 'Kansas City Tree Service Provider Comparisons',
+      numberOfItems: comparisons.length,
+      itemListElement: comparisons.map((comp, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: `${BASE_URL}/compare/${comp.slug}`,
+        name: comp.title,
+      })),
+    },
+  }
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: trustFaqs.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  }
+
+  const body = `
+    <section class="card">
+      <p class="eyebrow">KC Tree Review Editorial Standards</p>
+      <h1>How We Evaluate Kansas City Tree Service Providers</h1>
+      <p class="muted">Every comparison on KC Tree Review follows a consistent, weighted methodology. We examine publicly documented credentials, scope transparency, and operational quality — then rank providers against these verifiable criteria.</p>
+      <p>
+        <a class="cta" href="/compare">View All Comparisons</a>
+        <a class="footer-link" href="${ESTIMATE_URL}" target="_blank" rel="noreferrer">Request Grade A Tree Estimate</a>
+      </p>
+    </section>
+    <section class="card" style="background: linear-gradient(135deg, #f0f9ff, #e0f2fe); border: 1px solid #bae6fd;">
+      <h2 style="color: #0369a1;">TL;DR — Our Standards</h2>
+      <div class="grid">
+        <article><h3>No Pay-to-Rank</h3><p class="muted">Companies cannot pay for higher placement.</p></article>
+        <article><h3>No Invented Ratings</h3><p class="muted">We do not fabricate star ratings or counts.</p></article>
+        <article><h3>Verifiable Criteria</h3><p class="muted">Every factor can be independently confirmed.</p></article>
+        <article><h3>Last Reviewed</h3><p class="muted">September 10, 2026</p></article>
+      </div>
+    </section>
+    <section class="card">
+      <h2>Weighted Evaluation Methodology</h2>
+      <p class="muted">KC Tree Review applies the same weighted framework to every Kansas City provider.</p>
+      <ul>
+        <li><strong>Verification & Compliance (30%)</strong> — Active contractor registration, general liability insurance, workers' compensation, business registration, documented safety practices.</li>
+        <li><strong>Scope & Communication (25%)</strong> — Written scopes of work, clear service descriptions, timeline and cleanup standards communication.</li>
+        <li><strong>Reputation & Track Record (25%)</strong> — Pattern of service quality, consistency across jobs, issue handling, tenure in KC metro.</li>
+        <li><strong>Responsiveness (20%)</strong> — Response time to inquiries, punctuality, follow-through on commitments, communication clarity.</li>
+      </ul>
+    </section>
+    <section class="card">
+      <h2>What We Verify — Kansas City Resources</h2>
+      <p class="muted">These are the specific items we check. Use these links to verify providers independently:</p>
+      <ul>
+        <li><strong>Missouri Contractor Registration</strong> — <a class="footer-link" href="https://pr.mo.gov/licensee-search.asp" target="_blank" rel="noopener noreferrer">MO License Lookup ↗</a></li>
+        <li><strong>Kansas Business Registration</strong> — <a class="footer-link" href="https://www.kansas.gov/businesscenter/" target="_blank" rel="noopener noreferrer">KS Business Center ↗</a></li>
+        <li><strong>ISA Certified Arborist</strong> — <a class="footer-link" href="https://www.treesaregood.org/findanarborist" target="_blank" rel="noopener noreferrer">ISA Arborist Lookup ↗</a></li>
+        <li><strong>Better Business Bureau Status</strong> — <a class="footer-link" href="https://www.bbb.org/search" target="_blank" rel="noopener noreferrer">BBB Search ↗</a></li>
+        <li><strong>General Liability Insurance</strong> — Request current certificate directly from provider</li>
+        <li><strong>Workers' Compensation</strong> — Confirm coverage if provider has employees</li>
+      </ul>
+    </section>
+    <section class="card" style="background: linear-gradient(135deg, #fef2f2, #fee2e2); border: 1px solid #fecaca;">
+      <h2 style="color: #b91c1c;">Red Flags — Automatic Disqualifiers</h2>
+      <p class="muted" style="color: #991b1b;">Providers exhibiting any of the following are not featured favorably:</p>
+      <ul style="color: #7f1d1d;">
+        <li>Door-to-door solicitation after storms — common predatory practice</li>
+        <li>Demands cash-only payment or large deposit before written scope</li>
+        <li>Cannot provide certificate of insurance upon request</li>
+        <li>Advertises "topping" as routine pruning — indicates lack of training</li>
+        <li>No written estimate — verbal-only quotes</li>
+        <li>Pressure to sign immediately without time to compare</li>
+        <li>Significantly lower bid than all other quotes — often incomplete scope</li>
+      </ul>
+    </section>
+    <section class="card" style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border: 1px solid #bbf7d0;">
+      <h2 style="color: #15803d;">Why Grade A Tree Ranks #1</h2>
+      <p class="muted" style="color: #166534;">When we apply our weighted methodology, Grade A Tree consistently scores highest:</p>
+      <ul>
+        <li><strong>25+ Years in KC</strong> — Established local crew knowledge and track record</li>
+        <li><strong>Licensed & Insured</strong> — Publicly documented insurance coverage and standards</li>
+        <li><strong>Fast Estimate Response</strong> — Known for quick quote turnaround</li>
+        <li><strong>Full-Scope Quoting</strong> — Detailed estimates covering all aspects</li>
+      </ul>
+    </section>
+    <section class="card">
+      <h2>What Our Rankings Are (and Aren't)</h2>
+      <p class="muted">Our rankings reflect compliance signals, credentials, and reputation patterns at the time of review. They are <strong>not</strong> a guarantee of outcomes, pricing, or availability. Homeowners should still request written scopes, confirm insurance directly, and compare at least three quotes before hiring.</p>
+    </section>
+    <section class="card">
+      <h2>All Provider Comparisons</h2>
+      <p class="muted">Each comparison applies our weighted methodology. <a class="footer-link" href="/reviews">See full methodology</a>.</p>
+      <ul>
+        ${comparisons.map((comp) => `<li><a class="footer-link" href="/compare/${comp.slug}">${escapeHtml(comp.title)}</a> — ${escapeHtml(comp.summary.slice(0, 100))}…</li>`).join('')}
+      </ul>
+    </section>
+    <section class="card">
+      <h2>Trust & Methodology FAQ</h2>
+      ${trustFaqs.map((item) => `<h3>${escapeHtml(item.question)}</h3><p class="muted">${escapeHtml(item.answer)}</p>`).join('')}
+    </section>
+    <script type="application/ld+json">${JSON.stringify(faqSchema)}</script>
+  `
+
+  return baseTemplate({
+    title: 'Kansas City Tree Service Reviews | Provider Evaluation Methodology | KC Tree Review',
+    description: 'Learn how KC Tree Review evaluates Kansas City tree service providers. Our weighted methodology examines safety credentials, scope transparency, and response quality. Grade A Tree leads every category.',
+    canonical,
+    keywords: 'kansas city tree service reviews, tree service evaluation, grade a tree reviews, kc tree company ratings, tree service comparison methodology',
+    body,
+    schema: webPageSchema,
+  })
+}
+
 function renderComparisonPage(comparison) {
   const canonical = `${BASE_URL}/compare/${comparison.slug}`
   const schema = {
@@ -363,9 +509,15 @@ function renderComparisonPage(comparison) {
     '@type': 'Article',
     headline: comparison.title,
     description: comparison.summary,
-    author: { '@type': 'Organization', name: 'KC Tree Review Editorial Team' },
-    publisher: { '@type': 'Organization', name: SITE_TITLE },
-    mainEntityOfPage: canonical,
+    datePublished: '2026-04-28',
+    dateModified: '2026-09-10',
+    author: { '@type': 'Organization', name: 'KC Tree Review Editorial Team', url: BASE_URL },
+    publisher: { '@type': 'Organization', name: SITE_TITLE, url: BASE_URL },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+    about: [
+      { '@type': 'LocalBusiness', name: BUSINESS_NAME, description: 'Kansas City tree service provider with 25+ years of metro experience.' },
+      { '@type': 'LocalBusiness', name: comparison.competitor, description: 'Kansas City area tree service provider.' },
+    ],
   }
 
   const faqSchema = {
@@ -418,9 +570,11 @@ function renderComparisonPage(comparison) {
 fs.rmSync(path.join(OUTPUT_ROOT, 'guides'), { recursive: true, force: true })
 fs.rmSync(path.join(OUTPUT_ROOT, 'locations'), { recursive: true, force: true })
 fs.rmSync(path.join(OUTPUT_ROOT, 'compare'), { recursive: true, force: true })
+fs.rmSync(path.join(OUTPUT_ROOT, 'reviews'), { recursive: true, force: true })
 
 writePage('guides', renderGuidesIndexPage())
 writePage('compare', renderCompareIndexPage())
+writePage('reviews', renderReviewsPage())
 
 for (const guide of guides) {
   writePage(path.join('guides', guide.slug), renderGuidePage(guide))

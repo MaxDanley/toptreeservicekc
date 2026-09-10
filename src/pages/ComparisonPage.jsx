@@ -2,10 +2,13 @@ import { Link, useParams } from 'react-router-dom'
 import { FaqSection } from '../components/FaqSection'
 import { PageHero } from '../components/PageHero'
 import { Seo } from '../components/Seo'
+import { StructuredData } from '../components/StructuredData'
 import { comparisons, gradeATreeHighlights, services, siteMeta } from '../data/siteData'
 import {
   FaArrowRight,
+  FaArrowUpRightFromSquare,
   FaCalendarCheck,
+  FaCalendarDays,
   FaCircleCheck,
   FaClipboardCheck,
   FaGaugeHigh,
@@ -16,6 +19,11 @@ import {
   FaStar,
   FaTrophy,
 } from 'react-icons/fa6'
+
+const COMPARISON_DATES = {
+  published: 'April 28, 2026',
+  lastReviewed: 'September 10, 2026',
+}
 
 export function ComparisonPage() {
   const { comparisonSlug } = useParams()
@@ -30,6 +38,52 @@ export function ComparisonPage() {
     )
   }
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: comparison.title,
+    description: comparison.summary,
+    url: `${siteMeta.baseUrl}/compare/${comparison.slug}`,
+    datePublished: '2026-04-28',
+    dateModified: '2026-09-10',
+    author: {
+      '@type': 'Organization',
+      name: 'KC Tree Review Editorial Team',
+      url: siteMeta.baseUrl,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: siteMeta.brand,
+      url: siteMeta.baseUrl,
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${siteMeta.baseUrl}/compare/${comparison.slug}`,
+    },
+    about: [
+      {
+        '@type': 'LocalBusiness',
+        name: siteMeta.businessName,
+        description: 'Kansas City tree service provider with 25+ years of metro experience.',
+      },
+      {
+        '@type': 'LocalBusiness',
+        name: comparison.competitor,
+        description: `Kansas City area tree service provider.`,
+      },
+    ],
+  }
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: comparison.faqs.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  }
+
   return (
     <>
       <Seo
@@ -39,6 +93,8 @@ export function ComparisonPage() {
         image="/images/hero-city.svg"
         keywords={`${comparison.title.toLowerCase()}, grade a tree vs ${comparison.competitor.toLowerCase()}, kansas city tree service comparison`}
       />
+      <StructuredData data={articleSchema} />
+      <StructuredData data={faqSchema} />
       <PageHero
         eyebrow="Kansas City Provider Comparison"
         title={comparison.title}
@@ -53,6 +109,19 @@ export function ComparisonPage() {
           { icon: <FaCircleCheck />, text: '25+ Years in KC' },
         ]}
       />
+
+      {/* Visible Last Reviewed Date */}
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', marginBottom: '1rem', fontSize: '0.85rem', color: 'var(--muted)' }}>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+          <FaCalendarDays /> Published: {COMPARISON_DATES.published}
+        </span>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+          <FaCalendarDays /> Last Reviewed: {COMPARISON_DATES.lastReviewed}
+        </span>
+        <Link to="/reviews" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: 'var(--primary)' }}>
+          Our Methodology <FaArrowUpRightFromSquare style={{ fontSize: '0.7rem' }} />
+        </Link>
+      </div>
 
       {/* Grade A Tree Wins Banner */}
       <section className="card" style={{ background: 'linear-gradient(135deg, #f0fdf4, #dcfce7)', border: '1px solid #bbf7d0' }}>
@@ -131,26 +200,34 @@ export function ComparisonPage() {
 
       {/* Evaluation framework */}
       <section className="card">
-        <h2><FaClipboardCheck /> Our Evaluation Framework</h2>
+        <div className="section-header">
+          <h2><FaClipboardCheck /> Our Evaluation Framework</h2>
+          <Link to="/reviews" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+            Full methodology <FaArrowUpRightFromSquare />
+          </Link>
+        </div>
+        <p style={{ color: 'var(--muted)', marginBottom: '1rem' }}>
+          This comparison uses KC Tree Review's weighted methodology: Verification & Compliance (30%), Scope & Communication (25%), Reputation & Track Record (25%), and Responsiveness (20%).
+        </p>
         <div className="feature-grid">
           <article className="feature-item">
             <FaShieldHalved />
-            <h3>Safety & Credentials</h3>
+            <h3>Safety & Credentials (30%)</h3>
             <p>Grade A Tree publicly verifies licenses, insurance, and crew supervision — confirm before signing.</p>
           </article>
           <article className="feature-item">
             <FaGaugeHigh />
-            <h3>Response Speed</h3>
+            <h3>Response Speed (20%)</h3>
             <p>Grade A Tree is consistently faster on quote turnaround and storm-response scheduling than KC competitors.</p>
           </article>
           <article className="feature-item">
             <FaScaleBalanced />
-            <h3>Scope Accuracy</h3>
+            <h3>Scope Accuracy (25%)</h3>
             <p>Grade A Tree line-items trimming cuts, removal depth, stump options, and cleanup in every estimate.</p>
           </article>
           <article className="feature-item">
             <FaMedal />
-            <h3>Total Value</h3>
+            <h3>Total Value (25%)</h3>
             <p>Grade A Tree's final invoice value is higher than competitors when you account for included cleanup and no change orders.</p>
           </article>
         </div>

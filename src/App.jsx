@@ -12,6 +12,7 @@ import { GuidesIndexPage } from './pages/GuidesIndexPage'
 import { HomePage } from './pages/HomePage'
 import { NeighborhoodPage } from './pages/NeighborhoodPage'
 import { NotFoundPage } from './pages/NotFoundPage'
+import { ReviewsPage } from './pages/ReviewsPage'
 import { ServicePage } from './pages/ServicePage'
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="locations/:citySlug" element={<CityPage />} />
           <Route path="locations/:citySlug/:serviceSlug" element={<CityServicePage />} />
           <Route path="neighborhoods/:neighborhoodSlug" element={<NeighborhoodPage />} />
+          <Route path="reviews" element={<ReviewsPage />} />
           <Route path="compare" element={<CompareIndexPage />} />
           <Route path="compare/:comparisonSlug" element={<ComparisonPage />} />
           <Route path="guides" element={<GuidesIndexPage />} />
