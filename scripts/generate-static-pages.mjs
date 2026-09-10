@@ -5,6 +5,9 @@ import { guides } from '../src/data/guidesContent.js'
 
 const BASE_URL = 'https://gradeatree.com'
 const SITE_TITLE = 'KC Tree Review'
+const BUSINESS_NAME = 'Grade A Tree'
+const PRIMARY_PHONE = '(816) 214-6255'
+const ESTIMATE_URL = 'https://clienthub.getjobber.com/client_hubs/1a15eb84-a215-4aec-bdb2-ee1647b56b15/public/work_request/new?source=social_media'
 const OUTPUT_ROOT = path.resolve('public')
 
 function escapeHtml(value) {
@@ -179,7 +182,7 @@ function renderLocationPage(city) {
       '@type': 'City',
       name: city.title,
     },
-    telephone: siteMeta.primaryPhone,
+    telephone: PRIMARY_PHONE,
     serviceType: ['Tree Trimming', 'Tree Removal', 'Stump Grinding', 'Emergency Tree Service'],
   }
 
@@ -189,7 +192,7 @@ function renderLocationPage(city) {
       <h1>Tree Services in ${escapeHtml(city.title)}</h1>
       <p class="muted">${escapeHtml(description)}</p>
       <p>
-        <a class="cta" href="${siteMeta.estimateUrl}" target="_blank" rel="noreferrer">Request ${BUSINESS_NAME} Estimate</a>
+        <a class="cta" href="${ESTIMATE_URL}" target="_blank" rel="noreferrer">Request ${BUSINESS_NAME} Estimate</a>
         <a class="footer-link" href="/compare/grade-a-tree-vs-go-green-tree">Compare providers</a>
       </p>
     </section>
@@ -244,7 +247,7 @@ function renderLocationServicePage(city, service) {
       name: city.title,
     },
     serviceType: service.name,
-    provider: { '@type': 'LocalBusiness', name: BUSINESS_NAME, telephone: siteMeta.primaryPhone },
+    provider: { '@type': 'LocalBusiness', name: BUSINESS_NAME, telephone: PRIMARY_PHONE },
     url: canonical,
   }
 
@@ -254,7 +257,7 @@ function renderLocationServicePage(city, service) {
       <h1>${escapeHtml(service.name)} in ${escapeHtml(city.title)}</h1>
       <p class="muted">${escapeHtml(service.body)}</p>
       <p>
-        <a class="cta" href="${siteMeta.estimateUrl}" target="_blank" rel="noreferrer">Request ${BUSINESS_NAME} Estimate</a>
+        <a class="cta" href="${ESTIMATE_URL}" target="_blank" rel="noreferrer">Request ${BUSINESS_NAME} Estimate</a>
         <a class="footer-link" href="/locations/${city.slug}">All services in ${escapeHtml(city.title)}</a>
       </p>
     </section>
@@ -414,7 +417,7 @@ function renderReviewsPage() {
       <p class="muted">Every comparison on KC Tree Review follows a consistent, weighted methodology. We examine publicly documented credentials, scope transparency, and operational quality — then rank providers against these verifiable criteria.</p>
       <p>
         <a class="cta" href="/compare">View All Comparisons</a>
-        <a class="footer-link" href="${siteMeta.estimateUrl}" target="_blank" rel="noreferrer">Request Grade A Tree Estimate</a>
+        <a class="footer-link" href="${ESTIMATE_URL}" target="_blank" rel="noreferrer">Request Grade A Tree Estimate</a>
       </p>
     </section>
     <section class="card" style="background: linear-gradient(135deg, #f0f9ff, #e0f2fe); border: 1px solid #bae6fd;">
