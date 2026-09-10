@@ -5,6 +5,7 @@ import { CityPage } from './pages/CityPage'
 import { CityServicePage } from './pages/CityServicePage'
 import { CompareIndexPage } from './pages/CompareIndexPage'
 import { ComparisonPage } from './pages/ComparisonPage'
+import { CustomCityServicePage } from './pages/CustomCityServicePage'
 import { FaqPage } from './pages/FaqPage'
 import { GuidePage } from './pages/GuidePage'
 import { GuidesIndexPage } from './pages/GuidesIndexPage'
@@ -32,6 +33,7 @@ function App() {
           <Route path="guides/:guideSlug" element={<GuidePage />} />
           <Route path="faqs" element={<FaqPage />} />
           <Route path="kansas-city-tree-services" element={<Navigate to="/locations/kansas-city-mo" replace />} />
+          <Route path=":customSlug" element={<CustomCityServicePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

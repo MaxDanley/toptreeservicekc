@@ -3,6 +3,7 @@ import path from 'node:path'
 import {
   cityPages,
   comparisons,
+  customCityServicePages,
   guides,
   neighborhoodPages,
   services,
@@ -17,6 +18,7 @@ const serviceCityPaths = serviceLocationPages.map((page) => `/locations/${page.s
 const neighborhoodPaths = neighborhoodPages.map((item) => `/neighborhoods/${item.slug}`)
 const comparisonPaths = comparisons.map((comparison) => `/compare/${comparison.slug}`)
 const guidePaths = guides.map((guide) => `/guides/${guide.slug}`)
+const customCityServicePaths = customCityServicePages.map((page) => `/${page.slug}`)
 
 const allPaths = [
   ...staticPaths,
@@ -26,6 +28,7 @@ const allPaths = [
   ...neighborhoodPaths,
   ...comparisonPaths,
   ...guidePaths,
+  ...customCityServicePaths,
 ]
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
